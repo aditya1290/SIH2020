@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         scan =(Button)findViewById(R.id.scan);
         generate = (Button)findViewById(R.id.generate);
 
+        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
