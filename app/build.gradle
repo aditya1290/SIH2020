@@ -42,6 +42,12 @@ dependencies {
     //ML Vision
     implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
 
+    //Firebase Database
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+
+    //Firebase Authentication
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+
 
 }
 apply plugin: 'com.google.gms.google-services'

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         scan =(Button)findViewById(R.id.scan);
         generate = (Button)findViewById(R.id.generate);
 
+
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-
 
     }
 }

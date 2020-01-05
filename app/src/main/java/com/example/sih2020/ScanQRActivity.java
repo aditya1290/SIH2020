@@ -142,9 +142,9 @@ public class ScanQRActivity extends AppCompatActivity {
             {
                 createDialog(item.getRawValue());
             }
-
         }
     }
+
     private void createDialog(String text)                      //creatint UI for Dialog box which complete on ending current activity as well
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
