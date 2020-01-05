@@ -15,6 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".generator_form"></activity>
         <activity android:name=".GenerateQRActivity" />
 
         <meta-data
