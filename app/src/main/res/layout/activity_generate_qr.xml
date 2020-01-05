@@ -14,7 +14,7 @@
         android:textSize="20sp"></TextView>
 
     <EditText
-        android:id="@+id/serialnumber"
+        android:id="@+id/serialNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -62,7 +62,7 @@
         android:textSize="20sp"></TextView>
 
     <EditText
-        android:id="@+id/service_time"
+        android:id="@+id/serviceTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -77,7 +77,7 @@
         android:id="@+id/installation"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_below="@+id/service_time"
+        android:layout_below="@+id/serviceTime"
         android:layout_alignParentStart="true"
         android:layout_marginTop="14dp"
         android:text="Date of Installation"

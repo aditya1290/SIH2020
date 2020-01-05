@@ -34,7 +34,7 @@ import java.util.Calendar;
 
 public class GenerateQRActivity extends AppCompatActivity {
 
-    EditText input;
+    EditText serialNumber;
     ImageView qrcode;
     ImageView image;
     Button GenerateQR;
@@ -52,7 +52,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         setContentView(R.layout.activity_generate_qr);
 
         GenerateQR = (Button)findViewById(R.id.generateQRButton);
-        input = (EditText)findViewById(R.id.serialnumber);
+        serialNumber = (EditText)findViewById(R.id.serialNumber);
         qrcode = (ImageView)findViewById(R.id.qrcode);
         save = (Button)findViewById(R.id.save);
 
@@ -72,7 +72,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         GenerateQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text = input.getText().toString().trim();
+                text = serialNumber.getText().toString().trim();
                 MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
                 try{
                     BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,200,200);

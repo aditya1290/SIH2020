@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Machine {
-    String serialNo;
+    String serialNumber, generationCode;
     Date installationDate;
     String department;
     int serviceTime;
@@ -17,7 +17,7 @@ public class Machine {
     }
 
     public Machine(String serialNo, Date installationDate, String department, int serviceTime, URI QRImage, List<PastRecord> pastRecordList) {
-        this.serialNo = serialNo;
+        this.serialNumber = serialNo;
         this.installationDate = installationDate;
         this.department = department;
         this.serviceTime = serviceTime;
@@ -26,7 +26,7 @@ public class Machine {
     }
 
     public String getSerialNo() {
-        return serialNo;
+        return serialNumber;
     }
 
     public Date getInstallationDate() {
@@ -50,7 +50,7 @@ public class Machine {
     }
 
     public void setSerialNo(String serialNo) {
-        this.serialNo = serialNo;
+        this.serialNumber = serialNo;
     }
 
     public void setInstallationDate(Date installationDate) {
