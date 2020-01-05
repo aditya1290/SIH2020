@@ -24,16 +24,16 @@ public class MainActivity extends AppCompatActivity {
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, ScanQRActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(MainActivity.this, ScanQRActivity.class);
+//                startActivity(i);
             }
         });
 
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, GenerateQRActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(MainActivity.this, GenerateQRActivity.class);
+//                startActivity(i);
             }
         });
 
