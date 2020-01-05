@@ -1,28 +1,40 @@
 package com.example.sih2020;
 
+import android.net.Uri;
+
 import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
 public class Machine {
-    String serialNumber, generationCode;
+    String serialNumber;
     Date installationDate;
     String department;
     int serviceTime;
-    URI QRImage;
-    List<PastRecord> pastRecordList;
+    Uri QRImage;
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    String link;
+    //List<PastRecord> pastRecordList;
 
     public Machine (){
 
     }
 
-    public Machine(String serialNo, Date installationDate, String department, int serviceTime, URI QRImage, List<PastRecord> pastRecordList) {
+    public Machine(String serialNo, Date installationDate, String department, int serviceTime, Uri QRImage, List<PastRecord> pastRecordList) {
         this.serialNumber = serialNo;
         this.installationDate = installationDate;
         this.department = department;
         this.serviceTime = serviceTime;
         this.QRImage = QRImage;
-        this.pastRecordList = pastRecordList;
+      //  this.pastRecordList = pastRecordList;
     }
 
     public String getSerialNo() {
@@ -41,13 +53,13 @@ public class Machine {
         return serviceTime;
     }
 
-    public URI getQRImage() {
+    public Uri getQRImage() {
         return QRImage;
     }
 
-    public List<PastRecord> getPastRecordList() {
-        return pastRecordList;
-    }
+//    public List<PastRecord> getPastRecordList() {
+//        return pastRecordList;
+//    }
 
     public void setSerialNo(String serialNo) {
         this.serialNumber = serialNo;
@@ -65,11 +77,11 @@ public class Machine {
         this.serviceTime = serviceTime;
     }
 
-    public void setQRImage(URI QRImage) {
+    public void setQRImage(Uri QRImage) {
         this.QRImage = QRImage;
     }
 
     public void setPastRecordList(List<PastRecord> pastRecordList) {
-        this.pastRecordList = pastRecordList;
+//        this.pastRecordList = pastRecordList;
     }
 }
