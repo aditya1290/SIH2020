@@ -171,10 +171,10 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         GenerateQRActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        //android.R.style.Theme_Holo_Light_Dialog_MinWidth,
                         mDateSetListener,
                         year,month,day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+               // dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
         });

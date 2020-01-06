@@ -12,6 +12,8 @@ public class Machine {
     String department;
     int serviceTime;
     Uri QRImage;
+    String link;
+
 
     public String getLink() {
         return link;
@@ -21,7 +23,7 @@ public class Machine {
         this.link = link;
     }
 
-    String link;
+
     //List<PastRecord> pastRecordList;
 
     public Machine (){

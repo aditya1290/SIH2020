@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.bluetooth.le.ScanRecord;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -17,6 +18,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
@@ -46,6 +52,7 @@ public class ScanQRActivity extends AppCompatActivity {
     FirebaseVisionBarcodeDetectorOptions options;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +66,8 @@ public class ScanQRActivity extends AppCompatActivity {
         {
             requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO},1);
         }
+
+
 
 
         Dexter.withActivity(this)
@@ -140,7 +149,11 @@ public class ScanQRActivity extends AppCompatActivity {
         {
             for(FirebaseVisionBarcode item : firebaseVisionBarcodes)
             {
-                createDialog(item.getRawValue());
+                Intent i = new Intent(ScanQRActivity.this,GetMachineDetails.class);
+                i.putExtra("generationCode",item.getRawValue());
+                startActivity(i);
+                finish();
+               // createDialog(item.getRawValue());
             }
         }
     }
@@ -159,6 +172,7 @@ public class ScanQRActivity extends AppCompatActivity {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
+
     }
 
 
