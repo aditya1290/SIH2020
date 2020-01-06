@@ -133,8 +133,8 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                 if(generationCode!=null) {
 
-                    generationCode = String.valueOf(generationCodeValue+1);
-                    generationCodeReference.setValue(generationCode);
+                    generationCode = String.valueOf(generationCodeValue+1); // increase Value of generationCode Everytime a new machine is entered.
+                    generationCodeReference.setValue(generationCode); // update value to database.
 
                     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
@@ -142,10 +142,10 @@ public class GenerateQRActivity extends AppCompatActivity {
                     try {
                         BitMatrix bitMatrix = multiFormatWriter.encode(generationCode, BarcodeFormat.QR_CODE, 200, 200);
                         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                        Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                        Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix); // bitmap contains QRCode image.
                         qrcode.setImageBitmap(bitmap);
 
-                        uploadQR(bitmap);
+                        uploadQR(bitmap); // upload QRcode image to FirebaseStorage
 
 
                     } catch (WriterException e) {
@@ -205,9 +205,9 @@ public class GenerateQRActivity extends AppCompatActivity {
 
         machineQRCodeRefernce = storageReference.child(generationCode+".jpg");
 
-        UploadTask uploadTask = machineQRCodeRefernce.putBytes(data);
+        UploadTask uploadTask = machineQRCodeRefernce.putBytes(data); // QRCode image has been uploaded to Storage at this line.
 
-        addMachineToDatabase(uploadTask);
+        addMachineToDatabase(uploadTask); // Now retrieve URL of Image and upload Machine data to Database.
 
 
     }
@@ -220,18 +220,14 @@ public class GenerateQRActivity extends AppCompatActivity {
         final Date installationdate;
 
 
+        // Retrieve Data of Machine to be saved.
         serialNo = serialNumber.getText().toString();
         dept = department.getText().toString();
         servicetime = Integer.parseInt(serviceTime.getText().toString());
-        try {
-            installationdate = new SimpleDateFormat("dd/MM/yyyy").parse(installationDate.getText().toString());
-            machine.setInstallationDate(installationdate);
-        }
-        catch (Exception e)
-        {
+        String[] date = installationDate.getText().toString().split("/");
+        installationdate = new Date(Integer.parseInt(date[2]),Integer.parseInt(date[1]),Integer.parseInt(date[0]));
 
-        }
-
+        // QRCode image url is fetched and on Completion Machine Data is uploaded to database.
         Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
             @Override
             public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -239,7 +235,6 @@ public class GenerateQRActivity extends AppCompatActivity {
                     throw task.getException();
                 }
 
-                Toast.makeText(GenerateQRActivity.this, "HEllo", Toast.LENGTH_SHORT).show();
                 // Continue with the task to get the download URL
                 return machineQRCodeRefernce.getDownloadUrl();
             }
@@ -252,8 +247,9 @@ public class GenerateQRActivity extends AppCompatActivity {
                     machine.setDepartment(dept);
                     machine.setSerialNo(serialNo);
                     machine.setServiceTime(servicetime);
+                    machine.setInstallationDate(installationdate);
 
-                    machineReference.child(generationCode).setValue(machine);
+                    machineReference.child(generationCode).setValue(machine); // data uploaded to database.
 
                 } else {
 
