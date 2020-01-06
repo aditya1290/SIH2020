@@ -11,7 +11,7 @@ public class Machine {
     Date installationDate;
     String department;
     int serviceTime;
-    Uri QRImage;
+   // Uri QRImage;
     String link;
 
 
@@ -30,12 +30,12 @@ public class Machine {
 
     }
 
-    public Machine(String serialNo, Date installationDate, String department, int serviceTime, Uri QRImage, List<PastRecord> pastRecordList) {
+    public Machine(String serialNo, Date installationDate, String department, int serviceTime, List<PastRecord> pastRecordList) {
         this.serialNumber = serialNo;
         this.installationDate = installationDate;
         this.department = department;
         this.serviceTime = serviceTime;
-        this.QRImage = QRImage;
+//        this.QRImage = QRImage;
       //  this.pastRecordList = pastRecordList;
     }
 
@@ -55,9 +55,9 @@ public class Machine {
         return serviceTime;
     }
 
-    public Uri getQRImage() {
-        return QRImage;
-    }
+//    public Uri getQRImage() {
+//        return QRImage;
+//    }
 
 //    public List<PastRecord> getPastRecordList() {
 //        return pastRecordList;
@@ -79,9 +79,9 @@ public class Machine {
         this.serviceTime = serviceTime;
     }
 
-    public void setQRImage(Uri QRImage) {
-        this.QRImage = QRImage;
-    }
+//    public void setQRImage(Uri QRImage) {
+//        this.QRImage = QRImage;
+//    }
 
     public void setPastRecordList(List<PastRecord> pastRecordList) {
 //        this.pastRecordList = pastRecordList;

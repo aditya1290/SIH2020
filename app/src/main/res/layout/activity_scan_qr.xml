@@ -25,12 +25,5 @@
                 android:background="@drawable/rectangle"/>
 
         </com.otaliastudios.cameraview.CameraView>
-
-
     </FrameLayout>
-
-
-
-
-
 </RelativeLayout>

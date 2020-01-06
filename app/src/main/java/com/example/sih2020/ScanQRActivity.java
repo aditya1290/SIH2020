@@ -41,6 +41,7 @@ import com.otaliastudios.cameraview.CameraView;
 import com.otaliastudios.cameraview.frame.Frame;
 import com.otaliastudios.cameraview.frame.FrameProcessor;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ScanQRActivity extends AppCompatActivity {
@@ -69,10 +70,10 @@ public class ScanQRActivity extends AppCompatActivity {
 
 
 
-
         Dexter.withActivity(this)
                 .withPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO})
                 .withListener(new MultiplePermissionsListener() {
+
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         setupCamera();
@@ -98,13 +99,14 @@ public class ScanQRActivity extends AppCompatActivity {
     {
         cameraView = (CameraView)findViewById(R.id.CameraView);
         cameraView.setLifecycleOwner(this);
+
         cameraView.addFrameProcessor(new FrameProcessor() {
             @Override
             public void process(@NonNull Frame frame) {
                 processImage(getVisionImageFromFrame(frame));
+
             }
         });
-
 
         options = new FirebaseVisionBarcodeDetectorOptions.Builder()
                 .setBarcodeFormats(FirebaseVisionBarcode.FORMAT_QR_CODE).build();
@@ -115,10 +117,12 @@ public class ScanQRActivity extends AppCompatActivity {
      private void processImage(FirebaseVisionImage image) {
         if(!isDetected)
         {
+
             detector.detectInImage(image)
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
                         @Override
                         public void onSuccess(List<FirebaseVisionBarcode> firebaseVisionBarcodes) {
+
                             processResult(firebaseVisionBarcodes);
                         }
                     })
@@ -126,8 +130,10 @@ public class ScanQRActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(ScanQRActivity.this,""+ e.getMessage(), Toast.LENGTH_SHORT).show();
+
                         }
                     });
+
         }
     }
 
@@ -139,6 +145,14 @@ public class ScanQRActivity extends AppCompatActivity {
                 .setWidth(frame.getSize().getWidth())
                 .setHeight(frame.getSize().getHeight())
                 .build();
+
+
+        try {
+            detector.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
         return FirebaseVisionImage.fromByteArray(data, metadata);
     }

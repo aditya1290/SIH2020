@@ -38,7 +38,7 @@ public class GetMachineDetails extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         machineReference = firebaseDatabase.getReference("machines").child(generationCode);
 
-        QRCodeImage = findViewById(R.id.QRCodeImage);
+        QRCodeImage = findViewById(R.id.QrCodeImage);
 
         machineReference.addValueEventListener(new ValueEventListener() {
             @Override

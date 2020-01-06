@@ -7,13 +7,10 @@ import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -22,16 +19,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.internal.TaskApiCall;
+
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -79,25 +77,20 @@ public class GenerateQRActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_qr);
 
-
         serialNumber = (EditText)findViewById(R.id.serialNumber);
         department = findViewById(R.id.department);
         serviceTime = findViewById(R.id.serviceTime);
-
         installationDate = findViewById(R.id.installationdate);
-
         qrcode = (ImageView)findViewById(R.id.qrcode);
-
         save = (Button)findViewById(R.id.save);
         GenerateQR = (Button)findViewById(R.id.generateQRButton);
-
         firebaseDatabase  = FirebaseDatabase.getInstance();
         generationCodeReference = firebaseDatabase.getReference("generationCode");
         machineReference = firebaseDatabase.getReference("machines");
 
+
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
-
 
         // Get initial value of Code Generator on app startup
         generationCodeReference.addValueEventListener(new ValueEventListener() {
@@ -135,10 +128,7 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     generationCode = String.valueOf(generationCodeValue+1); // increase Value of generationCode Everytime a new machine is entered.
                     generationCodeReference.setValue(generationCode); // update value to database.
-
                     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-
-
                     try {
                         BitMatrix bitMatrix = multiFormatWriter.encode(generationCode, BarcodeFormat.QR_CODE, 200, 200);
                         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
@@ -146,7 +136,6 @@ public class GenerateQRActivity extends AppCompatActivity {
                         qrcode.setImageBitmap(bitmap);
 
                         uploadQR(bitmap); // upload QRcode image to FirebaseStorage
-
 
                     } catch (WriterException e) {
                         e.printStackTrace();
