@@ -3,9 +3,12 @@ package com.example.sih2020;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,11 +30,14 @@ public class GetMachineDetails extends AppCompatActivity {
     Machine machine;
 
     ImageView QRCodeImage;
+    Button show_history;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_machine_details);
+
+        show_history = findViewById(R.id.show_history);
 
         generationCode = getIntent().getStringExtra("generationCode");
 
@@ -54,5 +60,15 @@ public class GetMachineDetails extends AppCompatActivity {
 
             }
         });
+
+
+        show_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(GetMachineDetails.this, ShowHistory.class);
+                startActivity(i);
+            }
+        });
+
     }
 }
