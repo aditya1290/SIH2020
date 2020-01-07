@@ -47,8 +47,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class GenerateQRActivity extends AppCompatActivity {
 
@@ -234,9 +236,27 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     machine.setLink(task.getResult().toString());
                     machine.setDepartment(dept);
-                    machine.setSerialNo(serialNo);
+                    machine.setSerialNumber(serialNo);
                     machine.setServiceTime(servicetime);
                     machine.setInstallationDate(installationdate);
+
+
+                    PastRecord pastRecord = new PastRecord();
+                    pastRecord.setDescription("Installation Of Machines");
+                    pastRecord.setServiceDate(installationdate);
+                    pastRecord.setDone(true);
+                    pastRecord.setServiceMan("aditya");
+
+                    PastRecord pastRecord1 = new PastRecord();
+                    pastRecord1.setDescription("Installation Of Machines");
+                    pastRecord1.setServiceDate(installationdate);
+                    pastRecord1.setDone(true);
+                    pastRecord1.setServiceMan("aditya");
+
+                    List<PastRecord> list = new ArrayList<>();
+                    list.add(pastRecord);
+                    list.add(pastRecord1);
+                    machine.setPastRecordList(list);
 
                     machineReference.child(generationCode).setValue(machine); // data uploaded to database.
 
