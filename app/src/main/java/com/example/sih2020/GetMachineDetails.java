@@ -66,6 +66,7 @@ public class GetMachineDetails extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(GetMachineDetails.this, ShowHistory.class);
+                i.putExtra("generationCode",generationCode);
                 startActivity(i);
             }
         });

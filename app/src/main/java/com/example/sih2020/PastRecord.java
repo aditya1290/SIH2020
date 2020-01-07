@@ -3,10 +3,12 @@ package com.example.sih2020;
 import java.util.Date;
 
 public class PastRecord {
+
     Date serviceDate;
     String serviceMan;
     String Description;
     boolean isDone;
+
 
     public PastRecord() {
 

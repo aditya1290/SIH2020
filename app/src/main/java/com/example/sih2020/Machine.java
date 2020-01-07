@@ -24,7 +24,7 @@ public class Machine {
     }
 
 
-    //List<PastRecord> pastRecordList;
+    List<PastRecord> pastRecordList;
 
     public Machine (){
 
@@ -59,9 +59,9 @@ public class Machine {
 //        return QRImage;
 //    }
 
-//    public List<PastRecord> getPastRecordList() {
-//        return pastRecordList;
-//    }
+    public List<PastRecord> getPastRecordList() {
+        return pastRecordList;
+    }
 
     public void setSerialNo(String serialNo) {
         this.serialNumber = serialNo;
@@ -84,6 +84,6 @@ public class Machine {
 //    }
 
     public void setPastRecordList(List<PastRecord> pastRecordList) {
-//        this.pastRecordList = pastRecordList;
+        this.pastRecordList = pastRecordList;
     }
 }

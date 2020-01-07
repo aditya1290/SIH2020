@@ -1,7 +1,6 @@
 package com.example.sih2020;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
     Context c;
-    ArrayList<model> models;
+    List<PastRecord> pastRecords;
 
-    public MyAdapter(Context c, ArrayList<model> models) {
+    public MyAdapter(Context c, List<PastRecord> pastRecords) {
         this.c = c;
-        this.models = models;
+        this.pastRecords = pastRecords;
     }
 
 
@@ -35,15 +35,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyHolder myholder, int position) {
 
-        myholder.date.setText(models.get(position).getDate());
-        myholder.AgentId.setText(models.get(position).getAgentId());
-        myholder.Description.setText(models.get(position).getDescription());
-        myholder.CompliantId.setText(models.get(position).getComplaintId());
+        myholder.date.setText(pastRecords.get(position).getServiceDate().toString());
+        myholder.AgentId.setText(pastRecords.get(position).getServiceMan());
+        myholder.Description.setText(pastRecords.get(position).getDescription());
+        myholder.CompliantId.setText("random");
 
     }
 
     @Override
     public int getItemCount() {
-        return models.size();
+        return pastRecords.size();
     }
 }

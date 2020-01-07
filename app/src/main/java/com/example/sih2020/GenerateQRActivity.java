@@ -47,8 +47,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class GenerateQRActivity extends AppCompatActivity {
 
@@ -84,10 +86,10 @@ public class GenerateQRActivity extends AppCompatActivity {
         qrcode = (ImageView)findViewById(R.id.qrcode);
         save = (Button)findViewById(R.id.save);
         GenerateQR = (Button)findViewById(R.id.generateQRButton);
+
         firebaseDatabase  = FirebaseDatabase.getInstance();
         generationCodeReference = firebaseDatabase.getReference("generationCode");
         machineReference = firebaseDatabase.getReference("machines");
-
 
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
@@ -237,6 +239,18 @@ public class GenerateQRActivity extends AppCompatActivity {
                     machine.setSerialNo(serialNo);
                     machine.setServiceTime(servicetime);
                     machine.setInstallationDate(installationdate);
+
+                    PastRecord pastRecord = new PastRecord();
+                    pastRecord.setDescription("Installation of Machine");
+                    pastRecord.setServiceDate(installationdate);
+                    pastRecord.setDone(true);
+                    pastRecord.setServiceMan("sudhanshu");
+
+                    List<PastRecord> list = new ArrayList<PastRecord>();
+                    list.add(pastRecord);
+
+
+                    machine.setPastRecordList(list);
 
                     machineReference.child(generationCode).setValue(machine); // data uploaded to database.
 
