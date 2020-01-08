@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -48,6 +49,7 @@ public class ScanQRActivity extends AppCompatActivity {
 
     CameraView cameraView;
     boolean isDetected = false;
+    int count = 0;
 
     FirebaseVisionBarcodeDetector detector;
     FirebaseVisionBarcodeDetectorOptions options;
@@ -100,10 +102,15 @@ public class ScanQRActivity extends AppCompatActivity {
         cameraView = (CameraView)findViewById(R.id.CameraView);
         cameraView.setLifecycleOwner(this);
 
+        cameraView.setVideoBitRate(2000);
+
         cameraView.addFrameProcessor(new FrameProcessor() {
             @Override
             public void process(@NonNull Frame frame) {
-                processImage(getVisionImageFromFrame(frame));
+                if(count==0) {
+                    processImage(getVisionImageFromFrame(frame));
+
+                }
 
             }
         });
@@ -146,7 +153,6 @@ public class ScanQRActivity extends AppCompatActivity {
                 .setHeight(frame.getSize().getHeight())
                 .build();
 
-
         try {
             detector.close();
         } catch (IOException e) {
@@ -159,14 +165,19 @@ public class ScanQRActivity extends AppCompatActivity {
 
     private void processResult(List<FirebaseVisionBarcode> firebaseVisionBarcodes)
     {
+        int x=0;
+        Log.i("Size_of_barcode",String.valueOf(firebaseVisionBarcodes.size()));
         if(firebaseVisionBarcodes.size()>0)
         {
+            cameraView.setEnabled(false);
             for(FirebaseVisionBarcode item : firebaseVisionBarcodes)
             {
                 Intent i = new Intent(ScanQRActivity.this,GetMachineDetails.class);
                 i.putExtra("generationCode",item.getRawValue());
                 startActivity(i);
                 finish();
+                x++;
+                Log.i("Value_of_counter",String.valueOf(x));
                // createDialog(item.getRawValue());
             }
         }

@@ -18,8 +18,6 @@ public class Machine {
     public Machine()
     {
 
-    public void setLink(String link) {
-        this.link = link;
     }
 
     public Machine(String serialNumber, Date installationDate, String department, int serviceTime, String link, List<PastRecord> pastRecordList) {

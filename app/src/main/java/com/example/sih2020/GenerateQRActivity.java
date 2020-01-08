@@ -237,7 +237,7 @@ public class GenerateQRActivity extends AppCompatActivity {
 
                     machine.setLink(task.getResult().toString());
                     machine.setDepartment(dept);
-                    machine.setSerialNo(serialNo);
+                    machine.setSerialNumber(serialNo);
                     machine.setServiceTime(servicetime);
                     machine.setInstallationDate(installationdate);
 
