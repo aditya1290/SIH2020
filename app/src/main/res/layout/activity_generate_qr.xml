@@ -4,124 +4,161 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GenerateQRActivity">
+    tools:context=".GenerateQRActivity"
+    >
 
     <TextView
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Enter Details"
+        android:id="@+id/Enter_details"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+
+    <LinearLayout
+        android:id="@+id/linearlayoutimage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Enter_details"
+        android:layout_marginTop="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/qrcode"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:layout_centerInParent="true" />
+    </LinearLayout>
+
+    <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Enter Serial number"
-        android:textSize="20sp"></TextView>
-
-    <EditText
-        android:id="@+id/serialNumber"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="59dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="125dp"
-        android:layout_marginRight="252dp"
-        android:text="Enter department"
-        android:textSize="20sp"></TextView>
-
-    <EditText
-        android:id="@+id/department"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="167dp"
-        android:layout_marginEnd="-6dp"
-        android:inputType="text" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-
-        android:layout_below="@+id/department"
-        android:layout_marginTop="17dp"
-        android:text="Enter Service time in months"
-        android:textSize="20sp"></TextView>
-
-    <EditText
-        android:id="@+id/serviceTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="273dp"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/installation"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_below="@+id/serviceTime"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="14dp"
-        android:text="Date of Installation"
-        android:textSize="20sp"></TextView>
-
-    <TextView
-        android:id="@+id/installationdate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/installation"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="35dp"
-        android:text="Select"
-        android:textColor="@color/colorAccent"
-        android:textSize="20sp"></TextView>
-
-    <Button
-        android:id="@+id/generateQRButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/installationdate"
-        android:layout_marginTop="22dp"
-        android:text="Generate QR">
-
-    </Button>
-
-    <Button
-        android:id="@+id/save"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/generateQRButton"
-        android:text="save" />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/save">
+        android:layout_below="@+id/Enter_details"
+        android:orientation="vertical"
+        android:id="@+id/aqwesd"
+        android:layout_margin="15dp"
+        android:layout_marginTop="20dp">
 
-        <ImageView
-            android:id="@+id/qrcode"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_centerInParent="true" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/serialNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:hint="Serial Number"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/department"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
+                android:hint="Department"
+                android:layout_marginTop="167dp"
+                android:layout_marginEnd="-6dp"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/serviceTime"
+                android:hint="Service Time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="273dp"
+                android:textColor="@android:color/black"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/aqwesd"
+        android:id="@+id/linearlayout"
+        android:layout_margin="10dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_margin="15dp"
+            android:id="@+id/installation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date of Installation"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/installationdate123"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+
+            android:text="Select"
+            android:textColor="@color/colorAccent"
+            android:textSize="20sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayout"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="save" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayout"
+        android:id="@+id/linearlayout1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/generateQRButton"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:text="Generate"
+            android:background="@drawable/transparent_button_border"/>
+    </LinearLayout>
+
 
 </RelativeLayout>
