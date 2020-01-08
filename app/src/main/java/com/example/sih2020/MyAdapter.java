@@ -21,6 +21,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
         this.c = c;
         this.pastRecords = pastRecords;
     }
+    public MyAdapter(Context c)
+    {
+        this.c = c;
+    }
+
+    public void setPastRecords(List<PastRecord> pastRecords)
+    {
+        this.pastRecords = pastRecords;
+    }
 
     @NonNull
     @Override
@@ -35,7 +44,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyHolder myholder, int position) {
 
-        myholder.date.setText("djsvdb");
+        myholder.date.setText(pastRecords.get(position).getServiceDate().toString());
         myholder.AgentId.setText(pastRecords.get(position).getServiceMan());
         myholder.Description.setText(pastRecords.get(position).getDescription());
         myholder.CompliantId.setText("random");

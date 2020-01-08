@@ -25,7 +25,7 @@ import java.util.List;
 public class ShowHistory extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    MyAdapter myAdapter;
+    private MyAdapter myAdapter;
     FloatingActionButton floatingActionButton;
     String generationCode;
     FirebaseDatabase firebaseDatabase;
@@ -42,7 +42,7 @@ public class ShowHistory extends AppCompatActivity {
 
         generationCode = getIntent().getStringExtra("generationCode");
         firebaseDatabase = FirebaseDatabase.getInstance();
-        historyReference = firebaseDatabase.getReference("machines").child(generationCode).child("pastRecordList");
+        historyReference = firebaseDatabase.getReference("machines").child(generationCode).child("pastRecords");
 
         floatingActionButton = findViewById(R.id.btn_float);
         recyclerView = findViewById(R.id.RecyclerView);
@@ -63,22 +63,8 @@ public class ShowHistory extends AppCompatActivity {
         List<PastRecord> list = new ArrayList<>();
         list.add(pastRecord);
         list.add(pastRecord1);
-        myAdapter = new MyAdapter(getApplicationContext(), list);
-        recyclerView.setAdapter(myAdapter);
 
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ShowHistory.this, UpdateActivity.class);
-                startActivity(i);
-            }
-        });
-    }
-
-
-    private List<PastRecord> getlist()
-    {
         pastRecords = new ArrayList<>();
 
         historyReference.addValueEventListener(new ValueEventListener() {
@@ -95,7 +81,11 @@ public class ShowHistory extends AppCompatActivity {
                     pastRecords.add(m);
                 }
 
+                myAdapter = new MyAdapter(getApplicationContext(), pastRecords);
+                recyclerView.setAdapter(myAdapter);
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -103,8 +93,18 @@ public class ShowHistory extends AppCompatActivity {
             }
         });
 
-        return pastRecords;
+
+
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ShowHistory.this, UpdateActivity.class);
+                startActivity(i);
+            }
+        });
     }
+
 
 
 }
