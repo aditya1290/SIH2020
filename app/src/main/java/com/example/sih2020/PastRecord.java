@@ -4,12 +4,10 @@ import java.util.Date;
 
 public class PastRecord {
 
-
-
     Date serviceDate;
     String serviceMan;
     String description;
-    boolean done;
+    boolean     done;
 
     public PastRecord(Date serviceDate, String serviceMan, String description, boolean isDone) {
         this.serviceDate = serviceDate;

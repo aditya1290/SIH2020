@@ -105,9 +105,6 @@ public class GenerateQRActivity extends AppCompatActivity {
         save.setVisibility(View.INVISIBLE);
         linearLayoutimage.setVisibility(View.INVISIBLE);
 
-        installationdate123.setCompoundDrawablesWithIntrinsicBounds(R.drawable.adgskj, 0, 0, 0);
-
-
         // Get initial value of Code Generator on app startup
         generationCodeReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -272,21 +269,24 @@ public class GenerateQRActivity extends AppCompatActivity {
                             if(task.isSuccessful())
                             {
                                 machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+
+
                             }
                         }
                     });
 
 
-
-//                    PastRecord pastRecord1 = new PastRecord();
-//                    pastRecord1.setDescription("Installation Of Machines");
-//                    pastRecord1.setServiceDate(installationdate);
-//                    pastRecord1.setDone(true);
-//                    pastRecord1.setServiceMan("aditya");
-
                     List<PastRecord> list = new ArrayList<>();
                     list.add(pastRecord);
-                    //list.add(pastRecord1);
+
                     machine.setPastRecordList(list);
 
                      // data uploaded to database.

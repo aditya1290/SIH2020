@@ -150,10 +150,8 @@ public class ScanQRActivity extends AppCompatActivity {
 
     private void processResult(List<FirebaseVisionBarcode> firebaseVisionBarcodes)
     {
-        Log.i("Size_CODE",String.valueOf(firebaseVisionBarcodes.size()));
         if(firebaseVisionBarcodes.size()>0 && isDetected==false)
         {
-            Log.i("Size_msg","HEYYY");
             for(FirebaseVisionBarcode item : firebaseVisionBarcodes)
             {
 

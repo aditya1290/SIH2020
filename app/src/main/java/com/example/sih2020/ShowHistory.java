@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -29,7 +32,8 @@ public class ShowHistory extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
     String generationCode;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference historyReference;
+    DatabaseReference historyReference,pastRecordsReference;
+    SwipeRefreshLayout swipeRefereshLayout;
 
     List<PastRecord> pastRecords;
 
@@ -41,6 +45,7 @@ public class ShowHistory extends AppCompatActivity {
 
 
         generationCode = getIntent().getStringExtra("generationCode");
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         historyReference = firebaseDatabase.getReference("machines").child(generationCode).child("pastRecords");
 
@@ -48,24 +53,39 @@ public class ShowHistory extends AppCompatActivity {
         recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        PastRecord pastRecord = new PastRecord();
-        pastRecord.setDescription("Installation Of Machines");
-        pastRecord.setServiceDate(new Date(2020,1,8));
-        pastRecord.setDone(true);
-        pastRecord.setServiceMan("aditya");
-
-        PastRecord pastRecord1 = new PastRecord();
-        pastRecord1.setDescription("Installation Of Machines");
-        pastRecord.setServiceDate(new Date(2020,1,8));
-        pastRecord1.setDone(true);
-        pastRecord1.setServiceMan("aditya");
-
-        List<PastRecord> list = new ArrayList<>();
-        list.add(pastRecord);
-        list.add(pastRecord1);
-
-
+        swipeRefereshLayout = findViewById(R.id.swipeRefreshLayout);
         pastRecords = new ArrayList<>();
+        swipeRefereshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefereshLayout.setColorSchemeColors(Color.BLUE);
+                PastRecord pastRecord = new PastRecord();
+                pastRecord.setDescription("Installation Of Machines");
+                pastRecord.setServiceDate(new Date(2020,1,8));
+                pastRecord.setDone(true);
+                pastRecord.setServiceMan("aditya");
+                historyReference.push().setValue(pastRecord);
+                pastRecords.add(0,pastRecord);
+                myAdapter.notifyDataSetChanged();
+                swipeRefereshLayout.setRefreshing(false);
+
+            }
+        });
+
+
+
+//        PastRecord pastRecord1 = new PastRecord();
+//        pastRecord1.setDescription("Installation Of Machines");
+//        pastRecord.setServiceDate(new Date(2020,1,8));
+//        pastRecord1.setDone(true);
+//        pastRecord1.setServiceMan("aditya");
+//
+//        List<PastRecord> list = new ArrayList<>();
+//        list.add(pastRecord);
+//        list.add(pastRecord1);
+
+
+
 
         historyReference.addValueEventListener(new ValueEventListener() {
             @Override
