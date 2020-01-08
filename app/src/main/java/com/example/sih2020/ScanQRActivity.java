@@ -49,7 +49,6 @@ public class ScanQRActivity extends AppCompatActivity {
 
     CameraView cameraView;
     boolean isDetected = false;
-    int count = 0;
 
     FirebaseVisionBarcodeDetector detector;
     FirebaseVisionBarcodeDetectorOptions options;
@@ -102,16 +101,10 @@ public class ScanQRActivity extends AppCompatActivity {
         cameraView = (CameraView)findViewById(R.id.CameraView);
         cameraView.setLifecycleOwner(this);
 
-        cameraView.setVideoBitRate(2000);
-
         cameraView.addFrameProcessor(new FrameProcessor() {
             @Override
             public void process(@NonNull Frame frame) {
-                if(count==0) {
-                    processImage(getVisionImageFromFrame(frame));
-
-                }
-
+                processImage(getVisionImageFromFrame(frame));
             }
         });
 
@@ -124,7 +117,6 @@ public class ScanQRActivity extends AppCompatActivity {
      private void processImage(FirebaseVisionImage image) {
         if(!isDetected)
         {
-
             detector.detectInImage(image)
                     .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
                         @Override
@@ -137,10 +129,8 @@ public class ScanQRActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(ScanQRActivity.this,""+ e.getMessage(), Toast.LENGTH_SHORT).show();
-
                         }
                     });
-
         }
     }
 
@@ -153,11 +143,6 @@ public class ScanQRActivity extends AppCompatActivity {
                 .setHeight(frame.getSize().getHeight())
                 .build();
 
-        try {
-            detector.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
 
         return FirebaseVisionImage.fromByteArray(data, metadata);
@@ -165,19 +150,18 @@ public class ScanQRActivity extends AppCompatActivity {
 
     private void processResult(List<FirebaseVisionBarcode> firebaseVisionBarcodes)
     {
-        int x=0;
-        Log.i("Size_of_barcode",String.valueOf(firebaseVisionBarcodes.size()));
-        if(firebaseVisionBarcodes.size()>0)
+        Log.i("Size_CODE",String.valueOf(firebaseVisionBarcodes.size()));
+        if(firebaseVisionBarcodes.size()>0 && isDetected==false)
         {
-            cameraView.setEnabled(false);
+            Log.i("Size_msg","HEYYY");
             for(FirebaseVisionBarcode item : firebaseVisionBarcodes)
             {
+
                 Intent i = new Intent(ScanQRActivity.this,GetMachineDetails.class);
                 i.putExtra("generationCode",item.getRawValue());
                 startActivity(i);
+                isDetected = true;
                 finish();
-                x++;
-                Log.i("Value_of_counter",String.valueOf(x));
                // createDialog(item.getRawValue());
             }
         }
@@ -199,7 +183,6 @@ public class ScanQRActivity extends AppCompatActivity {
         dialog.show();
 
     }
-
 
 
 }

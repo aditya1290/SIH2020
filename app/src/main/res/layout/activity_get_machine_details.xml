@@ -8,7 +8,6 @@
     android:background="@android:color/white"
     tools:context=".GetMachineDetails">
 
-
     <ImageView
         android:id="@+id/QrCodeImage"
         android:layout_width="314dp"

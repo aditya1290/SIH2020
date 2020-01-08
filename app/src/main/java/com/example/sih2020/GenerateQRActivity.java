@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,8 +46,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,7 +54,7 @@ import java.util.List;
 public class GenerateQRActivity extends AppCompatActivity {
 
     EditText department,serviceTime,serialNumber;// Serial Number mentioned on Machine
-    TextView installationDate;
+    TextView installationDate,installationdate123;
     ImageView qrcode;
 
     Button GenerateQR;
@@ -73,6 +72,9 @@ public class GenerateQRActivity extends AppCompatActivity {
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
     StorageReference machineQRCodeRefernce;
+    LinearLayout linearLayoutimage,aqwesd,linearLayout;
+    TextView enter_details;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,18 +84,29 @@ public class GenerateQRActivity extends AppCompatActivity {
         serialNumber = (EditText)findViewById(R.id.serialNumber);
         department = findViewById(R.id.department);
         serviceTime = findViewById(R.id.serviceTime);
-        installationDate = findViewById(R.id.installationdate);
+        installationDate = findViewById(R.id.installationdate123);
         qrcode = (ImageView)findViewById(R.id.qrcode);
+        installationdate123 = findViewById(R.id.installationdate123);
         save = (Button)findViewById(R.id.save);
         GenerateQR = (Button)findViewById(R.id.generateQRButton);
-
+        linearLayout = findViewById(R.id.linearlayout);
+        linearLayoutimage = (LinearLayout)findViewById(R.id.linearlayoutimage);
+        aqwesd = (LinearLayout)findViewById(R.id.aqwesd);
+        enter_details = (TextView)findViewById(R.id.Enter_details);
         firebaseDatabase  = FirebaseDatabase.getInstance();
         generationCodeReference = firebaseDatabase.getReference("generationCode");
         machineReference = firebaseDatabase.getReference("machines");
 
 
+
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
+
+        save.setVisibility(View.INVISIBLE);
+        linearLayoutimage.setVisibility(View.INVISIBLE);
+
+        installationdate123.setCompoundDrawablesWithIntrinsicBounds(R.drawable.adgskj, 0, 0, 0);
+
 
         // Get initial value of Code Generator on app startup
         generationCodeReference.addValueEventListener(new ValueEventListener() {
@@ -111,7 +124,7 @@ public class GenerateQRActivity extends AppCompatActivity {
             }
         });
 
-        mDisplayDate = (TextView) findViewById(R.id.installationdate);
+        mDisplayDate = (TextView) findViewById(R.id.installationdate123);
 
         //Permission
         if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
@@ -139,12 +152,16 @@ public class GenerateQRActivity extends AppCompatActivity {
                         qrcode.setImageBitmap(bitmap);
 
                         uploadQR(bitmap); // upload QRcode image to FirebaseStorage
+                        save.setVisibility(View.VISIBLE);
+                        GenerateQR.setVisibility(View.INVISIBLE);
+                        aqwesd.setVisibility(View.INVISIBLE);
+                        linearLayoutimage.setVisibility(View.VISIBLE);
+                        enter_details.setText("QR Code");
+                        linearLayout.setVisibility(View.INVISIBLE);
 
                     } catch (WriterException e) {
                         e.printStackTrace();
                     }
-
-
                 }
                 else
                 {
@@ -184,6 +201,7 @@ public class GenerateQRActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveImage();
+                finish();
             }
         });
     }
