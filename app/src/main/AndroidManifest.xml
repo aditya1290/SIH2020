@@ -21,6 +21,7 @@
         <activity android:name=".GetMachineDetails" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".GenerateQRActivity" />
+        <activity android:name=".MessageActivity"/>
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
