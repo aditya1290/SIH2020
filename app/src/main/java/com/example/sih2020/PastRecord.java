@@ -4,52 +4,55 @@ import java.util.Date;
 
 public class PastRecord {
 
+
+
     Date serviceDate;
     String serviceMan;
-    String Description;
-    boolean isDone;
-
-
-    public PastRecord() {
-
-    }
+    String description;
+    boolean done;
 
     public PastRecord(Date serviceDate, String serviceMan, String description, boolean isDone) {
         this.serviceDate = serviceDate;
         this.serviceMan = serviceMan;
-        Description = description;
-        this.isDone = isDone;
+        this.description = description;
+        this.done = isDone;
     }
+    public PastRecord(){}
+
 
     public Date getServiceDate() {
         return serviceDate;
-    }
-
-    public String getServiceMan() {
-        return serviceMan;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public boolean isDone() {
-        return isDone;
     }
 
     public void setServiceDate(Date serviceDate) {
         this.serviceDate = serviceDate;
     }
 
+    public String getServiceMan() {
+        return serviceMan;
+    }
+
+
+
     public void setServiceMan(String serviceMan) {
         this.serviceMan = serviceMan;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
+    }
+
+
+    public boolean isDone() {
+        return done;
     }
 
     public void setDone(boolean done) {
-        isDone = done;
+        this.done = done;
     }
+
 }

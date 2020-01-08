@@ -91,6 +91,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         generationCodeReference = firebaseDatabase.getReference("generationCode");
         machineReference = firebaseDatabase.getReference("machines");
 
+
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
 
@@ -240,19 +241,37 @@ public class GenerateQRActivity extends AppCompatActivity {
                     machine.setServiceTime(servicetime);
                     machine.setInstallationDate(installationdate);
 
-                    PastRecord pastRecord = new PastRecord();
-                    pastRecord.setDescription("Installation of Machine");
+
+                    final PastRecord pastRecord = new PastRecord();
+                    pastRecord.setDescription("Installation Of Machines");
                     pastRecord.setServiceDate(installationdate);
                     pastRecord.setDone(true);
                     pastRecord.setServiceMan("sudhanshu");
 
-                    List<PastRecord> list = new ArrayList<PastRecord>();
+                    machineReference.child(generationCode).setValue(machine).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful())
+                            {
+                                machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
+                            }
+                        }
+                    });
+
+
+
+//                    PastRecord pastRecord1 = new PastRecord();
+//                    pastRecord1.setDescription("Installation Of Machines");
+//                    pastRecord1.setServiceDate(installationdate);
+//                    pastRecord1.setDone(true);
+//                    pastRecord1.setServiceMan("aditya");
+
+                    List<PastRecord> list = new ArrayList<>();
                     list.add(pastRecord);
-
-
+                    //list.add(pastRecord1);
                     machine.setPastRecordList(list);
 
-                    machineReference.child(generationCode).setValue(machine); // data uploaded to database.
+                     // data uploaded to database.
 
                 } else {
 

@@ -1,6 +1,7 @@
 package com.example.sih2020;
 
 import android.content.Context;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +21,21 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
         this.c = c;
         this.pastRecords = pastRecords;
     }
+    public MyAdapter(Context c)
+    {
+        this.c = c;
+    }
 
+    public void setPastRecords(List<PastRecord> pastRecords)
+    {
+        this.pastRecords = pastRecords;
+    }
 
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row, null);
 
 
         return new MyHolder(view);

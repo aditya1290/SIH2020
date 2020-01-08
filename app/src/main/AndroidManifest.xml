@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowHistory"></activity>
+        <activity android:name=".UpdateActivity"></activity>
+        <activity android:name=".ShowHistory" />
         <activity android:name=".GetMachineDetails" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".GenerateQRActivity" />
