@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     tools:context=".UpdateActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -17,10 +18,12 @@
             android:id="@+id/Submit_Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:hint="Enter Description"
-
             android:textColor="@android:color/black"
-            android:textColorHighlight="@android:color/holo_blue_dark" />
+            android:textColorHighlight="@android:color/holo_blue_dark"
+            android:inputType="textMultiLine"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -28,8 +31,10 @@
         android:id="@+id/TextView123"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:layout_below="@+id/textInputLayout1"
-        android:text="Status :  "
+        android:text="Status"
+        android:layout_marginStart="18dp"
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/black"
         android:textSize="20sp" />
@@ -37,6 +42,7 @@
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
         android:layout_below="@+id/TextView123" >
 
@@ -46,23 +52,31 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="First" />
+            android:text="Completed" />
 
         <RadioButton
             android:id="@+id/Pending"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Second" />
+            android:text="Pending" />
     </RadioGroup>
 
-    <Button
-        android:id="@+id/submit_update"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/radio_group"
-        android:layout_marginTop="81dp"
-        android:text="Button" />
+        android:layout_below="@+id/radio_group"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        >
 
+        <Button
+            android:id="@+id/submit_update"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/radio_group"
+            android:text="Update" />
+
+    </LinearLayout>
 
 </RelativeLayout>
