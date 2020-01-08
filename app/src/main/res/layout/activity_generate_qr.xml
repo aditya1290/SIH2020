@@ -4,19 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".generator_form">
+    tools:context=".GenerateQRActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-
         android:layout_marginTop="20dp"
         android:text="Enter Serial number"
         android:textSize="20sp"></TextView>
 
     <EditText
-        android:inputType="number"
-        android:id="@+id/serialnumber"
+        android:id="@+id/serialNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -40,7 +38,6 @@
 
     <EditText
         android:id="@+id/department"
-        android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -51,7 +48,8 @@
         android:layout_marginStart="7dp"
         android:layout_marginLeft="7dp"
         android:layout_marginTop="167dp"
-        android:layout_marginEnd="-6dp" />
+        android:layout_marginEnd="-6dp"
+        android:inputType="text" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -63,8 +61,7 @@
         android:textSize="20sp"></TextView>
 
     <EditText
-        android:id="@+id/service_time"
-        android:inputType="number"
+        android:id="@+id/serviceTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -72,13 +69,14 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginTop="273dp" />
+        android:layout_marginTop="273dp"
+        android:inputType="number" />
 
     <TextView
+        android:id="@+id/installation"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:id="@+id/installation"
-        android:layout_below="@+id/service_time"
+        android:layout_below="@+id/serviceTime"
         android:layout_alignParentStart="true"
         android:layout_marginTop="14dp"
         android:text="Date of Installation"
@@ -97,6 +95,7 @@
         android:textSize="20sp"></TextView>
 
     <Button
+        android:id="@+id/generateQRButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/installationdate"
@@ -104,4 +103,25 @@
         android:text="Generate QR">
 
     </Button>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/generateQRButton"
+        android:text="save" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/save">
+
+        <ImageView
+            android:id="@+id/qrcode"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_centerInParent="true" />
+
+    </LinearLayout>
+
 </RelativeLayout>

@@ -24,23 +24,22 @@ public class MainActivity extends AppCompatActivity {
         scan =(CardView) findViewById(R.id.scan);
         generate = (CardView) findViewById(R.id.generate);
 
+
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, ScanQRActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(MainActivity.this, ScanQRActivity.class);
+                startActivity(i);
             }
         });
 
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(MainActivity.this, GenerateQRActivity.class);
-//                startActivity(i);
+                Intent i = new Intent(MainActivity.this, GenerateQRActivity.class);
+                startActivity(i);
             }
         });
-
-
 
     }
 }

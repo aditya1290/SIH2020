@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@android:color/white"
+    tools:context=".GetMachineDetails">
+
+
+    <ImageView
+        android:id="@+id/QrCodeImage"
+        android:layout_width="314dp"
+        android:layout_height="210dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+         />
+
+    <LinearLayout
+        android:id="@+id/Nothing_much"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/QrCodeImage"
+
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+
+                android:text="DETAILS"
+                android:textColor="#000000"
+                android:textSize="35dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/serialNumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textItem1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Serial Number         :    "
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/editText1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/department"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textItem2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Department             :   "
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/editText2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/servicTime"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textItem3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service Time           :    "
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/editText3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/DateInstall"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textItem4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date of Installation     :    "
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                />
+
+            <TextView
+                android:id="@+id/editText4"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Nothing_much"
+        >
+
+        <Button
+            android:id="@+id/show_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>
