@@ -8,12 +8,23 @@ public class PastRecord {
     String serviceMan;
     String description;
     boolean     done;
+    boolean expanded;
+
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
 
     public PastRecord(Date serviceDate, String serviceMan, String description, boolean isDone) {
         this.serviceDate = serviceDate;
         this.serviceMan = serviceMan;
         this.description = description;
         this.done = isDone;
+        this.expanded = false;
     }
     public PastRecord(){}
 

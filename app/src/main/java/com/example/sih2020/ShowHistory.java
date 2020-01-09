@@ -34,7 +34,6 @@ public class ShowHistory extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference historyReference,pastRecordsReference;
     SwipeRefreshLayout swipeRefereshLayout;
-
     List<PastRecord> pastRecords;
 
 
