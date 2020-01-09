@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +35,7 @@ public class ShowHistory extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference historyReference,pastRecordsReference;
     SwipeRefreshLayout swipeRefereshLayout;
+    ShimmerFrameLayout shimmerFrameLayout;
 
     List<PastRecord> pastRecords;
 
@@ -52,6 +54,9 @@ public class ShowHistory extends AppCompatActivity {
         floatingActionButton = findViewById(R.id.btn_float);
         recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        shimmerFrameLayout = findViewById(R.id.shimmerFrameLayout);
+        shimmerFrameLayout.startShimmerAnimation();
 
         swipeRefereshLayout = findViewById(R.id.swipeRefreshLayout);
         pastRecords = new ArrayList<>();
@@ -103,6 +108,8 @@ public class ShowHistory extends AppCompatActivity {
 
                 myAdapter = new MyAdapter(getApplicationContext(), pastRecords);
                 recyclerView.setAdapter(myAdapter);
+                shimmerFrameLayout.setVisibility(View.GONE);
+                shimmerFrameLayout.stopShimmerAnimation();
 
             }
 
