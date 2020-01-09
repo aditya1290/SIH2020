@@ -21,9 +21,10 @@
         <activity android:name=".ShowHistory"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".GetMachineDetails"
+            android:label="Machine Details "
+            android:theme="@style/AppTheme.ProfileTheme"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".LoginActivity"
-            android:windowSoftInputMode="adjustResize"/>
+
         <activity android:name=".GenerateQRActivity"
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".RegisterActivity"
@@ -32,12 +33,8 @@
         <activity android:name=".Bottom_Navigation">
 
         </activity>
-        <activity android:name=".UpdateActivity" />
-        <activity android:name=".ShowHistory" />
-        <activity android:name=".GetMachineDetails"
-            android:label="Machine Details "
-            android:theme="@style/AppTheme.ProfileTheme">
-        </activity>
+
+
         <activity android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -46,7 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GenerateQRActivity" />
+
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -56,8 +53,7 @@
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+
 
         </activity>
     </application>
