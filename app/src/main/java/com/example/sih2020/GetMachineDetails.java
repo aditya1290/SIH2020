@@ -2,6 +2,7 @@ package com.example.sih2020;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -36,6 +37,8 @@ public class GetMachineDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_machine_details);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         show_history = findViewById(R.id.show_history);
 
@@ -65,7 +68,8 @@ public class GetMachineDetails extends AppCompatActivity {
         show_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(GetMachineDetails.this, ShowHistory.class).putExtra("generationCode", generationCode);
+                Intent i = new Intent(GetMachineDetails.this, ShowHistory.class);
+                i.putExtra("generationCode",generationCode);
                 startActivity(i);
             }
         });

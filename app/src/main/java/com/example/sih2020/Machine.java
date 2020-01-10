@@ -7,13 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 public class Machine {
-
-
-
     String serialNumber;
     Date installationDate;
     String department;
     int serviceTime;
+   // Uri QRImage;
     String link;
     List<PastRecord> pastRecordList;
 
@@ -78,6 +76,4 @@ public class Machine {
     public void setPastRecordList(List<PastRecord> pastRecordList) {
         this.pastRecordList = pastRecordList;
     }
-
-
 }

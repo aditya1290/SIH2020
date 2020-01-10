@@ -4,13 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +29,13 @@ import java.util.List;
 public class ShowHistory extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    MyAdapter myAdapter;
+    private MyAdapter myAdapter;
     FloatingActionButton floatingActionButton;
     String generationCode;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference historyReference;
+    DatabaseReference historyReference,pastRecordsReference;
+    SwipeRefreshLayout swipeRefereshLayout;
+    ShimmerFrameLayout shimmerFrameLayout;
 
     List<PastRecord> pastRecords;
 
@@ -41,45 +47,50 @@ public class ShowHistory extends AppCompatActivity {
 
 
         generationCode = getIntent().getStringExtra("generationCode");
+
         firebaseDatabase = FirebaseDatabase.getInstance();
-        historyReference = firebaseDatabase.getReference("machines").child(generationCode).child("pastRecordList");
+        historyReference = firebaseDatabase.getReference("machines").child(generationCode).child("pastRecords");
 
         floatingActionButton = findViewById(R.id.btn_float);
         recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        PastRecord pastRecord = new PastRecord();
-        pastRecord.setDescription("Installation Of Machines");
-        pastRecord.setServiceDate(new Date(2020,1,8));
-        pastRecord.setDone(true);
-        pastRecord.setServiceMan("aditya");
+        shimmerFrameLayout = findViewById(R.id.shimmerFrameLayout);
+        shimmerFrameLayout.startShimmerAnimation();
 
-        PastRecord pastRecord1 = new PastRecord();
-        pastRecord1.setDescription("Installation Of Machines");
-        pastRecord.setServiceDate(new Date(2020,1,8));
-        pastRecord1.setDone(true);
-        pastRecord1.setServiceMan("aditya");
-
-        List<PastRecord> list = new ArrayList<>();
-        list.add(pastRecord);
-        list.add(pastRecord1);
-        myAdapter = new MyAdapter(getApplicationContext(), list);
-        recyclerView.setAdapter(myAdapter);
-
-
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        swipeRefereshLayout = findViewById(R.id.swipeRefreshLayout);
+        pastRecords = new ArrayList<>();
+        swipeRefereshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ShowHistory.this, UpdateActivity.class);
-                startActivity(i);
+            public void onRefresh() {
+                swipeRefereshLayout.setColorSchemeColors(Color.BLUE);
+                PastRecord pastRecord = new PastRecord();
+                pastRecord.setDescription("Installation Of Machines");
+                pastRecord.setServiceDate(new Date(2020,1,8));
+                pastRecord.setDone(true);
+                pastRecord.setServiceMan("aditya");
+                historyReference.push().setValue(pastRecord);
+                pastRecords.add(0,pastRecord);
+                myAdapter.notifyDataSetChanged();
+                swipeRefereshLayout.setRefreshing(false);
+
             }
         });
-    }
 
 
-    private List<PastRecord> getlist()
-    {
-        pastRecords = new ArrayList<>();
+
+//        PastRecord pastRecord1 = new PastRecord();
+//        pastRecord1.setDescription("Installation Of Machines");
+//        pastRecord.setServiceDate(new Date(2020,1,8));
+//        pastRecord1.setDone(true);
+//        pastRecord1.setServiceMan("aditya");
+//
+//        List<PastRecord> list = new ArrayList<>();
+//        list.add(pastRecord);
+//        list.add(pastRecord1);
+
+
+
 
         historyReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,7 +106,13 @@ public class ShowHistory extends AppCompatActivity {
                     pastRecords.add(m);
                 }
 
+                myAdapter = new MyAdapter(getApplicationContext(), pastRecords);
+                recyclerView.setAdapter(myAdapter);
+                shimmerFrameLayout.setVisibility(View.GONE);
+                shimmerFrameLayout.stopShimmerAnimation();
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -103,8 +120,18 @@ public class ShowHistory extends AppCompatActivity {
             }
         });
 
-        return pastRecords;
+
+
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ShowHistory.this, UpdateActivity.class);
+                startActivity(i);
+            }
+        });
     }
+
 
 
 }
