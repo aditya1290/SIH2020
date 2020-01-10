@@ -278,7 +278,6 @@ public class GenerateQRActivity extends AppCompatActivity {
                                 machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
                                 machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
 
-
                             }
                         }
                     });
