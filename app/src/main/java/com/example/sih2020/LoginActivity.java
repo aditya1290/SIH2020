@@ -3,6 +3,7 @@ package com.example.sih2020;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -58,6 +59,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful())
                         {
+                            Intent intent = new Intent(LoginActivity.this, MessageActivity.class);
+                            intent.putExtra("userid", "XzLSVMM1OLV4LIfyyt7PqMAduKy1");
+                            startActivity(intent);
                             Toast.makeText(getApplicationContext(),"Welcome",Toast.LENGTH_SHORT).show();
                             mUser = mAuth.getCurrentUser();
 

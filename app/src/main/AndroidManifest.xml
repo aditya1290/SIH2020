@@ -19,7 +19,13 @@
         <activity android:name=".UpdateActivity"></activity>
         <activity android:name=".ShowHistory" />
         <activity android:name=".GetMachineDetails" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".GenerateQRActivity" />
         <activity android:name=".MessageActivity"/>
 
@@ -29,11 +35,7 @@
 
         <activity android:name=".ScanQRActivity" />
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
