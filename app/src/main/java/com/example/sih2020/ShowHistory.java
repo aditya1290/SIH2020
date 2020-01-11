@@ -6,15 +6,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -32,7 +28,7 @@ import java.util.List;
 public class ShowHistory extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    private MyAdapter myAdapter;
+    private ShowDetailsAdapter showDetailsAdapter;
     FloatingActionButton floatingActionButton;
     String generationCode;
     FirebaseDatabase firebaseDatabase;
@@ -74,7 +70,7 @@ public class ShowHistory extends AppCompatActivity {
                 pastRecord.setServiceMan("aditya");
                 historyReference.push().setValue(pastRecord);
                 pastRecords.add(0,pastRecord);
-                myAdapter.notifyDataSetChanged();
+                showDetailsAdapter.notifyDataSetChanged();
                 swipeRefereshLayout.setRefreshing(false);
 
             }
@@ -109,8 +105,8 @@ public class ShowHistory extends AppCompatActivity {
                     pastRecords.add(m);
                 }
 
-                myAdapter = new MyAdapter(getApplicationContext(), pastRecords);
-                recyclerView.setAdapter(myAdapter);
+                showDetailsAdapter = new ShowDetailsAdapter(getApplicationContext(), pastRecords);
+                recyclerView.setAdapter(showDetailsAdapter);
                 shimmerFrameLayout.setVisibility(View.GONE);
                 shimmerFrameLayout.stopShimmerAnimation();
 
