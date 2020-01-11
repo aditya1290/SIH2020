@@ -13,11 +13,9 @@ tools:context=".Bottom_Navigation">
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_alignParentBottom="true"
-
         android:background="@color/whiteTextColor"
-        app:itemIconSize="30dp"
-        app:itemIconTint="@color/colorPrimary"
-        app:itemTextColor="@color/icon_color"
+        app:itemIconSize="25dp"
+
         app:menu="@menu/menu">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
