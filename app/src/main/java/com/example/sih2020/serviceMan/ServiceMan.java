@@ -4,6 +4,15 @@ import java.util.List;
 
 public class ServiceMan {
     String userName, Email;
+    int load = 0;
+
+    public int getLoad() {
+        return load;
+    }
+
+    public void setLoad(int load) {
+        this.load = load;
+    }
 
     List<String> pendingRequest, completedRequest, pendingComplaint, completedComplaint;
 

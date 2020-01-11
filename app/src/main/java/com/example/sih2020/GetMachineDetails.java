@@ -3,6 +3,7 @@ package com.example.sih2020;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,13 +24,19 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class GetMachineDetails extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference machineReference, complaintId, serviceManListReference;
+    DatabaseReference machineReference, complaintIdReference, serviceManListReference, responsibleReference,complaintIdRefrence;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -45,7 +52,7 @@ public class GetMachineDetails extends AppCompatActivity {
     String complaintIdValue;
 
     Button generateComplaint;
-    HashMap<String,ServiceMan> serviceManList;
+    HashMap<String,Integer> serviceManList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,13 +66,15 @@ public class GetMachineDetails extends AppCompatActivity {
 
         generationCode = getIntent().getStringExtra("generationCode");
 
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        machineReference = firebaseDatabase.getReference("machines").child(generationCode);
-        complaintId = firebaseDatabase.getReference("complaintId");
-        serviceManListReference = firebaseDatabase.getReference("Users").child("ServiceMan");
-
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        machineReference = firebaseDatabase.getReference("machines").child(generationCode);
+        complaintIdReference = firebaseDatabase.getReference("complaintId");
+        serviceManListReference = firebaseDatabase.getReference("Users").child("ServiceMan");
+        responsibleReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(user.getUid());
+        complaintIdRefrence = firebaseDatabase.getReference("Complaints");
 
         QRCodeImage = findViewById(R.id.QrCodeImage);
 
@@ -94,55 +103,102 @@ public class GetMachineDetails extends AppCompatActivity {
             }
         });
 
+        complaintIdReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                complaintIdValue = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
         generateComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                complaintId.addValueEventListener(new ValueEventListener() {
+                complaint = new Complaint();
+                complaint.setComplaintGenerator(user.getUid());
+                complaint.setComplaintMachineId(generationCode);
+                complaint.setComplaintGeneratedDate(new Date(2019,1,11));
+                complaint.setStatus(complaint.getGeneratedOnly());
+                serviceManList = new HashMap<>();
+
+                serviceManListReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        complaintIdValue = dataSnapshot.getValue().toString();
-                        complaint = new Complaint();
-                        complaint.setComplaintGenerator(user.getUid());
-                        complaint.setComplaintMachineId(generationCode);
-                        complaint.setComplaintGeneratedDate(new Date(2019,1,11));
-                        complaint.setStatus(complaint.getGeneratedOnly());
+                        for(DataSnapshot serviceManReference : dataSnapshot.getChildren())
+                        {
 
+                            String key = serviceManReference.getKey();
 
-                        serviceManListReference.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Log.i("serviceMan key",key);
 
-                                for(DataSnapshot serviceMan : dataSnapshot.getChildren())
-                                {
-                                    String key = serviceMan.getKey();
+                            ServiceMan serviceMan = new ServiceMan();
+                            String email = serviceManReference.child("email").getValue().toString();
+                            String userName = serviceManReference.child("userName").getValue().toString();
+                            String load = serviceManReference.child("load").getValue().toString();
 
+                            serviceMan.setEmail(email);
+                            serviceMan.setUserName(userName);
+                            serviceMan.setLoad(Integer.parseInt(load));
 
-                                }
-                            }
+                            Log.i("serviceMan username",serviceMan.getUserName());
+                            Log.i("serviceMan load",String.valueOf(serviceMan.getLoad()));
+                            serviceManList.put(key,serviceMan.getLoad());
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                        }
 
-                            }
-                        })  ;
+                        serviceManList = sortByValue(serviceManList);
+                        Map.Entry<String,Integer> entry = serviceManList.entrySet().iterator().next();
 
+                        complaint.setComplaintAllocatedTo(entry.getKey());
+                        complaint.setStatus(complaint.getGeneratedAndAccpted());
+                        serviceManListReference.child(entry.getKey()).child("load").setValue(entry.getValue()+1);
+                        serviceManListReference.child(entry.getKey()).child("pendingComplaint").push().setValue(complaintIdValue);
 
+                        serviceManListReference.removeEventListener(this);
+                        responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
+                        complaintIdRefrence.child(complaintIdValue).setValue(complaint);
+                        complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
 
                     }
-
-
-
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
+
+
                 });
 
             }
         });
 
+    }
+    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
+    {
+        // Create a list from elements of HashMap
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<Map.Entry<String, Integer> >(hm.entrySet());
+
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        // put data from sorted list to hashmap
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
     }
 }
