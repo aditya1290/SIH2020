@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.sih2020.History_fragment;
 import com.example.sih2020.Home_fragment;
@@ -28,6 +29,8 @@ public class ServicemanBottomNav extends AppCompatActivity {
         servicemanNotificationfragment= new ServicemanNotificationfragment();
         bottomNavigationView.setItemIconTintList(null);
         setOurFragment(servicemanHomefragment);
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -59,3 +62,4 @@ public class ServicemanBottomNav extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 }
+
