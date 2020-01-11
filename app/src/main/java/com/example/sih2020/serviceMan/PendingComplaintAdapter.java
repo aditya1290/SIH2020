@@ -96,6 +96,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     Intent i = new Intent(c, UpdateActivity.class);
                     i.putExtra("generatorUid",complaint.getComplaintGenerator());
                     i.putExtra("complaintId",complaint.getComplaintId());
+                    c.startActivity(i);
                 }
             });
         }
