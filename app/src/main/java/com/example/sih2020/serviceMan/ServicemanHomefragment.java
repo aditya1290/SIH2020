@@ -1,11 +1,10 @@
-package com.example.sih2020;
+package com.example.sih2020.serviceMan;
 
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -18,23 +17,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.sih2020.GenerateQRActivity;
+import com.example.sih2020.R;
+import com.example.sih2020.ScanQRActivity;
 import com.example.sih2020.ViewPagerAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Home_fragment extends Fragment {
+public class ServicemanHomefragment extends Fragment {
+
+
+
 
     CardView scan;
-    CardView generate;
+    CardView complaints;
     ViewPager viewPager;
     LinearLayout sliderdotspanel;
     private int dotscount;
     private ImageView[] dots;
     Timer timer;
 
-    public Home_fragment() {
+    public ServicemanHomefragment() {
         // Required empty public constructor
     }
 
@@ -43,19 +48,19 @@ public class Home_fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.home_fragment, container, false);
+        View view= inflater.inflate(R.layout.serviceman_homefragment, container, false);
 
-         viewPager= (ViewPager)view.findViewById(R.id.viewpager);
+        viewPager= (ViewPager)view.findViewById(R.id.viewpager);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getApplicationContext());
-        viewPager.setAdapter(viewPagerAdapter);
+        SViewpagerAdapter sviewPagerAdapter = new SViewpagerAdapter(getActivity().getApplicationContext());
+        viewPager.setAdapter(sviewPagerAdapter);
 
 
 
         //dots in viewpager
         sliderdotspanel = (LinearLayout) view.findViewById(R.id.slider_dots);
 
-        dotscount=viewPagerAdapter.getCount();
+        dotscount=sviewPagerAdapter.getCount();
         dots = new ImageView[dotscount];
 
         for(int i = 0; i < dotscount; i++){
@@ -97,21 +102,20 @@ public class Home_fragment extends Fragment {
         });
 
         //timer in viewpager
-       autoScroll();
+        autoScroll();
 
         scan =(CardView) view.findViewById(R.id.scan);
-        generate = (CardView) view.findViewById(R.id.generate);
+        complaints = (CardView) view.findViewById(R.id.complaints);
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateDetail();
             }
         });
-        generate.setOnClickListener(new View.OnClickListener() {
+        complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), GenerateQRActivity.class);
-                startActivity(intent);
+
             }
         });
         return view;
@@ -158,4 +162,6 @@ public class Home_fragment extends Fragment {
             timer = null;
         }
     }
+
+
 }
