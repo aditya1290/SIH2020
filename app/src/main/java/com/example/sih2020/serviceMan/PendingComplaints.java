@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +13,7 @@ import com.example.sih2020.R;
 import com.example.sih2020.model.Complaint;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,41 +59,47 @@ public class PendingComplaints extends AppCompatActivity {
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
-        pendingComplaintListReference = serviceManReference.child("pendingComplaint");
+        pendingComplaintListReference = serviceManReference.child("pendingComplaintList");
         complaintReference = firebaseDatabase.getReference("Complaints");
 
-        pendingComplaintListReference.addValueEventListener(new ValueEventListener() {
+
+
+        pendingComplaintListReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot pendingComplaintReference : dataSnapshot.getChildren())
-                {
-                    String key = pendingComplaintReference.getValue().toString();
-                    //Log.i("key", key);
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                    pendingComplaintList.add(key);
+                String key = dataSnapshot.getValue().toString();
 
-                    complaintReference.child(key).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Complaint complaint = new Complaint();
-                            complaint = dataSnapshot.getValue(Complaint.class);
-                            pendingComplaintObjectList.add(complaint);
-                            myPendingComplaintAdapter.notifyDataSetChanged();
-                            Log.i("machine id", complaint.getComplaintMachineId());
-                        }
+                complaintReference.child(key).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Complaint complaint = new Complaint();
+                        complaint = dataSnapshot.getValue(Complaint.class);
+                        pendingComplaintObjectList.add(complaint);
+                        myPendingComplaintAdapter.notifyDataSetChanged();
+                        Log.i("machine id", complaint.getComplaintMachineId());
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        }
-                    });
+                    }
+                });
 
-                }
+            }
 
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                Log.i("ComplaintSize",String.valueOf(pendingComplaintObjectList.size()));
+            }
 
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
 
