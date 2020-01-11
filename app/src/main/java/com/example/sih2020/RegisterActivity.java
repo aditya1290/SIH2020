@@ -61,9 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
                         {
                             user = auth.getCurrentUser();
                             userReference = firebaseDatabase.getReference("Users");
-                            userReference.child(user.getUid()).child("userName").setValue(userName);
-                            userReference.child(user.getUid()).child("email").setValue(email);
-                            userReference.child(user.getUid()).child("type").setValue("serviceMan");
+
+                            ResponsibleMan responsibleMan = new ResponsibleMan();
+                            responsibleMan.setEmail(email);
+                            responsibleMan.setUserName(userName);
+
+                            userReference.child("ResponsibleMan").child(user.getUid()).setValue(responsibleMan);
                             startActivity(new Intent(getApplicationContext(),Bottom_Navigation.class));
                             finish();
                         }
