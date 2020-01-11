@@ -70,5 +70,9 @@ dependencies {
     // Facebook Shimmer Effect
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
+    implementation 'com.google.firebase:firebase-functions:19.0.1'
+
+    implementation 'com.google.firebase:firebase-messaging:20.1.0'
+
 }
 apply plugin: 'com.google.gms.google-services'
