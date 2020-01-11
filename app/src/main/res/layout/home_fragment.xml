@@ -18,7 +18,7 @@
 
 
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3"
@@ -29,21 +29,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                >
+                tools:ignore="MissingConstraints">
             </androidx.viewpager.widget.ViewPager>
+            <LinearLayout
+                android:id="@+id/slider_dots"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/viewpager"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_height="wrap_content">
 
-        </RelativeLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/slider_dots"
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
 
-            android:gravity="center_vertical|center_horizontal"
-            android:layout_height="wrap_content">
-
-        </LinearLayout>
         <GridLayout
             android:id="@+id/grid_layout"
             android:layout_width="match_parent"
@@ -61,7 +62,6 @@
                 android:layout_row="0"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
-
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="6dp"
                 android:layout_marginBottom="12dp"
