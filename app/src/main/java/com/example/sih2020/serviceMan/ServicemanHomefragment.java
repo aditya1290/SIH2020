@@ -33,6 +33,7 @@ public class ServicemanHomefragment extends Fragment {
 
     CardView scan;
     CardView complaints;
+    CardView request;
     ViewPager viewPager;
     LinearLayout sliderdotspanel;
     private int dotscount;
@@ -106,6 +107,7 @@ public class ServicemanHomefragment extends Fragment {
 
         scan =(CardView) view.findViewById(R.id.scan);
         complaints = (CardView) view.findViewById(R.id.complaints);
+        request = (CardView)view.findViewById(R.id.requests);
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -118,6 +120,15 @@ public class ServicemanHomefragment extends Fragment {
 
             }
         });
+        request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity().getApplicationContext(), ServicemanRequests.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
     public void updateDetail() {
