@@ -3,6 +3,7 @@ package com.example.sih2020.serviceMan;
 import java.util.List;
 
 public class ServiceMan {
+
     String userName, Email;
     int load = 0;
 
