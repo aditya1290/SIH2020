@@ -20,7 +20,7 @@
             android:label="Request Status">
 
         </activity>
-        <activity android:name=".serviceMan.ServicemanBottomNav">
+        <activity android:name=".serviceMan.ServicemanBottomNav"/>
         <activity android:name=".serviceMan.PendingComplaints"></activity>
         <activity
             android:name=".UpdateActivity"
