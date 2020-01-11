@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@android:style/Theme.Material">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -21,8 +21,8 @@
         <item name="android:layout_alignParentTop">true</item>
         <item name="android:minWidth">250dp</item>
     </style>
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.AppBarOverlay" parent="@android:style/Theme.Material" />
+    <style name="AppTheme.PopupOverlay" parent="@android:style/Theme.Material" />
     <style name="TransparentText" parent="@android:style/TextAppearance">
         <item name="android:textColor">#00000000</item>
     </style>
