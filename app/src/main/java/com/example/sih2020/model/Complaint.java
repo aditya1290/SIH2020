@@ -9,11 +9,33 @@ public class Complaint {
         Date complaintGeneratedDate;
         Date complaintCompletedDate;
         int status;
-        final int generatedOnly = 1;
-        final int generatedAndAccpted = 2;
-        final int updateRequest = 3;
-        final int RequestApproved = 4;
-        final int complaintFinished = 5;
+        int generatedOnly = 1;
+        int generatedAndAccpted = 2;
+        int updateRequest = 3;
+        int RequestApproved = 4;
+        int complaintFinished = 5;
+
+    public int getGeneratedOnly() {
+        return 1;
+    }
+
+    public int getGeneratedAndAccpted() {
+        return 2;
+    }
+
+    public int getUpdateRequest() {
+        return 3;
+    }
+
+    public int getRequestApproved() {
+        return 4;
+    }
+
+    public int getComplaintFinished() {
+        return 5;
+    }
+
+
         String complaintDescription;
 
         public Complaint(){}
