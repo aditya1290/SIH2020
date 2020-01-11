@@ -36,6 +36,7 @@ public class UpdateActivity extends AppCompatActivity {
     Button submit_update;
 
     String requestIdValue;
+    String generatorUid, complaintId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +48,17 @@ public class UpdateActivity extends AppCompatActivity {
         radio_group = (RadioGroup) findViewById(R.id.radio_group);
         submit_update = (Button) findViewById(R.id.submit_update);
 
+        generatorUid = getIntent().getStringExtra("generatorUid");
+        complaintId = getIntent().getStringExtra("complaintId");
+
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         requestIdReference = firebaseDatabase.getReference("ReuestId");
         requestReference = firebaseDatabase.getReference("Requests");
-        serviceManReference = firebaseDatabase.getReference("Users").child(user.getUid());
-        responsibleManReference = firebaseDatabase.getReference("Users").child()
+        serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
+        responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(generatorUid);
 
 
         requestIdReference.addValueEventListener(new ValueEventListener() {
@@ -84,8 +88,14 @@ public class UpdateActivity extends AppCompatActivity {
                     request.setStatus(false);
                 else if(status == "Approved")
                     request.setStatus(true);
-                request.setResponsible("NqFlyKwXkuRUBlyPIkWJGfvXcmH2");
-                request.setComplaintId("253");
+                request.setResponsible(generatorUid);
+                request.setComplaintId(complaintId);
+
+                serviceManReference.child("pendingRequests").push().setValue(requestIdValue);
+                responsibleManReference.child("pendingRequests").push().setValue(requestIdValue);
+
+                requestReference.child(requestIdValue).setValue(request);
+                requestIdReference.setValue(String.valueOf(Integer.parseInt(requestIdValue)+1));
 
 
             }
