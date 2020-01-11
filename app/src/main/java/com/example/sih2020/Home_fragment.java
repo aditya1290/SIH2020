@@ -8,10 +8,13 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.sih2020.ViewPagerAdapter;
 
 
 public class Home_fragment extends Fragment {
@@ -30,6 +33,10 @@ public class Home_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.home_fragment, container, false);
 
+        ViewPager viewPager= (ViewPager)view.findViewById(R.id.viewpager);
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getActivity().getApplicationContext());
+        viewPager.setAdapter(viewPagerAdapter);
         scan =(CardView) view.findViewById(R.id.scan);
         generate = (CardView) view.findViewById(R.id.generate);
         scan.setOnClickListener(new View.OnClickListener() {

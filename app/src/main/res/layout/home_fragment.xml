@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="778dp"
-    tools:context=".Home_fragment">
+    tools:context=".Home_fragment"
+    android:background="@color/bkcolor">
 
 
         android:layout_width="match_parent"
@@ -21,20 +22,21 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_weight="3"
             >
-            <ImageView
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/hi_img">
+                android:layout_height="wrap_content"
 
-            </ImageView>
+                >
+            </androidx.viewpager.widget.ViewPager>
         </RelativeLayout>
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_weight="8"
+            android:layout_height="0dp"
+            android:layout_weight="7"
             android:alignmentMode="alignMargins"
             android:columnCount="2"
             android:columnOrderPreserved="false"
@@ -43,16 +45,16 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_height="210dp"
+                android:layout_height="120dp"
                 android:layout_row="0"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
 
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
                 android:id="@+id/scan">
 
                 <LinearLayout
@@ -63,23 +65,22 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="150dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/scan_me"></ImageView>
+                        android:src="@drawable/scan2"></ImageView>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="#acacac" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="SCAN QR"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
 
+                        android:layout_marginTop="8dp"
                         ></TextView>
                 </LinearLayout>
 
@@ -87,16 +88,16 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_height="210dp"
+                android:layout_height="120dp"
                 android:layout_row="0"
                 android:layout_column="1"
                 android:layout_columnWeight="1"
 
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="6dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp"
                 android:id="@+id/generate">
 
                 <LinearLayout
@@ -107,22 +108,21 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="150dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/generate1"></ImageView>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="#acacac" />
+
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="GENERATE QR"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:layout_marginTop="8dp"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
 
                         ></TextView>
                 </LinearLayout>
@@ -131,16 +131,16 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_height="210dp"
+                android:layout_height="120dp"
                 android:layout_row="1"
                 android:layout_column="1"
                 android:layout_columnWeight="1"
 
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="6dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -150,22 +150,21 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="150dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/agent_img"></ImageView>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="#acacac" />
+
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="     AGENTS"
+                        android:text="AGENTS"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:layout_marginTop="8dp"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
 
                         ></TextView>
                 </LinearLayout>
@@ -174,16 +173,16 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="0dp"
-                android:layout_height="207dp"
+                android:layout_height="120dp"
                 android:layout_row="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
 
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginRight="6dp"
                 android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp">
+                app:cardCornerRadius="2dp"
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -193,22 +192,21 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/user_img"></ImageView>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1sp"
-                        android:background="#acacac" />
+
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="MANAGE USER"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="12sp"
+                        android:layout_marginTop="8dp"
+                        android:textStyle="bold"
 
                         ></TextView>
                 </LinearLayout>
