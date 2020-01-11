@@ -1,6 +1,8 @@
 package com.example.sih2020;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sih2020.serviceMan.PendingComplaints;
+import com.example.sih2020.serviceMan.ServicemanBottomNav;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -26,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
+
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference serviceManReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
         loginButton = findViewById(R.id.loginButton);
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan");
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,16 +75,35 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(task.isSuccessful())
-                        {
+                        if (task.isSuccessful()) {
                             Intent intent = new Intent(LoginActivity.this, PendingComplaints.class);
-                            startActivity(intent);
-                            mUser = mAuth.getCurrentUser();
+                            SharedPreferences sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+                            String token = sharedPref.getString("token", "null");
+                            FirebaseDatabase.getInstance().getReference("tokens/" +
+                                    mAuth.getCurrentUser().getUid()).setValue(token);
 
-                        }
-                        else
-                        {
-                            Toast.makeText(getApplicationContext(),"Some Error Occured",Toast.LENGTH_SHORT).show();
+                            serviceManReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    if(dataSnapshot.exists())
+                                    {
+                                        startActivity(new Intent(getApplicationContext(), ServicemanBottomNav.class));
+                                    }
+                                    else
+                                    {
+                                        startActivity(new Intent(getApplicationContext(), Bottom_Navigation.class));
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Some Error Occured", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
