@@ -325,18 +325,7 @@ public class GenerateQRActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

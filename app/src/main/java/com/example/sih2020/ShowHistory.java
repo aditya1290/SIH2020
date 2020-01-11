@@ -29,7 +29,7 @@ import java.util.List;
 public class ShowHistory extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    private MyAdapter myAdapter;
+    private ShowDetailsAdapter showDetailsAdapter;
     FloatingActionButton floatingActionButton;
     String generationCode;
     FirebaseDatabase firebaseDatabase;
@@ -40,11 +40,11 @@ public class ShowHistory extends AppCompatActivity {
     List<PastRecord> pastRecords;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_history);
-
 
         generationCode = getIntent().getStringExtra("generationCode");
 
@@ -71,7 +71,7 @@ public class ShowHistory extends AppCompatActivity {
                 pastRecord.setServiceMan("aditya");
                 historyReference.push().setValue(pastRecord);
                 pastRecords.add(0,pastRecord);
-                myAdapter.notifyDataSetChanged();
+                showDetailsAdapter.notifyDataSetChanged();
                 swipeRefereshLayout.setRefreshing(false);
 
             }
@@ -106,8 +106,8 @@ public class ShowHistory extends AppCompatActivity {
                     pastRecords.add(m);
                 }
 
-                myAdapter = new MyAdapter(getApplicationContext(), pastRecords);
-                recyclerView.setAdapter(myAdapter);
+                showDetailsAdapter = new ShowDetailsAdapter(getApplicationContext(), pastRecords);
+                recyclerView.setAdapter(showDetailsAdapter);
                 shimmerFrameLayout.setVisibility(View.GONE);
                 shimmerFrameLayout.stopShimmerAnimation();
 
@@ -128,6 +128,7 @@ public class ShowHistory extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ShowHistory.this, UpdateActivity.class);
                 startActivity(i);
+
             }
         });
     }

@@ -1,8 +1,6 @@
 package com.example.sih2020;
 
 import android.content.Context;
-import android.media.audiofx.AudioEffect;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,21 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyHolder> {
+public class ShowDetailsAdapter extends RecyclerView.Adapter<ShowDetailsAdapter.MyHolder> {
 
     Context c;
     public List<PastRecord> pastRecords;
 
 
-    public MyAdapter(Context c, List<PastRecord> pastRecords) {
+    public ShowDetailsAdapter(Context c, List<PastRecord> pastRecords) {
         this.c = c;
         this.pastRecords = pastRecords;
     }
 
-    public MyAdapter(Context c) {
+    public ShowDetailsAdapter(Context c) {
         this.c = c;
     }
 

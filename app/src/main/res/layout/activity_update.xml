@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
+    android:background="#EAEAEA"
     tools:context=".serviceMan.UpdateActivity">
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -38,6 +40,7 @@
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/black"
         android:textSize="20sp" />
+
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"

@@ -16,10 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".serviceMan.PendingComplaintActivity"></activity>
-        <activity android:name=".serviceMan.PendingRequestActivity" />
+        <activity android:name=".serviceMan.PendingComplaints"></activity>
         <activity
-            android:name=".serviceMan.UpdateActivity"
+            android:name=".UpdateActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ShowHistory"
@@ -34,8 +33,10 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Bottom_Navigation" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Bottom_Navigation">
+
+        </activity>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -55,7 +56,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"></activity>
     </application>
 
 </manifest>
