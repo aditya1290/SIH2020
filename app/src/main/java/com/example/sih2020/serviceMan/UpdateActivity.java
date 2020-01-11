@@ -24,7 +24,7 @@ public class UpdateActivity extends AppCompatActivity {
 
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference requestIdReference, requestReference;
+    DatabaseReference requestIdReference, requestReference, serviceManReference, responsibleManReference;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -53,6 +53,8 @@ public class UpdateActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         requestIdReference = firebaseDatabase.getReference("ReuestId");
         requestReference = firebaseDatabase.getReference("Requests");
+        serviceManReference = firebaseDatabase.getReference("Users").child(user.getUid());
+        responsibleManReference = firebaseDatabase.getReference("Users").child()
 
 
         requestIdReference.addValueEventListener(new ValueEventListener() {
@@ -65,7 +67,7 @@ public class UpdateActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        })
+        });
 
 
         submit_update.setOnClickListener(new View.OnClickListener(){
@@ -77,7 +79,13 @@ public class UpdateActivity extends AppCompatActivity {
 
                 Request request = new Request();
                 request.setServiceMan(user.getUid());
-
+                request.setDescription(Submit_Description.toString());
+                if(status == "Pending")
+                    request.setStatus(false);
+                else if(status == "Approved")
+                    request.setStatus(true);
+                request.setResponsible("NqFlyKwXkuRUBlyPIkWJGfvXcmH2");
+                request.setComplaintId("253");
 
 
             }
