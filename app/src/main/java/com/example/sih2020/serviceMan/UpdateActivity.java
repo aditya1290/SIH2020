@@ -1,6 +1,7 @@
 package com.example.sih2020.serviceMan;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,7 +56,7 @@ public class UpdateActivity extends AppCompatActivity {
         user = auth.getCurrentUser();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        requestIdReference = firebaseDatabase.getReference("ReuestId");
+        requestIdReference = firebaseDatabase.getReference("RequestId");
         requestReference = firebaseDatabase.getReference("Requests");
         serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
         responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(generatorUid);
@@ -83,10 +84,11 @@ public class UpdateActivity extends AppCompatActivity {
 
                 Request request = new Request();
                 request.setServiceMan(user.getUid());
-                request.setDescription(Submit_Description.toString());
-                if(status == "Pending")
+                request.setDescription(Submit_Description.getText().toString());
+                Log.i("status", status);
+                if(status.equals("Pending"))
                     request.setStatus(false);
-                else if(status == "Approved")
+                else if(status.equals("Approved"))
                     request.setStatus(true);
                 request.setResponsible(generatorUid);
                 request.setComplaintId(complaintId);

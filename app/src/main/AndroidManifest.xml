@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".serviceMan.PendingComplaints"></activity>
         <activity
-            android:name=".UpdateActivity"
+            android:name=".serviceMan.UpdateActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ShowHistory"
