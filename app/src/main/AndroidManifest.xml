@@ -16,26 +16,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".ShowHistory"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".GetMachineDetails"
+        <activity android:name=".serviceMan.PendingComplaintActivity"></activity>
+        <activity android:name=".serviceMan.PendingRequestActivity" />
+        <activity
+            android:name=".serviceMan.UpdateActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ShowHistory"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".GetMachineDetails"
             android:label="Machine Details "
             android:theme="@style/AppTheme.ProfileTheme"
-            android:windowSoftInputMode="adjustResize"/>
-
-        <activity android:name=".GenerateQRActivity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-                    </activity>
-        <activity android:name=".Bottom_Navigation">
-
-        </activity>
-
-
-        <activity android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".GenerateQRActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Bottom_Navigation" />
+        <activity
+            android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,18 +46,16 @@
             </intent-filter>
         </activity>
 
-
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".ScanQRActivity"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize">
-
-
-        </activity>
+        <activity
+            android:name=".ScanQRActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
