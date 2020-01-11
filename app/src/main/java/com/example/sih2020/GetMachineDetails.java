@@ -36,7 +36,7 @@ import java.util.Map;
 public class GetMachineDetails extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference machineReference, complaintIdReference, serviceManListReference, responsibleReference,complaintIdRefrence;
+    DatabaseReference machineReference, complaintIdReference, serviceManListReference, responsibleReference,complaintReference;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -74,7 +74,7 @@ public class GetMachineDetails extends AppCompatActivity {
         complaintIdReference = firebaseDatabase.getReference("complaintId");
         serviceManListReference = firebaseDatabase.getReference("Users").child("ServiceMan");
         responsibleReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(user.getUid());
-        complaintIdRefrence = firebaseDatabase.getReference("Complaints");
+        complaintReference = firebaseDatabase.getReference("Complaints");
 
         QRCodeImage = findViewById(R.id.QrCodeImage);
 
@@ -164,7 +164,7 @@ public class GetMachineDetails extends AppCompatActivity {
 
                         serviceManListReference.removeEventListener(this);
                         responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
-                        complaintIdRefrence.child(complaintIdValue).setValue(complaint);
+                        complaintReference.child(complaintIdValue).setValue(complaint);
                         complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
 
                     }

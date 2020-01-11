@@ -1,8 +1,6 @@
 package com.example.sih2020;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,17 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sih2020.serviceMan.PendingComplaints;
-import com.example.sih2020.serviceMan.ServicemanBottomNav;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,22 +26,16 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference responsibleManReference, serviceManRefernce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.M){
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan");
-        serviceManRefernce = firebaseDatabase.getReference("Users").child("ServiceMan");
 
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
@@ -62,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = loginEmail.getText().toString();
                 String password = loginPassword.getText().toString();
 
-                login(email, password);
+                login(email,password);
 
             }
         });
@@ -70,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String email, String password) {
 
-        mAuth.signInWithEmailAndPassword(email, password)
+        mAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -108,10 +94,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    public void onLoginClick(View View) {
-        startActivity(new Intent(this, RegisterActivity.class));
-        overridePendingTransition(R.anim.slide_in_right, R.anim.stay);
+    public void onLoginClick(View View){
+        startActivity(new Intent(this,RegisterActivity.class));
+        overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
 
     }
 }
