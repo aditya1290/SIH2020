@@ -4,8 +4,7 @@
     android:layout_margin="10dp"
     android:layout_height="match_parent">
 
-    <!--Temporary file
-    May be deleted  :   Aditya-->
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="400dp"

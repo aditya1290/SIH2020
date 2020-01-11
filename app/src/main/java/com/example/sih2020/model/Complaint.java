@@ -6,9 +6,29 @@ public class Complaint {
         String complaintGenerator;
         String complaintAllocatedTo;
         String complaintMachineId;
+        String complaintId;
         Date complaintGeneratedDate;
         Date complaintCompletedDate;
-        int status;
+
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    boolean expanded;
+
+    public String getComplaintId() {
+        return complaintId;
+    }
+
+    public void setComplaintId(String complaintId) {
+        this.complaintId = complaintId;
+    }
+
+    int status;
         int generatedOnly = 1;
         int generatedAndAccpted = 2;
         int updateRequest = 3;
