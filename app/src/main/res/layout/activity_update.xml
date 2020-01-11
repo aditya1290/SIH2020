@@ -4,43 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:background="#EAEAEA"
     tools:context=".UpdateActivity">
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        app:boxStrokeColor="@color/colorPrimary"
-        app:boxStrokeWidth="1dp"
-        android:id="@+id/textInputLayout1">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Submit_Description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:backgroundTint="#00770808"
-            android:hint="Enter Description"
-            android:inputType="textMultiLine"
-            android:textColor="@android:color/black"
-            android:textColorHighlight="@android:color/holo_blue_dark"
-            android:textColorLink="@color/colorPrimary" />
-    </com.google.android.material.textfield.TextInputLayout>
-
 
     <TextView
         android:id="@+id/TextView123"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_below="@+id/textInputLayout1"
         android:text="Status"
         android:layout_marginStart="18dp"
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/black"
         android:textSize="20sp" />
+
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
@@ -65,21 +42,35 @@
             android:text="Pending" />
     </RadioGroup>
 
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        app:boxStrokeColor="@color/colorPrimary"
+        app:boxStrokeWidth="1dp"
         android:layout_below="@+id/radio_group"
-        android:layout_marginTop="67dp"
-        android:gravity="center">
+        android:id="@+id/textInputLayout1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Submit_Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:hint="Enter Description"
+            android:inputType="textMultiLine"
+            android:textColor="@android:color/black"
+            android:textColorHighlight="@android:color/holo_blue_dark"
+            android:textColorLink="@color/colorPrimary" />
+    </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/submit_update"
+            android:id="@+id/request_update"
             android:layout_width="150dp"
             style="@style/loginButton"
             android:layout_height="wrap_content"
-            android:layout_below="@id/radio_group"
+            android:layout_below="@id/textInputLayout1"
+            android:layout_centerInParent="true"
             android:text="Update" />
-
-    </LinearLayout>
 
 </RelativeLayout>

@@ -112,5 +112,4 @@
         app:maxImageSize="40dp"
         app:rippleColor="@android:color/black" />
 
-
 </RelativeLayout>

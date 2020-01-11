@@ -6,12 +6,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
@@ -40,11 +43,11 @@ public class ShowHistory extends AppCompatActivity {
     List<PastRecord> pastRecords;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_history);
-
 
         generationCode = getIntent().getStringExtra("generationCode");
 
@@ -128,6 +131,7 @@ public class ShowHistory extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ShowHistory.this, UpdateActivity.class);
                 startActivity(i);
+
             }
         });
     }
