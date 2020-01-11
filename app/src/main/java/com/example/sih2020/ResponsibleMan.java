@@ -12,7 +12,6 @@ public class ResponsibleMan {
 
     public ResponsibleMan()
     {
-
     }
 
     public ResponsibleMan(String email, String userName, List<String> pendingApprovalRequest, List<String> pendingComplaints, List<String> completedComplaints) {
