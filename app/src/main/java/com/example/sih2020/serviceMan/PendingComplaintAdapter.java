@@ -13,7 +13,6 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
-import com.example.sih2020.UpdateActivity;
 import com.example.sih2020.model.Complaint;
 
 import java.util.List;
@@ -83,8 +82,12 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
             pendingComplaintDescription = itemView.findViewById(R.id.pending_request_description);
             pendingComplaintGeneratorName = itemView.findViewById(R.id.pending_request_genratorName);
 
-            cardView = itemView.findViewById(R.id.cardview);
-            ll_hide = itemView.findViewById(R.id.ll_hide);
+            cardView = itemView.findViewById(R.id.cardview12);
+            ll_hide = itemView.findViewById(R.id.ll_hide12);
+//            public void onClick()
+//            {
+//
+//            }
 
             cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,7 +100,8 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     Intent i = new Intent(c, UpdateActivity.class);
                     i.putExtra("generatorUid",complaint.getComplaintGenerator());
                     i.putExtra("complaintId",complaint.getComplaintId());
-                    c.startActivity(i);
+                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    itemView.getContext().startActivity(i);
                 }
             });
         }
