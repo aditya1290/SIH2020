@@ -157,9 +157,10 @@ public class GetMachineDetails extends AppCompatActivity {
                         Map.Entry<String,Integer> entry = serviceManList.entrySet().iterator().next();
 
                         complaint.setComplaintAllocatedTo(entry.getKey());
+                        complaint.setComplaintId(complaintIdValue);
                         complaint.setStatus(complaint.getGeneratedAndAccpted());
                         serviceManListReference.child(entry.getKey()).child("load").setValue(entry.getValue()+1);
-                        serviceManListReference.child(entry.getKey()).child("pendingComplaint").push().setValue(complaintIdValue);
+                        serviceManListReference.child(entry.getKey()).child("pendingComplaintList").push().setValue(complaintIdValue);
 
                         serviceManListReference.removeEventListener(this);
                         responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);

@@ -17,17 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".serviceMan.ServicemanRequests"
-            android:label="Request Status"
-            >
+            android:label="Request Status">
 
         </activity>
         <activity android:name=".serviceMan.ServicemanBottomNav">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".serviceMan.PendingComplaints"></activity>
         <activity
             android:name=".UpdateActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -44,11 +38,21 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Bottom_Navigation"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Bottom_Navigation">
+
+        </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -56,11 +60,11 @@
 
         <activity
             android:name=".ScanQRActivity"
-            android:label="SCAN QR"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"></activity>
+
     </application>
 
 </manifest>
