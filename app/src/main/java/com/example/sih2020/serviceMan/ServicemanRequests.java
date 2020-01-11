@@ -5,7 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
-import com.example.sih2020.MyAdapter;
+
 import com.example.sih2020.R;
 import com.google.android.material.tabs.TabLayout;
 
