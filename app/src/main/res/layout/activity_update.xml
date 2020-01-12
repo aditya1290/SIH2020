@@ -5,49 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    android:background="#EAEAEA"
+
     tools:context=".serviceMan.UpdateActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/ll_description">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_input"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Description"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:layout_gravity="center_vertical"
+            >
+            </TextView>
+    </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+
+    <EditText
+        android:id="@+id/Submit_Description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_description"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:id="@+id/textInputLayout1">
+        android:layout_marginBottom="20dp"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Submit_Description"
+        android:hint="Type here...."
+        android:inputType="textMultiLine"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/holo_blue_dark"></EditText>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_status"
+        android:orientation="horizontal"
+        android:layout_below="@+id/Submit_Description">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_status"
+            android:layout_marginLeft="10dp"
+            >
+        </ImageView>
+        <TextView
+            android:id="@+id/TextView123"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:hint="Enter Description"
-            android:textColor="@android:color/black"
-            android:textColorHighlight="@android:color/holo_blue_dark"
-            android:inputType="textMultiLine"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+           android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:text="Status"
+            android:textStyle="bold"
+            android:textSize="20sp" />
+    </LinearLayout>
 
-
-    <TextView
-        android:id="@+id/TextView123"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_below="@+id/textInputLayout1"
-        android:text="Status"
-        android:layout_marginStart="18dp"
-        android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black"
-        android:textSize="20sp" />
 
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+
+        android:layout_margin="20dp"
         android:orientation="horizontal"
-        android:layout_below="@+id/TextView123" >
+        android:layout_below="@+id/ll_status" >
 
         <RadioButton
             android:id="@+id/Completed"
@@ -75,6 +107,7 @@
 
         <Button
             android:id="@+id/submit_update"
+            style="@style/loginButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/radio_group"
