@@ -7,6 +7,17 @@ public class Request {
     boolean status;
     String complaintId;
 
+    public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
+    }
+
+    boolean expanded;
+
+
     public Request(){
     }
 

@@ -100,8 +100,9 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     Intent i = new Intent(c, UpdateActivity.class);
                     i.putExtra("generatorUid",complaint.getComplaintGenerator());
                     i.putExtra("complaintId",complaint.getComplaintId());
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    itemView.getContext().startActivity(i);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    c.getApplicationContext().startActivity(i);
                 }
             });
         }

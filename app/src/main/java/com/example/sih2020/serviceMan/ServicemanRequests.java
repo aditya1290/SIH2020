@@ -5,12 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-<<<<<<<<< Temporary merge branch 1
-import android.os.Bundle;
-
-
-=========
->>>>>>>>> Temporary merge branch 2
 import com.example.sih2020.R;
 import com.google.android.material.tabs.TabLayout;
 

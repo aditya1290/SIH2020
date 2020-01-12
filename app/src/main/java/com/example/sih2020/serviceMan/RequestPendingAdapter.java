@@ -1,23 +1,28 @@
 package com.example.sih2020.serviceMan;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.sih2020.R;
+import com.example.sih2020.model.Request;
+
 import java.util.List;
 
 public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingAdapter.MyHolder1>{
 
     Context c;
-    List x ;      //Define your list here    - Aditya
+    List<Request> x ;      //Define your list here    - Aditya
 
-    public RequestPendingAdapter(Context c, List<  > x)                                               //Enter the type of data in the space for model
+    public RequestPendingAdapter(Context c, List<Request> x)                                               //Enter the type of data in the space for model
     {
         this.c = c;
         this.x = x;
@@ -39,14 +44,16 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
         myholder1.description.setText("C");
         myholder1.complain_id.setText("D");
 
-                boolean isExpanded = pendingComplaintList.get(position).isExpanded();
-                myholder.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        Log.i("asdf","fgh");
+
+                boolean isExpanded = x.get(position).isExpanded();
+                myholder1.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;                                                                                   // Return item count from firebase
+        return x.size();                                                                                   // Return item count from firebase
     }
 
 
@@ -72,10 +79,10 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
                 @Override
                 public void onClick(View v) {
 
-                    if(ll_hide.getVisibility()==View.INVISIBLE)
+                    if(ll_hide.getVisibility()==View.GONE)
                         ll_hide.setVisibility(View.VISIBLE);
                     else
-                        ll_hide.setVisibility(View.INVISIBLE);
+                        ll_hide.setVisibility(View.GONE);
                 }
             });
         }

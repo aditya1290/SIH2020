@@ -16,14 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".serviceMan.ServicemanRequests"
-            android:label="Request Status">
-
-        </activity>
-        <activity android:name=".serviceMan.ServicemanBottomNav"/>
-        <activity android:name=".serviceMan.PendingComplaints"></activity>
+        <activity android:name=".serviceMan.PendingRequestActivity"></activity>
         <activity
-            android:name=".UpdateActivity"
+            android:name=".serviceMan.ServicemanRequests"
+            android:label="Request Status"></activity>
+        <activity android:name=".serviceMan.ServicemanBottomNav" />
+        <activity android:name=".serviceMan.PendingComplaints" />
+
+        <activity
+            android:name=".serviceMan.UpdateActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ShowHistory"
@@ -38,10 +39,8 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Bottom_Navigation">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Bottom_Navigation" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -52,8 +51,6 @@
             </intent-filter>
         </activity>
 
-
-
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
@@ -63,8 +60,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustResize"></activity>
-
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
