@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:background="@android:color/white"
     android:fitsSystemWindows="true"
-    tools:context=".GetMachineDetails">
+    tools:context=".responsibleMan.GetMachineDetailsActivity">
 
 <com.google.android.material.appbar.AppBarLayout
     android:id="@+id/app_bar"
@@ -27,16 +27,15 @@
     app:expandedTitleMarginEnd="64dp"
     app:expandedTitleMarginStart="48dp"
     app:expandedTitleTextAppearance="@style/TransparentText">
+
     <ImageView
         android:id="@+id/QrCodeImage"
-        android:layout_width="314dp"
+        android:layout_width="212dp"
         android:layout_height="210dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="75dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        />
-
-
+        android:layout_marginEnd="75dp"
+        android:src="@drawable/ic_qr_bar_scan1" />
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -51,6 +50,8 @@
 
 
     <include layout="@layout/content_machine_details" />
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

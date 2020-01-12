@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".responsibleMan.PendingComplaintsTabActivity"></activity>
+        <activity android:name=".responsibleMan.RMPendingRequestActivity"></activity>
+        <activity android:name=".responsibleMan.PendingComplaintsTabActivity" />
         <activity
             android:name=".serviceMan.ServicemanRequests"
             android:label="Request Status" />
@@ -53,8 +54,9 @@
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="barcode" />
-
+            android:value="barcode" /> <!-- <meta-data -->
+        <!-- android:name="preloaded_fonts" -->
+        <!-- android:resource="@android:array/preloaded_fonts" /> -->
         <activity
             android:name=".ScanQRActivity"
             android:windowSoftInputMode="adjustResize" />
