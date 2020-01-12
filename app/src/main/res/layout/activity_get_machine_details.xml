@@ -35,7 +35,7 @@
         android:layout_marginStart="75dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="75dp"
-        android:src="@drawable/ic_qr_bar_scan" />
+        android:src="@drawable/ic_qr_bar_scan1" />
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
