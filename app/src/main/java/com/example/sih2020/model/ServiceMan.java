@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.sih2020.model;
 
 import java.util.List;
 

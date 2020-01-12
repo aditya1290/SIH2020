@@ -20,27 +20,27 @@
         <activity
             android:name=".serviceMan.ServicemanRequests"
             android:label="Request Status"></activity>
-        <activity android:name=".serviceMan.ServicemanBottomNav" />
-        <activity android:name=".serviceMan.PendingComplaints" />
+        <activity android:name=".serviceMan.BottomNavigationActivity" />
+        <activity android:name=".serviceMan.PendingComplaintsActivity" />
 
         <activity
             android:name=".serviceMan.UpdateActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ShowHistory"
+            android:name=".responsibleMan.ShowDetailsActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".GetMachineDetails"
+            android:name=".responsibleMan.GetMachineDetailsActivity"
             android:label="Machine Details "
             android:theme="@style/AppTheme.ProfileTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".GenerateQRActivity"
+            android:name=".responsibleMan.GenerateQRActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Bottom_Navigation" />
+        <activity android:name=".responsibleMan.BottomNavigationActivity" />
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">

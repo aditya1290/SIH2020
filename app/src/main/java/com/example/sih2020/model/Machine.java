@@ -1,8 +1,5 @@
-package com.example.sih2020;
+package com.example.sih2020.model;
 
-import android.net.Uri;
-
-import java.net.URI;
 import java.util.Date;
 import java.util.List;
 

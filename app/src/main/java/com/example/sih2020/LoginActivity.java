@@ -13,8 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sih2020.serviceMan.PendingComplaints;
-import com.example.sih2020.serviceMan.ServicemanBottomNav;
+import com.example.sih2020.serviceMan.BottomNavigationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -77,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         if (task.isSuccessful()) {
-                            Intent intent = new Intent(LoginActivity.this, PendingComplaints.class);
+
                             SharedPreferences sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
                             String token = sharedPref.getString("token", "null");
                             FirebaseDatabase.getInstance().getReference("tokens/" +
@@ -88,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists())
                                     {
-                                        startActivity(new Intent(getApplicationContext(), ServicemanBottomNav.class));
+                                        startActivity(new Intent(getApplicationContext(), BottomNavigationActivity.class));
                                     }
                                     else
                                     {
-                                        startActivity(new Intent(getApplicationContext(), Bottom_Navigation.class));
+                                        startActivity(new Intent(getApplicationContext(), com.example.sih2020.responsibleMan.BottomNavigationActivity.class));
                                     }
                                 }
 

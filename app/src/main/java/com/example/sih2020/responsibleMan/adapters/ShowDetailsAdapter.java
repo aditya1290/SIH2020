@@ -1,4 +1,4 @@
-package com.example.sih2020;
+package com.example.sih2020.responsibleMan.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.sih2020.R;
+import com.example.sih2020.model.PastRecord;
 
 import java.util.List;
 

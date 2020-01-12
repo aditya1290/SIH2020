@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.sih2020.serviceMan.fragments;
 
 
 import android.os.Bundle;
@@ -14,10 +14,10 @@ import com.example.sih2020.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ServicemanHistoryfragment extends Fragment {
+public class RequestCompletedFragment extends Fragment {
 
 
-    public ServicemanHistoryfragment() {
+    public RequestCompletedFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class ServicemanHistoryfragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.serviceman_historyfragment, container, false);
+        return inflater.inflate(R.layout.serviceman_request_completed, container, false);
     }
 
 }

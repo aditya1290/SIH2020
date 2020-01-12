@@ -1,4 +1,4 @@
-package com.example.sih2020;
+package com.example.sih2020.responsibleMan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +13,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.sih2020.R;
+import com.example.sih2020.model.PastRecord;
+import com.example.sih2020.responsibleMan.adapters.ShowDetailsAdapter;
 import com.example.sih2020.serviceMan.UpdateActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ShowHistory extends AppCompatActivity {
+public class ShowDetailsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     private ShowDetailsAdapter showDetailsAdapter;
@@ -102,7 +105,7 @@ public class ShowHistory extends AppCompatActivity {
                     PastRecord m = pastRecord.getValue(PastRecord.class);
                     String desc = m.getDescription();
                     Log.i("pastRecord",desc);
-                    Toast.makeText(ShowHistory.this, "ha aagya", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShowDetailsActivity.this, "ha aagya", Toast.LENGTH_SHORT).show();
                     pastRecords.add(m);
                 }
 
@@ -126,7 +129,7 @@ public class ShowHistory extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ShowHistory.this, UpdateActivity.class);
+                Intent i = new Intent(ShowDetailsActivity.this, UpdateActivity.class);
                 startActivity(i);
 
             }

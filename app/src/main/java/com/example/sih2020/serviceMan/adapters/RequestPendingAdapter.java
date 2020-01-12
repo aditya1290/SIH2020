@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.sih2020.serviceMan.adapters;
 
 import android.content.Context;
 import android.util.Log;

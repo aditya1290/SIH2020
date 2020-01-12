@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.sih2020.serviceMan.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,15 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.sih2020.R;
 import com.example.sih2020.ScanQRActivity;
+import com.example.sih2020.serviceMan.PendingComplaintsActivity;
+import com.example.sih2020.serviceMan.PendingRequestActivity;
+import com.example.sih2020.serviceMan.adapters.SViewpagerAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class ServicemanHomefragment extends Fragment {
+public class ServicemanHomeFragment extends Fragment {
 
     CardView scan;
     CardView complaints;
@@ -32,7 +35,7 @@ public class ServicemanHomefragment extends Fragment {
     private ImageView[] dots;
     Timer timer;
 
-    public ServicemanHomefragment() {
+    public ServicemanHomeFragment() {
         // Required empty public constructor
     }
 
@@ -114,7 +117,7 @@ public class ServicemanHomefragment extends Fragment {
         complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity().getApplicationContext(), PendingComplaints.class);
+                Intent i = new Intent(getActivity().getApplicationContext(), PendingComplaintsActivity.class);
                 startActivity(i);
 
             }

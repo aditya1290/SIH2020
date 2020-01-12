@@ -1,4 +1,4 @@
-package com.example.sih2020;
+package com.example.sih2020.responsibleMan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.sih2020.R;
+import com.example.sih2020.model.Machine;
+import com.example.sih2020.model.PastRecord;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 

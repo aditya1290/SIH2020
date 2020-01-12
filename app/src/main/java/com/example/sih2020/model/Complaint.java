@@ -10,13 +10,6 @@ public class Complaint {
         Date complaintGeneratedDate;
         Date complaintCompletedDate;
 
-    public boolean isExpanded() {
-        return expanded;
-    }
-
-    public void setExpanded(boolean expanded) {
-        this.expanded = expanded;
-    }
 
     boolean expanded;
 
@@ -35,8 +28,15 @@ public class Complaint {
         int RequestApproved = 4;
         int complaintFinished = 5;
 
+
     public int getGeneratedOnly() {
         return 1;
+    } public boolean isExpanded() {
+        return expanded;
+    }
+
+    public void setExpanded(boolean expanded) {
+        this.expanded = expanded;
     }
 
     public int getGeneratedAndAccpted() {
