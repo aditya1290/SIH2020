@@ -28,9 +28,6 @@ import java.util.TimerTask;
 
 public class ServicemanHomefragment extends Fragment {
 
-
-
-
     CardView scan;
     CardView complaints;
     CardView request;
@@ -108,12 +105,17 @@ public class ServicemanHomefragment extends Fragment {
         scan =(CardView) view.findViewById(R.id.scan);
         complaints = (CardView) view.findViewById(R.id.complaints);
         request = (CardView)view.findViewById(R.id.requests);
+
+
+
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 updateDetail();
             }
         });
+
+
         complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

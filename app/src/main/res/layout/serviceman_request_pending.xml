@@ -9,10 +9,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/s_recyclerView_pending"
-        >
-
-
+        android:id="@+id/s_recyclerView_pending_request" >
 
     </androidx.recyclerview.widget.RecyclerView>
 
