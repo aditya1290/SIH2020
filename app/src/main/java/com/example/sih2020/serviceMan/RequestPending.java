@@ -39,7 +39,6 @@ public class RequestPending extends Fragment {
         myRequestPendingAdapter = new RequestPendingAdapter(this, getmylist());
         s_recyclerView_pending_request.setAdapter(myRequestPendingAdapter);
 
-
         return inflater.inflate(R.layout.serviceman_request_pending, container, false);
     }
 

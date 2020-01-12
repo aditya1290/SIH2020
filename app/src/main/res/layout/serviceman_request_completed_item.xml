@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/s_cardview_pen_req"
+    android:id="@+id/s_cardview_req_completed"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -17,12 +17,12 @@
         android:layout_margin="18dp">
 
         <RelativeLayout
-            android:id="@+id/s_ll1__pen_req"
+            android:id="@+id/s_ll1_req_completed"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/s_RecyclerView_requestID__pen_req"
+                android:id="@+id/s_RecyclerView_requestID__req_completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -31,7 +31,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/s_RecyclerView_ResponsibleMan_pen_req"
+                android:id="@+id/s_RecyclerView_ResponsibleMan_req_completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -41,7 +41,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/s_RecyclerView_ComplainID_pen_req"
+                android:id="@+id/s_RecyclerView_ComplainID_req_completed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
@@ -55,10 +55,10 @@
 
 
         <LinearLayout
-            android:id="@+id/s_ll_hide_pen_req"
+            android:id="@+id/s_ll_hide_req_completed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/s_ll1__pen_req"
+            android:layout_below="@+id/s_ll1_req_completed"
             android:orientation="vertical"
             android:layout_marginTop="20dp">
 
@@ -70,7 +70,7 @@
                 />
 
             <TextView
-                android:id="@+id/s_RecyclerView_Description_pen_req"
+                android:id="@+id/s_RecyclerView_Description_req_completed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
