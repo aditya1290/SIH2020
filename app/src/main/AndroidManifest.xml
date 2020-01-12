@@ -23,7 +23,7 @@
         <activity android:name=".serviceMan.ServicemanBottomNav"/>
         <activity android:name=".serviceMan.PendingComplaints"></activity>
         <activity
-            android:name=".UpdateActivity"
+            android:name=".serviceMan.UpdateActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ShowHistory"
@@ -32,10 +32,18 @@
             android:name=".GetMachineDetails"
             android:label="Machine Details "
             android:theme="@style/AppTheme.ProfileTheme"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize" >
+
+        </activity>
         <activity
             android:name=".GenerateQRActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
@@ -45,11 +53,8 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
 
         <meta-data
