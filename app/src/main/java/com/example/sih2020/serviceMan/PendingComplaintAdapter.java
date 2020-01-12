@@ -66,6 +66,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
 
 
 
+
     class MyHolder extends RecyclerView.ViewHolder
     {
         TextView pendingComplaintDate, pendingComplaintId, pendingComplaintGeneratorName, pendingComplaintDescription;

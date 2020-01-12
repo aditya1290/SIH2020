@@ -75,7 +75,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isSuccessful()) {
+                        if(task.isSuccessful())
+                        {
                             Intent intent = new Intent(LoginActivity.this, PendingComplaints.class);
                             SharedPreferences sharedPref = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
                             String token = sharedPref.getString("token", "null");
