@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.sih2020.responsibleMan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,41 +8,43 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.sih2020.History_fragment;
-import com.example.sih2020.Home_fragment;
-import com.example.sih2020.Notification_fragment;
 import com.example.sih2020.R;
+import com.example.sih2020.responsibleMan.fragments.HistoryFragment;
+import com.example.sih2020.responsibleMan.fragments.HomeFragment;
+import com.example.sih2020.responsibleMan.fragments.NotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class ServicemanBottomNav extends AppCompatActivity {
-    private ServicemanHistoryfragment servicemanHistoryfragment;
-    private ServicemanHomefragment servicemanHomefragment;
-    private ServicemanNotificationfragment servicemanNotificationfragment;
+public class BottomNavigationActivity extends AppCompatActivity {
+
+    private BottomNavigationView bottomNavigationView;
+    private HomeFragment homeFragment;
+    private HistoryFragment historyFragment;
+    private NotificationFragment notificationFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_serviceman_bottom_nav);
-        BottomNavigationView bottomNavigationView = findViewById(R.id.s_bottom_bar);
-        servicemanHomefragment = new ServicemanHomefragment();
-        servicemanHistoryfragment = new ServicemanHistoryfragment();
-        servicemanNotificationfragment= new ServicemanNotificationfragment();
+        setContentView(R.layout.activity_bottom__navigation);
+        bottomNavigationView = findViewById(R.id.bottom_bar);
+        homeFragment = new HomeFragment();
+        historyFragment = new HistoryFragment();
+        notificationFragment = new NotificationFragment();
         bottomNavigationView.setItemIconTintList(null);
-        setOurFragment(servicemanHomefragment);
+        setOurFragment(homeFragment);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId())
                 {
                     case R.id.home:
-                        setOurFragment(servicemanHomefragment);
+                        setOurFragment(homeFragment);
                         return true;
 
                     case R.id.history:
-                        setOurFragment(servicemanHistoryfragment);
+                        setOurFragment(historyFragment);
                         return true;
 
                     case R.id.notification:
-                        setOurFragment(servicemanNotificationfragment);
+                        setOurFragment(notificationFragment);
                         return true;
 
                     default:
@@ -55,7 +57,8 @@ public class ServicemanBottomNav extends AppCompatActivity {
     private void setOurFragment(Fragment fragment)
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.s_mainframe,fragment);
+        fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();
     }
 }
+

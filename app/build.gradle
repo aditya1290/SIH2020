@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -70,6 +71,7 @@ dependencies {
     // Facebook Shimmer Effect
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
+    //for Firebase messaging service and notifications
     implementation 'com.google.firebase:firebase-functions:19.0.1'
 
     implementation 'com.google.firebase:firebase-messaging:20.1.0'

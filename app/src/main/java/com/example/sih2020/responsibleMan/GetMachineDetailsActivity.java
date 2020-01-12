@@ -1,4 +1,4 @@
-package com.example.sih2020;
+package com.example.sih2020.responsibleMan;
 
 
 import android.content.Intent;
@@ -13,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.sih2020.R;
 import com.example.sih2020.model.Complaint;
-import com.example.sih2020.serviceMan.ServiceMan;
+import com.example.sih2020.model.Machine;
+import com.example.sih2020.model.ServiceMan;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,7 +35,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class GetMachineDetails extends AppCompatActivity {
+public class GetMachineDetailsActivity extends AppCompatActivity {
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference machineReference, complaintIdReference, serviceManListReference, responsibleReference,complaintReference;
@@ -83,7 +85,7 @@ public class GetMachineDetails extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 machine = dataSnapshot.getValue(Machine.class);
-                Toast.makeText(GetMachineDetails.this, machine.getDepartment(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(GetMachineDetailsActivity.this, machine.getDepartment(), Toast.LENGTH_SHORT).show();
                 Picasso.get().load(machine.getLink()).into(QRCodeImage);
             }
 
@@ -97,7 +99,7 @@ public class GetMachineDetails extends AppCompatActivity {
         show_history.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(GetMachineDetails.this, ShowHistory.class);
+                Intent i = new Intent(GetMachineDetailsActivity.this, ShowDetailsActivity.class);
                 i.putExtra("generationCode",generationCode);
                 startActivity(i);
             }

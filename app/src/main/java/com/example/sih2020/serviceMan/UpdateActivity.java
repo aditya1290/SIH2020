@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -98,11 +99,11 @@ public class UpdateActivity extends AppCompatActivity {
 
                 requestReference.child(requestIdValue).setValue(request);
                 requestIdReference.setValue(String.valueOf(Integer.parseInt(requestIdValue)+1));
+                Toast.makeText(UpdateActivity.this, "gdghgfhfhg", Toast.LENGTH_SHORT).show();
 
 
             }
         });
-
         
     }
 }

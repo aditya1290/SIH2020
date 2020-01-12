@@ -13,6 +13,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sih2020.model.ResponsibleMan;
+import com.example.sih2020.responsibleMan.BottomNavigationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -67,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
                             responsibleMan.setUserName(userName);
 
                             userReference.child("ResponsibleMan").child(user.getUid()).setValue(responsibleMan);
-                            startActivity(new Intent(getApplicationContext(),Bottom_Navigation.class));
+                            startActivity(new Intent(getApplicationContext(), BottomNavigationActivity.class));
                             finish();
                         }
                         else

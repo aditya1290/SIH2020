@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.sih2020.serviceMan.fragments;
 
 
 import android.os.Bundle;
@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 
 import com.example.sih2020.R;
 
-public class ServicemanNotificationfragment extends Fragment {
+public class ServicemanNotificationFragment extends Fragment {
 
 
-    public ServicemanNotificationfragment() {
+    public ServicemanNotificationFragment() {
         // Required empty public constructor
     }
 

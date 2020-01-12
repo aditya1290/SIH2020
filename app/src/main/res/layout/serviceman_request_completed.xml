@@ -6,9 +6,11 @@
     tools:context=".serviceMan.RequestCompleted">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/s_recyclerView_completed_request">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

@@ -1,4 +1,4 @@
-package com.example.sih2020;
+package com.example.sih2020.model;
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ public class ResponsibleMan {
 
     public ResponsibleMan()
     {
-
     }
 
     public ResponsibleMan(String email, String userName, List<String> pendingApprovalRequest, List<String> pendingComplaints, List<String> completedComplaints) {

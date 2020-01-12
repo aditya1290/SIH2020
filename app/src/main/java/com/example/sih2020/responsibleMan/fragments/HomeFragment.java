@@ -1,11 +1,8 @@
-package com.example.sih2020;
+package com.example.sih2020.responsibleMan.fragments;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -18,13 +15,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.sih2020.ViewPagerAdapter;
+import com.example.sih2020.R;
+import com.example.sih2020.responsibleMan.GenerateQRActivity;
+import com.example.sih2020.ScanQRActivity;
+import com.example.sih2020.responsibleMan.adapters.ViewPagerAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Home_fragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     CardView scan;
     CardView generate;
@@ -34,7 +34,7 @@ public class Home_fragment extends Fragment {
     private ImageView[] dots;
     Timer timer;
 
-    public Home_fragment() {
+    public HomeFragment() {
         // Required empty public constructor
     }
 

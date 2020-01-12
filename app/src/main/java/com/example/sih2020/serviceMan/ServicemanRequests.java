@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.sih2020.R;
+import com.example.sih2020.serviceMan.adapters.STabAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class ServicemanRequests extends AppCompatActivity {

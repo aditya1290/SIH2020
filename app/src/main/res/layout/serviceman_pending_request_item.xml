@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/cardview12"
+    android:id="@+id/s_cardview_pen_req"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -17,37 +17,37 @@
         android:layout_margin="18dp">
 
         <RelativeLayout
-            android:id="@+id/ll1"
+            android:id="@+id/s_ll1__pen_req"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/pending_request_date"
+                android:id="@+id/s_RecyclerView_requestID__pen_req"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Date"
+                android:text="Request_ID"
                 android:textColor="@android:color/black"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/pending_request_complaintId"
+                android:id="@+id/s_RecyclerView_ResponsibleMan_pen_req"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:gravity="center"
                 android:textColor="@android:color/black"
-                android:text="center"
+                android:text="ResponsibleID"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/pending_request_genratorName"
+                android:id="@+id/s_RecyclerView_ComplainID_pen_req"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:gravity="right"
                 android:textColor="@android:color/black"
-                android:text="right"
+                android:text="ComplainID"
                 android:textSize="18sp" />
 
         </RelativeLayout>
@@ -55,10 +55,10 @@
 
 
         <LinearLayout
-            android:id="@+id/ll_hide12"
+            android:id="@+id/s_ll_hide_pen_req"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll1"
+            android:layout_below="@+id/s_ll1__pen_req"
             android:orientation="vertical"
             android:layout_marginTop="20dp">
 
@@ -70,7 +70,7 @@
                 />
 
             <TextView
-                android:id="@+id/pending_request_description"
+                android:id="@+id/s_RecyclerView_Description_pen_req"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -81,10 +81,6 @@
 
         </LinearLayout>
 
-
     </RelativeLayout>
-
-
-
 
 </androidx.cardview.widget.CardView>

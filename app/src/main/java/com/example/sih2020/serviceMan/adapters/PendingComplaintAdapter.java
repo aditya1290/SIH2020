@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.sih2020.serviceMan.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
-import com.example.sih2020.model.Complaint;
+import com.example.sih2020.serviceMan.UpdateActivity;
+import com.example.sih2020.model.*;
 
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
 
 
 
+
     class MyHolder extends RecyclerView.ViewHolder
     {
         TextView pendingComplaintDate, pendingComplaintId, pendingComplaintGeneratorName, pendingComplaintDescription;
@@ -99,8 +101,9 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     Intent i = new Intent(c, UpdateActivity.class);
                     i.putExtra("generatorUid",complaint.getComplaintGenerator());
                     i.putExtra("complaintId",complaint.getComplaintId());
-                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    itemView.getContext().startActivity(i);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    c.getApplicationContext().startActivity(i);
                 }
             });
         }

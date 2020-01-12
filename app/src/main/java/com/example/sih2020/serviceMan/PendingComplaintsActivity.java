@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
-import com.example.sih2020.model.Complaint;
+import com.example.sih2020.model.*;
+import com.example.sih2020.serviceMan.adapters.PendingComplaintAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -23,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PendingComplaints extends AppCompatActivity {
+public class PendingComplaintsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView_complaints;
     PendingComplaintAdapter myPendingComplaintAdapter;

@@ -9,8 +9,8 @@
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
     android:gravity="center"
+    android:id="@+id/login_main_page"
     android:layout_gravity="center"
-
     >
 
     <ScrollView
