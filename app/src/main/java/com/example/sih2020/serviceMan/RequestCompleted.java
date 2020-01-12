@@ -18,7 +18,6 @@ import com.example.sih2020.R;
 public class RequestCompleted extends Fragment {
 
 
-    RecyclerView s_recyclerview_request_completed;
 
 
     public RequestCompleted() {

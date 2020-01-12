@@ -39,8 +39,8 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
         myholder1.description.setText("C");
         myholder1.complain_id.setText("D");
 
-                boolean isExpanded = pendingComplaintList.get(position).isExpanded();
-                myholder.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        boolean isExpanded = pendingComplaintList.get(position).isExpanded();
+        myholder.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
     }
 

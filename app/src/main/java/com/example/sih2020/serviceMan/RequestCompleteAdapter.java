@@ -1,6 +1,9 @@
 package com.example.sih2020.serviceMan;
 
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -10,13 +13,47 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
 
-public class RequestCompleteAdapter extends RecyclerView.Adapter<RequestCompleteAdapter.myHolder1> {
+import java.util.List;
+
+public class RequestCompleteAdapter extends RecyclerView.Adapter<RequestCompleteAdapter.myHolder> {
+
+    Context c;
+    List x;
+
+    public RequestCompleteAdapter(Context c, List < > x)
+    {
+        this.c = c;
+        this.x = x;
+    }
 
 
+    @NonNull
+    @Override
+    public RequestCompleteAdapter.myHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.serviceman_request_completed_item,null);
+        return new RequestCompleteAdapter.myHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RequestCompleteAdapter.myHolder holder, int position) {
+
+        holder.request_id.setText("A");
+        holder.responsible_id.setText("B");
+        holder.description.setText("C");
+        holder.complain_id.setText("D");
+
+        boolean isExpanded = pendingComplaintList.get(position).isExpanded();
+        holder.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
+    }
 
 
-    public class myHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+    public class myHolder extends RecyclerView.ViewHolder{
 
         TextView request_id , responsible_id ,  description , complain_id ;
         CardView cardview;
@@ -28,39 +65,24 @@ public class RequestCompleteAdapter extends RecyclerView.Adapter<RequestComplete
             responsible_id = itemView.findViewById(R.id.s_RecyclerView_ResponsibleMan_req_completed);
             description = itemView.findViewById(R.id.s_RecyclerView_Description_req_completed);
             complain_id = itemView.findViewById(R.id.s_RecyclerView_ComplainID_req_completed);
+            cardview = itemView.findViewById(R.id.s_cardview_req_completed);
+            ll_hide = itemView.findViewById(R.id.s_ll_hide_req_completed);
+            ll_hide.setVisibility(View.INVISIBLE);
 
 
-        }
+            cardview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        @Override
-        public void onClick(View v) {
+                    if(ll_hide.getVisibility()==View.INVISIBLE)
+                        ll_hide.setVisibility(View.VISIBLE);
+                    else
+                        ll_hide.setVisibility(View.INVISIBLE);
 
+                }
+            });
         }
     }
 
 }
-//-------------------------------
-
-
-    public MyHolder1(@NonNull View itemView) {
-        super(itemView);
-
-        request_id = itemView.findViewById(R.id.s_RecyclerView_requestID__pen_req);
-        responsible_id = itemView.findViewById(R.id.s_RecyclerView_ResponsibleMan_pen_req);
-        description = itemView.findViewById(R.id.s_RecyclerView_Description_pen_req);
-        complain_id = itemView.findViewById(R.id.s_RecyclerView_ComplainID_pen_req);
-        cardview = itemView.findViewById(R.id.s_cardview_pen_req);
-        ll_hide=  itemView.findViewById(R.id.s_ll_hide_pen_req);
-        ll_hide.setVisibility(View.INVISIBLE);
-
-        cardview.setOnClickListener(new View.OnClickListener() {                //Expandable card feature
-            @Override
-            public void onClick(View v) {
-
-                if(ll_hide.getVisibility()==View.INVISIBLE)
-                    ll_hide.setVisibility(View.VISIBLE);
-                else
-                    ll_hide.setVisibility(View.INVISIBLE);
-            }
-        });
-    }
+/
