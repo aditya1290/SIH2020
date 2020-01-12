@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.sih2020.serviceMan.fragments.RequestPendingFragment"
     android:id="@+id/s_cardview_pen_req"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -20,7 +19,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ll1">
+            android:id="@+id/s_ll1__pen_req">
             <LinearLayout
 
                 android:layout_width="wrap_content"
@@ -116,10 +115,10 @@
 
 
         <LinearLayout
-            android:id="@+id/ll_hide12"
+            android:id="@+id/s_ll_hide_pen_req"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll1"
+            android:layout_below="@+id/s_ll1__pen_req"
             android:orientation="vertical"
             android:layout_marginTop="10dp">
 
