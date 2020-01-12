@@ -1,5 +1,4 @@
-package com.example.sih2020.serviceMan.fragments;
-
+package com.example.sih2020.responsibleMan.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
-import com.example.sih2020.model.Request;
-import com.example.sih2020.serviceMan.adapters.RequestPendingAdapter;
+import com.example.sih2020.model.Complaint;
+import com.example.sih2020.responsibleMan.adapters.RMPendingComplaintAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,24 +27,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class RequestPendingFragment extends Fragment {
+public class RMComplaintPendingFragment extends Fragment {
 
+    RecyclerView rm_recyclerView_pending_complaint;
+    RMPendingComplaintAdapter rmPendingComplaintAdapter;
 
-    RecyclerView s_recyclerView_pending_request;
-    RequestPendingAdapter mRequestPendingAdapter;
-
-    List<Request> pendingRequestObjectList;
+    List<Complaint> pendingComplaintObjectList;
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference requestReference, serviceManReference, pendingRequestListReference;
+    DatabaseReference complaintReference, responsibleManReference, pendingComplaintListReference;
 
     FirebaseAuth auth;
     FirebaseUser user;
 
-    public RequestPendingFragment() {
+    public RMComplaintPendingFragment() {
         // Required empty public constructor
     }
 
@@ -55,39 +50,38 @@ public class RequestPendingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View rootView =  inflater.inflate(R.layout.serviceman_request_pending, container, false);
-
-        s_recyclerView_pending_request = (RecyclerView)rootView.findViewById(R.id.s_recyclerView_pending_request);
-        s_recyclerView_pending_request.setLayoutManager(new LinearLayoutManager(getActivity()));
+        View rootView =  inflater.inflate(R.layout.rm_complaint_pending, container, false);
+        rm_recyclerView_pending_complaint = rootView.findViewById(R.id.rm_recyclerView_pending_complaint);
+        rm_recyclerView_pending_complaint.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        pendingComplaintObjectList = new ArrayList<>();
 
-        pendingRequestObjectList = new ArrayList<Request>();
+        rmPendingComplaintAdapter = new RMPendingComplaintAdapter(getActivity().getApplicationContext(), pendingComplaintObjectList);
+        rm_recyclerView_pending_complaint.setAdapter(rmPendingComplaintAdapter);
 
-        mRequestPendingAdapter = new RequestPendingAdapter(getActivity().getApplicationContext(),pendingRequestObjectList);
-        s_recyclerView_pending_request.setAdapter(mRequestPendingAdapter);
 
         firebaseDatabase =  FirebaseDatabase.getInstance();
-        serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
-        pendingRequestListReference = serviceManReference.child("pendingRequests");
-        requestReference = firebaseDatabase.getReference("Requests");
+        responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(user.getUid());
+        pendingComplaintListReference = responsibleManReference.child("pendingComplaints");
+        complaintReference = firebaseDatabase.getReference("Complaints");
 
-        pendingRequestListReference.addChildEventListener(new ChildEventListener() {
+        pendingComplaintListReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 String key = dataSnapshot.getValue().toString();
 
-                requestReference.child(key).addValueEventListener(new ValueEventListener() {
+                complaintReference.child(key).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Request request = new Request();
-                        request = dataSnapshot.getValue(Request.class);
+                        Complaint pendingComplaint = new Complaint();
+                        pendingComplaint = dataSnapshot.getValue(Complaint.class);
 
-                        pendingRequestObjectList.add(request);
-                        mRequestPendingAdapter.notifyDataSetChanged();
-                        Log.i("danda ghus gya",request.getComplaintId());
+                        pendingComplaintObjectList.add(pendingComplaint);
+                        rmPendingComplaintAdapter.notifyDataSetChanged();
+                        Log.i("danda ghus gya",pendingComplaint.getComplaintAllocatedTo());
                         //Log.i("machine id", request.getComplaintMachineId());
                     }
 
@@ -121,7 +115,4 @@ public class RequestPendingFragment extends Fragment {
         });
         return rootView;
     }
-
-
 }
-

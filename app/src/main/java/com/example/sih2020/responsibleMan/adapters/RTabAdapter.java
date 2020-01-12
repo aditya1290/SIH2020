@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.example.sih2020.responsibleMan.fragments.RMComplaintPendingFragment;
 import com.example.sih2020.serviceMan.fragments.RequestCompletedFragment;
-import com.example.sih2020.serviceMan.fragments.RequestPendingFragment;
 
 public class RTabAdapter extends FragmentPagerAdapter {
     private Context myContext;
@@ -24,8 +24,33 @@ public class RTabAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                RequestPendingFragment requestPending = new RequestPendingFragment();
-                return requestPending;
+                RMComplaintPendingFragment rmComplaintPendingFragment = new RMComplaintPendingFragment();
+                return rmComplaintPendingFragment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        ;
             case 1:
                 RequestCompletedFragment requestCompleted = new RequestCompletedFragment();
                 return requestCompleted;

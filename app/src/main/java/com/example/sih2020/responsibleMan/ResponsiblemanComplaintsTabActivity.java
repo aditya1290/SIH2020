@@ -1,16 +1,15 @@
 package com.example.sih2020.responsibleMan;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.os.Bundle;
-
 import com.example.sih2020.R;
 import com.example.sih2020.responsibleMan.adapters.RTabAdapter;
-
 import com.google.android.material.tabs.TabLayout;
 
-public class PendingComplaintsTabActivity extends AppCompatActivity {
+public class ResponsiblemanComplaintsTabActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
     ViewPager viewPager;
@@ -18,7 +17,7 @@ public class PendingComplaintsTabActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pending_complaints_tab);
+        setContentView(R.layout.activity_responsibleman_complaints_tab);
 
         tabLayout=(TabLayout)findViewById(R.id.r_tabLayout);
         viewPager=(ViewPager)findViewById(R.id.r_viewpager);

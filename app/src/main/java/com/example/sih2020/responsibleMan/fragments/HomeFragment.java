@@ -2,12 +2,6 @@ package com.example.sih2020.responsibleMan.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.sih2020.R;
-import com.example.sih2020.responsibleMan.GenerateQRActivity;
 import com.example.sih2020.ScanQRActivity;
-import com.example.sih2020.responsibleMan.PendingComplaintsTabActivity;
+import com.example.sih2020.responsibleMan.GenerateQRActivity;
+import com.example.sih2020.responsibleMan.ResponsiblemanComplaintsTabActivity;
 import com.example.sih2020.responsibleMan.adapters.ViewPagerAdapter;
 
 import java.util.Timer;
@@ -123,7 +122,7 @@ public class HomeFragment extends Fragment {
         pendingComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), PendingComplaintsTabActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), ResponsiblemanComplaintsTabActivity.class);
                 startActivity(intent);
             }
         });

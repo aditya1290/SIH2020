@@ -53,6 +53,7 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
 
     @Override
     public int getItemCount() {
+        Log.i("bhootni k", String.valueOf(x.size()));
         return x.size();                                                                                   // Return item count from firebase
     }
 
