@@ -17,7 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.sih2020.R;
 import com.example.sih2020.ScanQRActivity;
 import com.example.sih2020.serviceMan.PendingComplaintsActivity;
-import com.example.sih2020.serviceMan.PendingRequestActivity;
+import com.example.sih2020.serviceMan.ServicemanRequests;
 import com.example.sih2020.serviceMan.adapters.SViewpagerAdapter;
 
 import java.util.Timer;
@@ -126,7 +126,7 @@ public class ServicemanHomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity().getApplicationContext(), PendingRequestActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), ServicemanRequests.class);
                 startActivity(intent);
             }
         });

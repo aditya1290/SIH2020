@@ -7,10 +7,21 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+
+
+import android.hardware.Camera;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.sih2020.responsibleMan.GetMachineDetailsActivity;
@@ -28,6 +39,7 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.otaliastudios.cameraview.CameraView;
+import com.otaliastudios.cameraview.controls.Flash;
 import com.otaliastudios.cameraview.frame.Frame;
 import com.otaliastudios.cameraview.frame.FrameProcessor;
 
@@ -36,7 +48,10 @@ import java.util.List;
 public class ScanQRActivity extends AppCompatActivity {
 
     CameraView cameraView;
+    ImageButton flashLightid;
     boolean isDetected = false;
+
+
 
     FirebaseVisionBarcodeDetector detector;
     FirebaseVisionBarcodeDetectorOptions options;
@@ -48,6 +63,7 @@ public class ScanQRActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_qr);
 
+
         if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
         {
             requestPermissions(new String[]{Manifest.permission.CAMERA},1);
@@ -58,6 +74,7 @@ public class ScanQRActivity extends AppCompatActivity {
         }
 
 
+        flashLightid = findViewById(R.id.flashLightid);
 
         Dexter.withActivity(this)
                 .withPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO})
@@ -82,6 +99,45 @@ public class ScanQRActivity extends AppCompatActivity {
 
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.RECORD_AUDIO}, 1);
         }
+
+        flashLightid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("hjsdgs","bhootni k");
+
+                if(cameraView.getFlash()== Flash.OFF)
+                {
+                    Log.i("open on","bhootni k");
+                    String cameraId = null;
+                    CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+                    cameraView.setFlash(Flash.ON);
+                    flashLightid.setImageResource(R.drawable.ic_flash_off_black_24dp);
+                    try {
+                        cameraId = camManager.getCameraIdList()[0];
+                        camManager.setTorchMode(cameraId, true);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                {
+                    Log.i("Off","bhootni k");
+                    cameraView.setFlash(Flash.OFF);
+                    flashLightid.setImageResource(R.drawable.ic_flash_on_black_24dp);
+                   String cameraId = null;
+                    CameraManager camManager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
+                     // Usually front camera is at 0 position.
+
+                    try {
+                        cameraId = camManager.getCameraIdList()[0];
+                        camManager.setTorchMode(cameraId, false);
+                    } catch (CameraAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        });
     }
 
     private void setupCamera()
@@ -142,7 +198,6 @@ public class ScanQRActivity extends AppCompatActivity {
         {
             for(FirebaseVisionBarcode item : firebaseVisionBarcodes)
             {
-
                 Intent i = new Intent(ScanQRActivity.this, GetMachineDetailsActivity.class);
                 i.putExtra("generationCode",item.getRawValue());
                 startActivity(i);
@@ -169,6 +224,11 @@ public class ScanQRActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+
+
+
+
 
 
 }

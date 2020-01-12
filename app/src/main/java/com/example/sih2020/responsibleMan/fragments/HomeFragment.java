@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import com.example.sih2020.R;
 import com.example.sih2020.responsibleMan.GenerateQRActivity;
 import com.example.sih2020.ScanQRActivity;
+import com.example.sih2020.responsibleMan.PendingComplaintsTabActivity;
 import com.example.sih2020.responsibleMan.adapters.ViewPagerAdapter;
 
 import java.util.Timer;
@@ -103,6 +104,7 @@ public class HomeFragment extends Fragment {
         scan =(CardView) view.findViewById(R.id.scan);
         generate = (CardView) view.findViewById(R.id.generate);
         pendingComplaints = view.findViewById(R.id.pendingComplaints);
+
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +115,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), GenerateQRActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        pendingComplaints.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), PendingComplaintsTabActivity.class);
                 startActivity(intent);
             }
         });

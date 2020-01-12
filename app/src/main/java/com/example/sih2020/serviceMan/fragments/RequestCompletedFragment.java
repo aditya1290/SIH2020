@@ -4,6 +4,8 @@ package com.example.sih2020.serviceMan.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +28,19 @@ public class RequestCompletedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.serviceman_request_completed, container, false);
+
+
+        View rootview =  inflater.inflate(R.layout.serviceman_request_completed, container, false);
+
+        RecyclerView s_recyclerView_completed_request = (RecyclerView)rootview.findViewById(R.id.s_recyclerView_completed_request);
+        s_recyclerView_completed_request.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
+
+
+
+        return rootview;
     }
 
 }
