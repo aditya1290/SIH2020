@@ -39,15 +39,15 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
     @Override
     public void onBindViewHolder(@NonNull RequestPendingAdapter.MyHolder1 myholder1, int position) {
 
-        myholder1.request_id.setText("A");
-        myholder1.responsible_id.setText("B");
-        myholder1.description.setText("C");
-        myholder1.complain_id.setText("D");
+
+        myholder1.responsible_id.setText("sudhashu");
+        myholder1.description.setText(x.get(position).getDescription());
+        myholder1.complain_id.setText(x.get(position).getComplaintId());
 
         Log.i("asdf","fgh");
 
-                boolean isExpanded = x.get(position).isExpanded();
-                myholder1.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
+        boolean isExpanded = x.get(position).isExpanded();
+        myholder1.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
 
     }
 
