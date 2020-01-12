@@ -1,12 +1,15 @@
 package com.example.sih2020;
 
+<<<<<<<<< Temporary merge branch 1
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+=========
 import android.content.Context;
+>>>>>>>>> Temporary merge branch 2
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -22,6 +25,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sih2020.serviceMan.PendingComplaints;
+<<<<<<<<< Temporary merge branch 1
+import com.airbnb.lottie.LottieAnimationView;
+=========
 import com.example.sih2020.serviceMan.ServicemanBottomNav;
 import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +35,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+<<<<<<<<< Temporary merge branch 1
+import com.google.firebase.database.FirebaseDatabase;
+=========
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -115,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         } else {
                             Toast.makeText(getApplicationContext(), "Some Error Occured", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 });

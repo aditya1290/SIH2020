@@ -71,12 +71,14 @@ dependencies {
     // Facebook Shimmer Effect
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
+<<<<<<<<< Temporary merge branch 1
     //Airbnb animation lottie
     implementation 'com.airbnb.android:lottie:3.3.1'
-
+=========
     implementation 'com.google.firebase:firebase-functions:19.0.1'
 
     implementation 'com.google.firebase:firebase-messaging:20.1.0'
+>>>>>>>>> Temporary merge branch 2
 
 }
 apply plugin: 'com.google.gms.google-services'
