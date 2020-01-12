@@ -1,9 +1,10 @@
 package com.example.sih2020.serviceMan;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
+import android.os.Bundle;
+
 
 import com.example.sih2020.R;
 import com.google.android.material.tabs.TabLayout;
