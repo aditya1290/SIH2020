@@ -1,7 +1,6 @@
 package com.example.sih2020.serviceMan;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
-import com.example.sih2020.model.*;
+import com.example.sih2020.model.Complaint;
 import com.example.sih2020.serviceMan.adapters.PendingComplaintAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,7 +77,7 @@ public class PendingComplaintsActivity extends AppCompatActivity {
                         complaint = dataSnapshot.getValue(Complaint.class);
                         pendingComplaintObjectList.add(complaint);
                         myPendingComplaintAdapter.notifyDataSetChanged();
-                        Log.i("machine id", complaint.getComplaintMachineId());
+                        //Log.i("machine id", complaint.getComplaintMachineId());
                     }
 
                     @Override

@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import com.example.sih2020.responsibleMan.fragments.RMComplaintPendingFragment;
 import com.example.sih2020.serviceMan.fragments.RequestCompletedFragment;
 
+
 public class RTabAdapter extends FragmentPagerAdapter {
     private Context myContext;
     int totalTabs;
@@ -25,32 +26,7 @@ public class RTabAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 RMComplaintPendingFragment rmComplaintPendingFragment = new RMComplaintPendingFragment();
-                return rmComplaintPendingFragment
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        ;
+                return rmComplaintPendingFragment;
             case 1:
                 RequestCompletedFragment requestCompleted = new RequestCompletedFragment();
                 return requestCompleted;
