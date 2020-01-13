@@ -161,9 +161,6 @@ public class ComplaintDescriptionDialog extends Dialog implements
             }
         });
 
-
-
-
     }
 
     public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)

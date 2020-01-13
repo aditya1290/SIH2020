@@ -95,7 +95,7 @@ public class RMPendingRequestActivity extends AppCompatActivity {
                                 finalRequest.setServiceMan(name);
                                 pendingRequestList.add(finalRequest);
                                 rmPendingRequestAdapter.notifyDataSetChanged();
-                                Log.i("sizevikas","hello");
+
                             }
 
                             @Override

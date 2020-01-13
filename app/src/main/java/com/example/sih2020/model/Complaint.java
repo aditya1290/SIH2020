@@ -11,6 +11,7 @@ public class Complaint {
         String complaintCompletedDate;
 
 
+
     boolean expanded;
 
     public String getComplaintId() {
