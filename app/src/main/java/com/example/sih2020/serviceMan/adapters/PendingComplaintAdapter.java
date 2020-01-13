@@ -48,7 +48,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
     @Override
     public void onBindViewHolder(@NonNull PendingComplaintAdapter.MyHolder myholder, int position) {
 
-        myholder.pendingComplaintDate.setText("11/01/2020");
+        myholder.pendingComplaintDate.setText(pendingComplaintList.get(position).getComplaintGeneratedDate());
         myholder.pendingComplaintDescription.setText(pendingComplaintList.get(position).getComplaintDescription());
         myholder.pendingComplaintGeneratorName.setText(pendingComplaintList.get(position).getComplaintGenerator());
         myholder.pendingComplaintId.setText(pendingComplaintList.get(position).getComplaintId());

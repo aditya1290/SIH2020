@@ -10,6 +10,25 @@ public class Complaint {
         String complaintGeneratedDate;
         String complaintCompletedDate;
 
+    public String getGeneratorName() {
+        return generatorName;
+    }
+
+    public String getServicemanName() {
+        return servicemanName;
+    }
+
+    public void setGeneratorName(String generatorName) {
+        this.generatorName = generatorName;
+    }
+
+    public void setServicemanName(String servicemanName) {
+        this.servicemanName = servicemanName;
+    }
+
+    String generatorName;
+        String servicemanName;
+
 
     boolean expanded;
 

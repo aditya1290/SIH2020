@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.sih2020.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -52,7 +51,6 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
     String complaintIdValue;
 
-    LottieAnimationView animationView;
 
     public ComplaintDescriptionDialog(Activity a,Complaint complaint,String complaintIdValue) {
         super(a);
