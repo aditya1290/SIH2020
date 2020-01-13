@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.sih2020.R;
-import com.example.sih2020.responsibleMan.adapters.RTabAdapter;
+import com.example.sih2020.serviceMan.adapters.STabAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class ServicemanRequests extends AppCompatActivity {
@@ -24,8 +24,8 @@ public class ServicemanRequests extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("COMPLETED"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final RTabAdapter rTabAdapter = new RTabAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount());
-        viewPager.setAdapter(rTabAdapter);
+        final STabAdapter sTabAdapter = new STabAdapter(this,getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(sTabAdapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
