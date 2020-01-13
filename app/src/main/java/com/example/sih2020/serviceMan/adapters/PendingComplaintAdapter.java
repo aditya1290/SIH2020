@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,8 +14,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
+import com.example.sih2020.model.Complaint;
 import com.example.sih2020.serviceMan.UpdateActivity;
-import com.example.sih2020.model.*;
 
 import java.util.List;
 
@@ -50,7 +51,8 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
         myholder.pendingComplaintDate.setText("11/01/2020");
         myholder.pendingComplaintDescription.setText(pendingComplaintList.get(position).getComplaintDescription());
         myholder.pendingComplaintGeneratorName.setText(pendingComplaintList.get(position).getComplaintGenerator());
-        //myholder.pendingComplaintId.setText(pendingComplaintList.get(position));
+        myholder.pendingComplaintId.setText(pendingComplaintList.get(position).getComplaintId());
+        myholder.pendingComplaintMachineId.setText(pendingComplaintList.get(position).getComplaintMachineId());
 
         boolean isExpanded = pendingComplaintList.get(position).isExpanded();
         myholder.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
@@ -65,23 +67,24 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
 
 
 
-
-
-
     class MyHolder extends RecyclerView.ViewHolder
     {
-        TextView pendingComplaintDate, pendingComplaintId, pendingComplaintGeneratorName, pendingComplaintDescription;
+        TextView pendingComplaintDate, pendingComplaintId, pendingComplaintGeneratorName, pendingComplaintDescription, pendingComplaintMachineId;
         CardView cardView;
         LinearLayout ll_hide;
+        Button updateButton;
 
         public MyHolder(@NonNull final View itemView)
         {
             super(itemView);
 
-            pendingComplaintDate = itemView.findViewById(R.id.pending_request_date);
-            pendingComplaintId = itemView.findViewById(R.id.pending_request_complaintId);
-            pendingComplaintDescription = itemView.findViewById(R.id.pending_request_description);
-            pendingComplaintGeneratorName = itemView.findViewById(R.id.pending_request_genratorName);
+            pendingComplaintDate = itemView.findViewById(R.id.sm_pending_complaint_date);
+            pendingComplaintId = itemView.findViewById(R.id.sm_pending_complaint_Id);
+            pendingComplaintDescription = itemView.findViewById(R.id.sm_pending_complaint_description);
+            pendingComplaintGeneratorName = itemView.findViewById(R.id.sm_pending_complaint_genratorName);
+            updateButton = itemView.findViewById(R.id.update_button);
+            pendingComplaintMachineId = itemView.findViewById((R.id.sm_pending_complaint_machine_id));
+
 
             cardView = itemView.findViewById(R.id.cardview12);
             ll_hide = itemView.findViewById(R.id.ll_hide12);
@@ -95,9 +98,18 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                 public void onClick(View v) {
 
                     Complaint complaint = pendingComplaintList.get(getAdapterPosition());
-//                    complaint.setExpanded(!complaint.isExpanded());
-//                    notifyItemChanged(getAdapterPosition());
+                    complaint.setExpanded(!complaint.isExpanded());
+                    notifyItemChanged(getAdapterPosition());
 
+//
+                }
+            });
+
+            updateButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Complaint complaint = pendingComplaintList.get(getAdapterPosition());
                     Intent i = new Intent(c, UpdateActivity.class);
                     i.putExtra("generatorUid",complaint.getComplaintGenerator());
                     i.putExtra("complaintId",complaint.getComplaintId());

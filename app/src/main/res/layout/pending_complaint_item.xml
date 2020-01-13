@@ -33,7 +33,7 @@ app:cardUseCompatPadding="true">
                 android:orientation="horizontal"
                 >
                 <TextView
-                    android:id="@+id/pending_request_genratorName1"
+                    android:id="@+id/sm_pending_complaint_genratorName1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Responsibleman:"
@@ -41,7 +41,7 @@ app:cardUseCompatPadding="true">
                     android:textColor="#363333"
                     android:textSize="15sp" />
                 <TextView
-                    android:id="@+id/pending_request_genratorName"
+                    android:id="@+id/sm_pending_complaint_genratorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -59,7 +59,7 @@ app:cardUseCompatPadding="true">
                 android:orientation="horizontal"
                 >
                 <TextView
-                    android:id="@+id/pending_request_machine_id1"
+                    android:id="@+id/sm_pending_complaint_machine_id1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Machine Id:"
@@ -67,7 +67,7 @@ app:cardUseCompatPadding="true">
                     android:textColor="#363333"
                     android:textSize="15sp" />
                 <TextView
-                    android:id="@+id/pending_request_machine_id"
+                    android:id="@+id/sm_pending_complaint_machine_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="59dp"
@@ -83,7 +83,7 @@ app:cardUseCompatPadding="true">
                 android:orientation="horizontal"
                 >
                 <TextView
-                    android:id="@+id/complain_id1"
+                    android:id="@+id/sm_pending_complaint_Id1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Complain Id:"
@@ -91,7 +91,7 @@ app:cardUseCompatPadding="true">
                     android:textColor="#363333"
                     android:textSize="15sp" />
                 <TextView
-                    android:id="@+id/pending_request_complaintId"
+                    android:id="@+id/sm_pending_complaint_Id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="53dp"
@@ -106,7 +106,7 @@ app:cardUseCompatPadding="true">
                 android:orientation="horizontal"
                 >
                 <TextView
-                    android:id="@+id/request_date1"
+                    android:id="@+id/sm_pending_complaint_date1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date(Generated):"
@@ -114,7 +114,7 @@ app:cardUseCompatPadding="true">
                     android:textColor="#363333"
                     android:textSize="15sp" />
                 <TextView
-                    android:id="@+id/pending_request_date"
+                    android:id="@+id/sm_pending_complaint_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17dp"
@@ -154,7 +154,7 @@ app:cardUseCompatPadding="true">
             />
 
         <TextView
-            android:id="@+id/description1"
+            android:id="@+id/sm_pending_complaint_description1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -163,7 +163,7 @@ app:cardUseCompatPadding="true">
             android:textColor="#363333"
             android:textSize="15sp" />
         <TextView
-            android:id="@+id/pending_request_description"
+            android:id="@+id/sm_pending_complaint_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
