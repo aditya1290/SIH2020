@@ -24,7 +24,7 @@ import com.example.sih2020.R;
 import com.example.sih2020.ScanQRActivity;
 import com.example.sih2020.responsibleMan.GenerateQRActivity;
 import com.example.sih2020.responsibleMan.ResponsiblemanComplaintsTabActivity;
-import com.example.sih2020.responsibleMan.PendingComplaintsTabActivity;
+
 import com.example.sih2020.responsibleMan.RMPendingRequestActivity;
 import com.example.sih2020.responsibleMan.adapters.ViewPagerAdapter;
 
@@ -130,7 +130,7 @@ public class HomeFragment extends Fragment {
         pendingComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), PendingComplaintsTabActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), ResponsiblemanComplaintsTabActivity.class);
                 startActivity(intent);
             }
         });
