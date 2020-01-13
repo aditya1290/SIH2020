@@ -15,6 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import com.example.sih2020.model.CustomDialogBox;
 import com.example.sih2020.serviceMan.BottomNavigationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference serviceManReference;
 
-    CustomDialogBox  customDialogBox;
+    CustomDialogBox customDialogBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

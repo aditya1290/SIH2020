@@ -16,8 +16,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sih2020.CustomDialogBox;
+
 import com.example.sih2020.R;
+import com.example.sih2020.model.CustomDialogBox;
 import com.example.sih2020.model.Request;
 import com.example.sih2020.serviceMan.adapters.RequestPendingAdapter;
 import com.google.firebase.auth.FirebaseAuth;

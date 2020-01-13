@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.sih2020.R;
 import com.example.sih2020.model.Complaint;
+import com.example.sih2020.model.ComplaintDescriptionDialog;
 import com.example.sih2020.model.Machine;
 import com.example.sih2020.model.ServiceMan;
 import com.google.firebase.auth.FirebaseAuth;
@@ -136,6 +137,9 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
         generateComplaint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                ComplaintDescriptionDialog complaintDescriptionDialog = new ComplaintDescriptionDialog(GetMachineDetailsActivity.this);
+                complaintDescriptionDialog.show();
 
                 complaint = new Complaint();
                 complaint.setComplaintGenerator(user.getUid());
