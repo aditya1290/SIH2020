@@ -7,8 +7,8 @@ public class Complaint {
         String complaintAllocatedTo;
         String complaintMachineId;
         String complaintId;
-        Date complaintGeneratedDate;
-        Date complaintCompletedDate;
+        String complaintGeneratedDate;
+        String complaintCompletedDate;
 
 
     boolean expanded;
@@ -64,8 +64,8 @@ public class Complaint {
         this.complaintGenerator = complaintGenerator;
         this.complaintAllocatedTo = complaintAllocatedTo;
         this.complaintMachineId = complaintMachineId;
-        this.complaintGeneratedDate = complaintGeneratedDate;
-        this.complaintCompletedDate = complaintCompletedDate;
+//        this.complaintGeneratedDate = complaintGeneratedDate;
+//        this.complaintCompletedDate = complaintCompletedDate;
         this.status = status;
         this.complaintDescription = complaintDescription;
     }
@@ -82,11 +82,11 @@ public class Complaint {
         return complaintMachineId;
     }
 
-    public Date getComplaintGeneratedDate() {
+    public String  getComplaintGeneratedDate() {
         return complaintGeneratedDate;
     }
 
-    public Date getComplaintCompletedDate() {
+    public String getComplaintCompletedDate() {
         return complaintCompletedDate;
     }
 
@@ -110,11 +110,11 @@ public class Complaint {
         this.complaintMachineId = complaintMachineId;
     }
 
-    public void setComplaintGeneratedDate(Date complaintGeneratedDate) {
+    public void setComplaintGeneratedDate(String complaintGeneratedDate) {
         this.complaintGeneratedDate = complaintGeneratedDate;
     }
 
-    public void setComplaintCompletedDate(Date complaintCompletedDate) {
+    public void setComplaintCompletedDate(String complaintCompletedDate) {
         this.complaintCompletedDate = complaintCompletedDate;
     }
 

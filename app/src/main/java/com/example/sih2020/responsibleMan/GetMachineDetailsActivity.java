@@ -30,6 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -59,9 +60,9 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
     Complaint complaint;
 
     String complaintIdValue;
+    String description;
 
 
-    HashMap<String,Integer> serviceManList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
 
         generateComplaint = findViewById(R.id.generateComplaint);
         show_history = findViewById(R.id.show_history);
+
+        description = new String("");
 
         serialNo = findViewById(R.id.machineDetailsSerialNo);
         department = findViewById(R.id.machineDetailsDepartment);
@@ -138,89 +141,25 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ComplaintDescriptionDialog complaintDescriptionDialog = new ComplaintDescriptionDialog(GetMachineDetailsActivity.this);
-                complaintDescriptionDialog.show();
-
                 complaint = new Complaint();
                 complaint.setComplaintGenerator(user.getUid());
                 complaint.setComplaintMachineId(generationCode);
-                complaint.setComplaintGeneratedDate(new Date(2019,1,11));
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                month = month+1;
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+
+                complaint.setComplaintGeneratedDate(day+"/"+month+"/"+year);
                 complaint.setStatus(complaint.getGeneratedOnly());
-                serviceManList = new HashMap<>();
 
-                serviceManListReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                        for(DataSnapshot serviceManReference : dataSnapshot.getChildren())
-                        {
-
-                            String key = serviceManReference.getKey();
-
-                            Log.i("serviceMan key",key);
-
-                            ServiceMan serviceMan = new ServiceMan();
-                            String email = serviceManReference.child("email").getValue().toString();
-                            String userName = serviceManReference.child("userName").getValue().toString();
-                            String load = serviceManReference.child("load").getValue().toString();
-
-                            serviceMan.setEmail(email);
-                            serviceMan.setUserName(userName);
-                            serviceMan.setLoad(Integer.parseInt(load));
-
-                            Log.i("serviceMan username",serviceMan.getUserName());
-                            Log.i("serviceMan load",String.valueOf(serviceMan.getLoad()));
-                            serviceManList.put(key,serviceMan.getLoad());
-
-                        }
-
-                        serviceManList = sortByValue(serviceManList);
-                        Map.Entry<String,Integer> entry = serviceManList.entrySet().iterator().next();
-
-                        complaint.setComplaintAllocatedTo(entry.getKey());
-                        complaint.setComplaintId(complaintIdValue);
-                        complaint.setStatus(complaint.getGeneratedAndAccpted());
-                        serviceManListReference.child(entry.getKey()).child("load").setValue(entry.getValue()+1);
-                        serviceManListReference.child(entry.getKey()).child("pendingComplaintList").push().setValue(complaintIdValue);
-
-                        serviceManListReference.removeEventListener(this);
-                        responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
-                        complaintReference.child(complaintIdValue).setValue(complaint);
-                        complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
-
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-
-
-                });
+                ComplaintDescriptionDialog complaintDescriptionDialog = new ComplaintDescriptionDialog(GetMachineDetailsActivity.this,complaint,complaintIdValue);
+                complaintDescriptionDialog.show();
 
             }
         });
 
     }
-    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
-    {
-        // Create a list from elements of HashMap
-        List<Map.Entry<String, Integer> > list =
-                new LinkedList<Map.Entry<String, Integer> >(hm.entrySet());
 
-        // Sort the list
-        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
-            public int compare(Map.Entry<String, Integer> o1,
-                               Map.Entry<String, Integer> o2)
-            {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
-
-        // put data from sorted list to hashmap
-        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
-        for (Map.Entry<String, Integer> aa : list) {
-            temp.put(aa.getKey(), aa.getValue());
-        }
-        return temp;
-    }
 }
