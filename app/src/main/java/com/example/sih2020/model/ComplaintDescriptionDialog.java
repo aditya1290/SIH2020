@@ -55,7 +55,6 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
     String complaintIdValue;
 
-    LottieAnimationView lottieAnimationView;
 
     public ComplaintDescriptionDialog(Activity a,Complaint complaint,String complaintIdValue) {
         super(a);
@@ -72,13 +71,9 @@ public class ComplaintDescriptionDialog extends Dialog implements
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.generate_complaint_description_dialog);
 
-        lottieAnimationView = findViewById(R.id.lottieAnimationView);
-
         complaintDescription = findViewById(R.id.complaintDescription);
         cancelButton = findViewById(R.id.cancelButton);
         submitButton = findViewById(R.id.submitButton);
-
-        descriptionlayout = findViewById(R.id.descriptionlayout);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -139,6 +134,7 @@ public class ComplaintDescriptionDialog extends Dialog implements
                         responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
                         complaintReference.child(complaintIdValue).setValue(complaint);
                         complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
+
                         dismiss();
 
 
@@ -160,6 +156,9 @@ public class ComplaintDescriptionDialog extends Dialog implements
                 dismiss();
             }
         });
+
+
+
 
     }
 
