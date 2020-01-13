@@ -128,6 +128,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
                         complaintReference.child(complaintIdValue).setValue(complaint);
                         complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
 
+                        dismiss();
+
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -137,6 +139,13 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
                 });
 
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dismiss();
             }
         });
 
