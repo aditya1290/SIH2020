@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="375dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_vertical|center_horizontal"
-    android:paddingLeft="50dp"
-    android:paddingRight="50dp"
-    android:paddingTop="20dp"
-    android:paddingBottom="30dp">
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="false"
+
+        app:lottie_fileName="check.json"
+        app:lottie_loop="false"
+        android:visibility="invisible">
+
+    </com.airbnb.lottie.LottieAnimationView>
 
     <LinearLayout
         android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical|center_horizontal"
+        android:id="@+id/descriptionlayout"
         android:orientation="vertical"
         android:paddingLeft="50dp"
         android:paddingTop="20dp"
         android:paddingRight="50dp"
         android:paddingBottom="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/lottieAnimationView"
+        app:layout_constraintStart_toStartOf="@+id/lottieAnimationView"
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
@@ -56,7 +70,6 @@
                 android:background="@drawable/transparent_button_border"
                 android:text="Confirm"
                 android:textColor="#3B54E0"></Button>
-
         </LinearLayout>
 
     </LinearLayout>

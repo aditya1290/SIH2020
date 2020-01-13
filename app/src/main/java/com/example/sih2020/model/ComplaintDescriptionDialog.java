@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
     public Dialog d;
     String filename;
 
+    LinearLayout descriptionlayout;
+
     EditText complaintDescription;
     TextView cancelButton, submitButton;
 
@@ -52,7 +55,7 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
     String complaintIdValue;
 
-    LottieAnimationView animationView;
+    LottieAnimationView lottieAnimationView;
 
     public ComplaintDescriptionDialog(Activity a,Complaint complaint,String complaintIdValue) {
         super(a);
@@ -69,9 +72,13 @@ public class ComplaintDescriptionDialog extends Dialog implements
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.generate_complaint_description_dialog);
 
+        lottieAnimationView = findViewById(R.id.lottieAnimationView);
+
         complaintDescription = findViewById(R.id.complaintDescription);
         cancelButton = findViewById(R.id.cancelButton);
         submitButton = findViewById(R.id.submitButton);
+
+        descriptionlayout = findViewById(R.id.descriptionlayout);
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -112,10 +119,14 @@ public class ComplaintDescriptionDialog extends Dialog implements
                             Log.i("serviceMan load",String.valueOf(serviceMan.getLoad()));
                             serviceManList.put(key,serviceMan.getLoad());
 
+
+
                         }
 
                         serviceManList = sortByValue(serviceManList);
                         Map.Entry<String,Integer> entry = serviceManList.entrySet().iterator().next();
+
+
 
                         complaint.setComplaintAllocatedTo(entry.getKey());
                         complaint.setComplaintId(complaintIdValue);
@@ -128,8 +139,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
                         responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
                         complaintReference.child(complaintIdValue).setValue(complaint);
                         complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
-
                         dismiss();
+
 
                     }
                     @Override
