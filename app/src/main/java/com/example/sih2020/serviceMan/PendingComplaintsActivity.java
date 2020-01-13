@@ -78,7 +78,7 @@ public class PendingComplaintsActivity extends AppCompatActivity {
                         complaint = dataSnapshot.getValue(Complaint.class);
                         pendingComplaintObjectList.add(complaint);
                         myPendingComplaintAdapter.notifyDataSetChanged();
-                        Log.i("machine id", complaint.getComplaintMachineId());
+
                     }
 
                     @Override
