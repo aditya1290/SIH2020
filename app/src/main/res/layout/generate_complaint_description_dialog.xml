@@ -43,6 +43,7 @@
             android:text="Confirm"
             android:background="@drawable/transparent_button_border"
             android:textColor="#3B54E0"></Button>
+
     </LinearLayout>
 
 </LinearLayout>

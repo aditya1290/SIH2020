@@ -1,4 +1,4 @@
-package com.example.sih2020.responsibleMan.adapters;
+ package com.example.sih2020.responsibleMan.adapters;
 
 import android.content.Context;
 

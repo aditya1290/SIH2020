@@ -120,6 +120,7 @@ public class ComplaintDescriptionDialog extends Dialog implements
                         complaint.setComplaintAllocatedTo(entry.getKey());
                         complaint.setComplaintId(complaintIdValue);
                         complaint.setStatus(complaint.getGeneratedAndAccpted());
+                        complaint.setComplaintDescription(complaintDescription.getText().toString());
                         serviceManListReference.child(entry.getKey()).child("load").setValue(entry.getValue()+1);
                         serviceManListReference.child(entry.getKey()).child("pendingComplaintList").push().setValue(complaintIdValue);
 
