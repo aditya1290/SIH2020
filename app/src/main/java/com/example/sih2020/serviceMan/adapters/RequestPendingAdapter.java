@@ -40,9 +40,10 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
     public void onBindViewHolder(@NonNull RequestPendingAdapter.MyHolder1 myholder1, int position) {
 
 
-        myholder1.responsible_id.setText("sudhashu");
+        myholder1.responsiblemanName.setText(x.get(position).getResponsible());
         myholder1.description.setText(x.get(position).getDescription());
         myholder1.complain_id.setText(x.get(position).getComplaintId());
+        myholder1.request_id.setText(x.get(position).getRequestid());
 
         Log.i("asdf","fgh");
 
@@ -53,7 +54,6 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
 
     @Override
     public int getItemCount() {
-        Log.i("bhootni k", String.valueOf(x.size()));
         return x.size();                                                                                   // Return item count from firebase
     }
 
@@ -61,7 +61,7 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
     class MyHolder1 extends RecyclerView.ViewHolder{
 
 
-        TextView request_id , responsible_id ,  description , complain_id ;
+        TextView request_id , responsiblemanName ,  description , complain_id ;
         CardView cardview;
         LinearLayout ll_hide;
 
@@ -69,7 +69,7 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
             super(itemView);
 
             request_id = itemView.findViewById(R.id.s_RecyclerView_requestID__pen_req);
-            responsible_id = itemView.findViewById(R.id.s_RecyclerView_ResponsibleMan_pen_req);
+            responsiblemanName = itemView.findViewById(R.id.s_RecyclerView_ResponsibleMan_pen_req);
             description = itemView.findViewById(R.id.s_RecyclerView_Description_pen_req);
             complain_id = itemView.findViewById(R.id.s_RecyclerView_ComplainID_pen_req);
             cardview = itemView.findViewById(R.id.s_cardview_pen_req);
