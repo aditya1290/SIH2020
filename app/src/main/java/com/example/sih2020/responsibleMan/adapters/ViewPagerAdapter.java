@@ -15,7 +15,7 @@ import com.example.sih2020.R;
 public class ViewPagerAdapter extends PagerAdapter {
     private Context context;
     private LayoutInflater layoutInflater;
-    private int [] images = {R.drawable.qrimage,R.drawable.qrimagehome};
+    private int [] images = {R.drawable.scanimg6,R.drawable.generateqrimg};
 
     public ViewPagerAdapter(Context context) {
         this.context = context;
