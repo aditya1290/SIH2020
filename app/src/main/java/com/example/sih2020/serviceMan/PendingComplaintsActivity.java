@@ -1,11 +1,6 @@
 package com.example.sih2020.serviceMan;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
-import com.example.sih2020.model.*;
+import com.example.sih2020.model.Complaint;
 import com.example.sih2020.serviceMan.adapters.PendingComplaintAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,10 +33,12 @@ public class PendingComplaintsActivity extends AppCompatActivity {
     List<Complaint> pendingComplaintObjectList;
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference serviceManReference, pendingComplaintListReference, complaintReference;
+    DatabaseReference serviceManReference, pendingComplaintListReference, complaintReference, responsibleManReference;
 
     FirebaseAuth auth;
     FirebaseUser user;
+
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +62,7 @@ public class PendingComplaintsActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
         pendingComplaintListReference = serviceManReference.child("pendingComplaintList");
+        responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan");
         complaintReference = firebaseDatabase.getReference("Complaints");
 
 
@@ -80,9 +78,24 @@ public class PendingComplaintsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Complaint complaint = new Complaint();
                         complaint = dataSnapshot.getValue(Complaint.class);
-                        pendingComplaintObjectList.add(complaint);
-                        myPendingComplaintAdapter.notifyDataSetChanged();
-                        Log.i("machine id", complaint.getComplaintMachineId());
+                        final Complaint finalComplaint = complaint;
+
+                        responsibleManReference.child(complaint.getComplaintGenerator()).child("userName").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                name = dataSnapshot.getValue().toString();
+                                finalComplaint.setComplaintGenerator(name);
+                                pendingComplaintObjectList.add(finalComplaint);
+                                myPendingComplaintAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        //Log.i("machine id", complaint.getComplaintMachineId());
                     }
 
                     @Override
