@@ -8,6 +8,24 @@ public class Request {
     String complaintId;
     String requestid;
 
+    public String getServicemanName() {
+        return servicemanName;
+    }
+
+    public String getResponsiblemanName() {
+        return responsiblemanName;
+    }
+
+    public void setServicemanName(String servicemanName) {
+        this.servicemanName = servicemanName;
+    }
+
+    public void setResponsiblemanName(String responsiblemanName) {
+        this.responsiblemanName = responsiblemanName;
+    }
+
+    String servicemanName, responsiblemanName;
+
     public boolean isExpanded() {
         return expanded;
     }
