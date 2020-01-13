@@ -4,7 +4,6 @@ package com.example.sih2020.serviceMan.fragments;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.example.sih2020.R;
 import com.example.sih2020.model.CustomDialogBox;
@@ -45,10 +43,12 @@ public class RequestPendingFragment extends Fragment {
     List<Request> pendingRequestObjectList;
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference requestReference, serviceManReference, pendingRequestListReference;
+    DatabaseReference requestReference, serviceManReference, pendingRequestListReference, responsibleManReference;
 
     FirebaseAuth auth;
     FirebaseUser user;
+
+    String name;
 
     CustomDialogBox dialogBox;
 
@@ -84,6 +84,7 @@ public class RequestPendingFragment extends Fragment {
         firebaseDatabase =  FirebaseDatabase.getInstance();
         serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
         pendingRequestListReference = serviceManReference.child("pendingRequests");
+        responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan");
         requestReference = firebaseDatabase.getReference("Requests");
 
         pendingRequestListReference.addChildEventListener(new ChildEventListener() {
@@ -98,12 +99,28 @@ public class RequestPendingFragment extends Fragment {
                         Request request = new Request();
                         request = dataSnapshot.getValue(Request.class);
 
-                        pendingRequestObjectList.add(request);
+                        final Request finalRequest = request;
+                        responsibleManReference.child(request.getResponsible()).child("userName").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                name = dataSnapshot.getValue().toString();
+                                finalRequest.setResponsible(name);
 
-                        dialogBox.dismiss();
+                                pendingRequestObjectList.add(finalRequest);
 
-                        mRequestPendingAdapter.notifyDataSetChanged();
-                        Log.i("danda ghus gya",request.getComplaintId());
+                                dialogBox.dismiss();
+
+                                mRequestPendingAdapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+                        //Log.i("danda ghus gya",request.getComplaintId());
                         //Log.i("machine id", request.getComplaintMachineId());
                     }
 
