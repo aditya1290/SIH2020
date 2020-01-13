@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class PastRecord {
 
-    Date serviceDate;
+    String serviceDate;
     String serviceMan;
     String description;
     boolean done;
@@ -19,7 +19,7 @@ public class PastRecord {
         this.expanded = expanded;
     }
 
-    public PastRecord(Date serviceDate, String serviceMan, String description, boolean isDone) {
+    public PastRecord(String serviceDate, String serviceMan, String description, boolean isDone) {
         this.serviceDate = serviceDate;
         this.serviceMan = serviceMan;
         this.description = description;
@@ -29,11 +29,11 @@ public class PastRecord {
     public PastRecord(){}
 
 
-    public Date getServiceDate() {
+    public String getServiceDate() {
         return serviceDate;
     }
 
-    public void setServiceDate(Date serviceDate) {
+    public void setServiceDate(String serviceDate) {
         this.serviceDate = serviceDate;
     }
 

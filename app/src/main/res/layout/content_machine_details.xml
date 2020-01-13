@@ -79,7 +79,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/editText1"
+                android:id="@+id/machineDetailsSerialNo"
                 android:layout_width="fill_parent"
 
                 android:layout_height="wrap_content"
@@ -123,7 +123,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/editText2"
+                    android:id="@+id/machineDetailsDepartment"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
@@ -167,9 +167,8 @@
                     />
 
                 <TextView
-                    android:id="@+id/editText3"
+                    android:id="@+id/machineDetailsServiceTime"
                     android:layout_width="fill_parent"
-
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/black"
                     android:layout_marginLeft="10dp"
@@ -212,7 +211,7 @@
                     />
 
                 <TextView
-                    android:id="@+id/editText4"
+                    android:id="@+id/machineDetailsInstallationDate"
                     android:layout_width="fill_parent"
 
                     android:layout_height="wrap_content"
@@ -228,12 +227,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <Button
                 android:id="@+id/generateComplaint"
-                android:layout_marginRight="5dp"
+                style="@style/loginButton"
+                android:layout_height="38dp"
                 android:layout_marginTop="10dp"
-                android:text="Generate Complaint"
-                style="@style/loginButton"/>
+                android:layout_marginRight="5dp"
+                android:text="Generate Complaint" />
             <Button
                 android:id="@+id/show_history"
                 android:layout_marginTop="10dp"

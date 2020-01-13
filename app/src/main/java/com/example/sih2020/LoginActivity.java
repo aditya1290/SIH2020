@@ -3,6 +3,8 @@ package com.example.sih2020;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -37,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference serviceManReference;
 
+    CustomDialogBox  customDialogBox;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        customDialogBox = new CustomDialogBox(LoginActivity.this);
+        customDialogBox.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         loginEmail = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
@@ -60,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 String email = loginEmail.getText().toString();
                 String password = loginPassword.getText().toString();
+                customDialogBox.show();
 
                 login(email,password);
 
@@ -87,10 +94,12 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     if(dataSnapshot.exists())
                                     {
+                                        customDialogBox.dismiss();
                                         startActivity(new Intent(getApplicationContext(), BottomNavigationActivity.class));
                                     }
                                     else
                                     {
+                                        customDialogBox.dismiss();
                                         startActivity(new Intent(getApplicationContext(), com.example.sih2020.responsibleMan.BottomNavigationActivity.class));
                                     }
                                 }
@@ -103,6 +112,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         } else {
+                            customDialogBox.dismiss();
                             Toast.makeText(getApplicationContext(), "Some Error Occured", Toast.LENGTH_SHORT).show();
 
                         }
