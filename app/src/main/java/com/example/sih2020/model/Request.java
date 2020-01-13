@@ -6,6 +6,7 @@ public class Request {
     String description;
     boolean status;
     String complaintId;
+    String requestid;
 
     public boolean isExpanded() {
         return expanded;
@@ -67,5 +68,13 @@ public class Request {
 
     public void setComplaintId(String complaintId) {
         this.complaintId = complaintId;
+    }
+
+    public String getRequestid() {
+        return requestid;
+    }
+
+    public void setRequestid(String requestid) {
+        this.requestid = requestid;
     }
 }

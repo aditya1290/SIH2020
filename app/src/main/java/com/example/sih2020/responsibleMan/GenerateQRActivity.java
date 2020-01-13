@@ -95,7 +95,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearlayout);
         linearLayoutimage = (LinearLayout)findViewById(R.id.linearlayoutimage);
         aqwesd = (LinearLayout)findViewById(R.id.aqwesd);
-        enter_details = (TextView)findViewById(R.id.Enter_details);
+        enter_details = (TextView)findViewById(R.id.enter_details_text);
         firebaseDatabase  = FirebaseDatabase.getInstance();
         generationCodeReference = firebaseDatabase.getReference("generationCode");
         machineReference = firebaseDatabase.getReference("machines");
@@ -227,7 +227,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         final Machine machine = new Machine();
         final String serialNo,dept;
         final int servicetime;
-        final Date installationdate;
+        final String installationdate;
 
 
         // Retrieve Data of Machine to be saved.
@@ -235,7 +235,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         dept = department.getText().toString();
         servicetime = Integer.parseInt(serviceTime.getText().toString());
         String[] date = installationDate.getText().toString().split("/");
-        installationdate = new Date(Integer.parseInt(date[2]),Integer.parseInt(date[1]),Integer.parseInt(date[0]));
+        installationdate = installationDate.getText().toString();
 
         // QRCode image url is fetched and on Completion Machine Data is uploaded to database.
         Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -257,7 +257,7 @@ public class GenerateQRActivity extends AppCompatActivity {
                     machine.setDepartment(dept);
                     machine.setSerialNumber(serialNo);
                     machine.setServiceTime(servicetime);
-                    machine.setInstallationDate(installationdate);
+                    machine.setDate(installationdate);
 
 
                     final PastRecord pastRecord = new PastRecord();
@@ -349,7 +349,7 @@ public class GenerateQRActivity extends AppCompatActivity {
     public void myAlertbox()
     {
         MyDialog = new Dialog(GenerateQRActivity.this);
-        MyDialog.setContentView(R.layout.qrcode_dialog);
+        MyDialog.setContentView(R.layout.loading_dialog);
         MyDialog.setTitle("QR CODE");
         save = (Button)findViewById(R.id.dialogSave);
         exit = (Button)findViewById(R.id.dialogExit);

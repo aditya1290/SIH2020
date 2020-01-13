@@ -5,11 +5,11 @@ import java.util.List;
 
 public class Machine {
     String serialNumber;
-    Date installationDate;
     String department;
     int serviceTime;
    // Uri QRImage;
     String link;
+    String date;
     List<PastRecord> pastRecordList;
 
     public Machine()
@@ -19,7 +19,6 @@ public class Machine {
 
     public Machine(String serialNumber, Date installationDate, String department, int serviceTime, String link, List<PastRecord> pastRecordList) {
         this.serialNumber = serialNumber;
-        this.installationDate = installationDate;
         this.department = department;
         this.serviceTime = serviceTime;
         this.link = link;
@@ -32,14 +31,6 @@ public class Machine {
 
     public void setSerialNumber(String serialNumber) {
         this.serialNumber = serialNumber;
-    }
-
-    public Date getInstallationDate() {
-        return installationDate;
-    }
-
-    public void setInstallationDate(Date installationDate) {
-        this.installationDate = installationDate;
     }
 
     public String getDepartment() {
@@ -72,5 +63,13 @@ public class Machine {
 
     public void setPastRecordList(List<PastRecord> pastRecordList) {
         this.pastRecordList = pastRecordList;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 }

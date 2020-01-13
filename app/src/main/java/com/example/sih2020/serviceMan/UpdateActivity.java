@@ -93,6 +93,7 @@ public class UpdateActivity extends AppCompatActivity {
                     request.setStatus(true);
                 request.setResponsible(generatorUid);
                 request.setComplaintId(complaintId);
+                request.setRequestid(requestIdValue);
 
                 serviceManReference.child("pendingRequests").push().setValue(requestIdValue);
                 responsibleManReference.child("pendingRequests").push().setValue(requestIdValue);

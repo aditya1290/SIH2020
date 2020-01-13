@@ -18,6 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".responsibleMan.ResponsiblemanComplaintsTabActivity"></activity>
+        <activity android:name=".responsibleMan.RMPendingRequestActivity"></activity>
+        <activity android:name=".responsibleMan.PendingComplaintsTabActivity" />
         <activity
             android:name=".serviceMan.ServicemanRequests"
             android:label="Request Status" />

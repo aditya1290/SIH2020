@@ -2,6 +2,12 @@ package com.example.sih2020.responsibleMan.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +24,8 @@ import com.example.sih2020.R;
 import com.example.sih2020.ScanQRActivity;
 import com.example.sih2020.responsibleMan.GenerateQRActivity;
 import com.example.sih2020.responsibleMan.ResponsiblemanComplaintsTabActivity;
+import com.example.sih2020.responsibleMan.PendingComplaintsTabActivity;
+import com.example.sih2020.responsibleMan.RMPendingRequestActivity;
 import com.example.sih2020.responsibleMan.adapters.ViewPagerAdapter;
 
 import java.util.Timer;
@@ -27,8 +35,7 @@ import java.util.TimerTask;
 public class HomeFragment extends Fragment {
 
     CardView scan;
-    CardView generate;
-    CardView pendingComplaints;
+    CardView generate, pendingComplaints,pending_approval_request;
     ViewPager viewPager;
     LinearLayout sliderdotspanel;
     private int dotscount;
@@ -103,6 +110,7 @@ public class HomeFragment extends Fragment {
         scan =(CardView) view.findViewById(R.id.scan);
         generate = (CardView) view.findViewById(R.id.generate);
         pendingComplaints = view.findViewById(R.id.pendingComplaints);
+        pending_approval_request = view.findViewById(R.id.pending_approval_request);
 
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,13 +130,24 @@ public class HomeFragment extends Fragment {
         pendingComplaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), ResponsiblemanComplaintsTabActivity.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), PendingComplaintsTabActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        pending_approval_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity().getApplicationContext(), RMPendingRequestActivity.class);
+                startActivity(intent);
+
             }
         });
 
 
         return view;
+
     }
     public void updateDetail() {
         Intent intent = new Intent(getActivity().getApplicationContext(), ScanQRActivity.class);

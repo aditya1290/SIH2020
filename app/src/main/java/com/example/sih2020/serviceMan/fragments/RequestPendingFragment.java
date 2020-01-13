@@ -1,6 +1,8 @@
 package com.example.sih2020.serviceMan.fragments;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sih2020.CustomDialogBox;
 import com.example.sih2020.R;
 import com.example.sih2020.model.Request;
 import com.example.sih2020.serviceMan.adapters.RequestPendingAdapter;
@@ -45,6 +48,8 @@ public class RequestPendingFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseUser user;
 
+    CustomDialogBox dialogBox;
+
     public RequestPendingFragment() {
         // Required empty public constructor
     }
@@ -60,6 +65,10 @@ public class RequestPendingFragment extends Fragment {
         s_recyclerView_pending_request = (RecyclerView)rootView.findViewById(R.id.s_recyclerView_pending_request);
         s_recyclerView_pending_request.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        dialogBox = new CustomDialogBox(getActivity());
+        dialogBox.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        dialogBox.show();
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
@@ -86,6 +95,9 @@ public class RequestPendingFragment extends Fragment {
                         request = dataSnapshot.getValue(Request.class);
 
                         pendingRequestObjectList.add(request);
+
+                        dialogBox.dismiss();
+
                         mRequestPendingAdapter.notifyDataSetChanged();
                         Log.i("danda ghus gya",request.getComplaintId());
                         //Log.i("machine id", request.getComplaintMachineId());

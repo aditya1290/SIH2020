@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -48,12 +51,15 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
 
     ImageView QRCodeImage;
     Button show_history;
+    Button generateComplaint;
+
+    TextView serialNo,department,serviceTime,dateOfInstallation;
 
     Complaint complaint;
 
     String complaintIdValue;
 
-    Button generateComplaint;
+
     HashMap<String,Integer> serviceManList;
 
     @Override
@@ -65,6 +71,11 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
 
         generateComplaint = findViewById(R.id.generateComplaint);
         show_history = findViewById(R.id.show_history);
+
+        serialNo = findViewById(R.id.machineDetailsSerialNo);
+        department = findViewById(R.id.machineDetailsDepartment);
+        serviceTime = findViewById(R.id.machineDetailsServiceTime);
+        dateOfInstallation = findViewById(R.id.machineDetailsInstallationDate);
 
         generationCode = getIntent().getStringExtra("generationCode");
 
@@ -85,8 +96,12 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 machine = dataSnapshot.getValue(Machine.class);
-                Toast.makeText(GetMachineDetailsActivity.this, machine.getDepartment(), Toast.LENGTH_SHORT).show();
-                Picasso.get().load(machine.getLink()).into(QRCodeImage);
+                //Toast.makeText(GetMachineDetailsActivity.this, machine.getDepartment(), Toast.LENGTH_SHORT).show();
+
+                serialNo.setText(machine.getSerialNumber());
+                department.setText(machine.getDepartment());
+                serviceTime.setText(machine.getServiceTime()+" months");
+                dateOfInstallation.setText(machine.getDate());
             }
 
             @Override
