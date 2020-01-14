@@ -10,6 +10,11 @@ public class Complaint {
         String complaintGeneratedDate;
         String complaintCompletedDate;
 
+        String generatorName;
+        String servicemanName;
+
+        boolean expanded;
+
     public String getGeneratorName() {
         return generatorName;
     }
@@ -26,12 +31,10 @@ public class Complaint {
         this.servicemanName = servicemanName;
     }
 
-    String generatorName;
-        String servicemanName;
 
 
 
-    boolean expanded;
+
 
     public String getComplaintId() {
         return complaintId;

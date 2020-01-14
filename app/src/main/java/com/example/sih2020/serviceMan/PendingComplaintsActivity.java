@@ -83,22 +83,9 @@ public class PendingComplaintsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Complaint complaint = new Complaint();
                         complaint = dataSnapshot.getValue(Complaint.class);
-                        final Complaint finalComplaint = complaint;
+                        pendingComplaintObjectList.add(0,complaint);
+                        myPendingComplaintAdapter.notifyDataSetChanged();
 
-                        responsibleManReference.child(complaint.getComplaintGenerator()).child("userName").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                name = dataSnapshot.getValue().toString();
-                                finalComplaint.setComplaintGenerator(name);
-                                pendingComplaintObjectList.add(finalComplaint);
-                                myPendingComplaintAdapter.notifyDataSetChanged();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
 
                         //Log.i("machine id", complaint.getComplaintMachineId());
                     }

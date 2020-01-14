@@ -87,7 +87,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Approved" />
+            android:text="Completed" />
 
         <RadioButton
             android:id="@+id/Pending"

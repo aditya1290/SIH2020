@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -43,13 +44,16 @@ public class ComplaintDescriptionDialog extends Dialog implements
     TextView cancelButton, submitButton;
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference machineReference, complaintIdReference, serviceManListReference, responsibleReference,complaintReference;
+    DatabaseReference machineReference, complaintIdReference, serviceManListReference, responsibleReference,complaintReference,serviceManReference;
 
     FirebaseAuth auth;
     FirebaseUser user;
 
+    String responsibleManUserName, serviceManUserName;
 
     Complaint complaint;
+
+    List<ServiceMan> serviceManListObjects;
 
     HashMap<String,Integer> serviceManList;
 
@@ -82,6 +86,24 @@ public class ComplaintDescriptionDialog extends Dialog implements
         complaintIdReference = firebaseDatabase.getReference("complaintId");
         serviceManListReference = firebaseDatabase.getReference("Users").child("ServiceMan");
         responsibleReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(user.getUid());
+        serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan");
+
+//        serviceManUserName = "vikas";
+//
+        serviceManListObjects = new ArrayList<>();
+        responsibleReference.child("userName").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                responsibleManUserName = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         complaintReference = firebaseDatabase.getReference("Complaints");
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +112,7 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
                 serviceManList = new HashMap<>();
 
-                serviceManListReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                serviceManListReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -115,27 +137,46 @@ public class ComplaintDescriptionDialog extends Dialog implements
                             serviceManList.put(key,serviceMan.getLoad());
 
 
-
                         }
 
                         serviceManList = sortByValue(serviceManList);
-                        Map.Entry<String,Integer> entry = serviceManList.entrySet().iterator().next();
+                        final Map.Entry<String,Integer> entry = serviceManList.entrySet().iterator().next();
+                        final String uid = entry.getKey();
 
+                        serviceManReference.child(entry.getKey()).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                                serviceManUserName = dataSnapshot.child("userName").getValue().toString();
+                                complaint.setServicemanName(serviceManUserName);
+                                complaint.setComplaintAllocatedTo(uid);
+                                complaint.setGeneratorName(responsibleManUserName);
+                                complaint.setComplaintId(complaintIdValue);
+                                complaint.setStatus(complaint.getGeneratedAndAccpted());
+                                complaint.setComplaintDescription(complaintDescription.getText().toString());
+                                serviceManReference.removeEventListener(this);
+                                complaintReference.child(complaintIdValue).setValue(complaint);
+                                Log.i("username",serviceManUserName);
+                                dismiss();
+                            }
 
-                        complaint.setComplaintAllocatedTo(entry.getKey());
-                        complaint.setComplaintId(complaintIdValue);
-                        complaint.setStatus(complaint.getGeneratedAndAccpted());
-                        complaint.setComplaintDescription(complaintDescription.getText().toString());
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        //complaint.setServicemanName("Vikas");
+
                         serviceManListReference.child(entry.getKey()).child("load").setValue(entry.getValue()+1);
                         serviceManListReference.child(entry.getKey()).child("pendingComplaintList").push().setValue(complaintIdValue);
 
                         serviceManListReference.removeEventListener(this);
+
                         responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
-                        complaintReference.child(complaintIdValue).setValue(complaint);
+
                         complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
 
-                        dismiss();
 
 
                     }
@@ -144,12 +185,10 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
                     }
 
-
                 });
 
             }
         });
-
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

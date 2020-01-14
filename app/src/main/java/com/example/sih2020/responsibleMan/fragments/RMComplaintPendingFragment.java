@@ -79,7 +79,7 @@ public class RMComplaintPendingFragment extends Fragment {
                         Complaint pendingComplaint = new Complaint();
                         pendingComplaint = dataSnapshot.getValue(Complaint.class);
 
-                        pendingComplaintObjectList.add(pendingComplaint);
+                        pendingComplaintObjectList.add(0,pendingComplaint);
                         rmPendingComplaintAdapter.notifyDataSetChanged();
                         Log.i("danda ghus gya",pendingComplaint.getComplaintAllocatedTo());
                         //Log.i("machine id", request.getComplaintMachineId());

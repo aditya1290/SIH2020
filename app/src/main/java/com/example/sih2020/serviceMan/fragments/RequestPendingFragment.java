@@ -99,25 +99,11 @@ public class RequestPendingFragment extends Fragment {
                         Request request = new Request();
                         request = dataSnapshot.getValue(Request.class);
 
-                        final Request finalRequest = request;
-                        responsibleManReference.child(request.getResponsible()).child("userName").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                name = dataSnapshot.getValue().toString();
-                                finalRequest.setResponsible(name);
 
-                                pendingRequestObjectList.add(finalRequest);
 
+                                pendingRequestObjectList.add(0,request);
                                 dialogBox.dismiss();
-
                                 mRequestPendingAdapter.notifyDataSetChanged();
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
 
 
                         //Log.i("danda ghus gya",request.getComplaintId());

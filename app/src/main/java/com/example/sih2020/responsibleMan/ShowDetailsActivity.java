@@ -69,7 +69,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
                 swipeRefereshLayout.setColorSchemeColors(Color.BLUE);
                 PastRecord pastRecord = new PastRecord();
                 pastRecord.setDescription("Installation Of Machines");
-                //pastRecord.setServiceDate(new Date(2020,1,8));
+                pastRecord.setServiceDate("14/01/2019");
                 pastRecord.setDone(true);
                 pastRecord.setServiceMan("aditya");
                 historyReference.push().setValue(pastRecord);

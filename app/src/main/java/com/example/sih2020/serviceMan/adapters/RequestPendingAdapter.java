@@ -40,7 +40,7 @@ public class RequestPendingAdapter extends  RecyclerView.Adapter<RequestPendingA
     public void onBindViewHolder(@NonNull RequestPendingAdapter.MyHolder1 myholder1, int position) {
 
 
-        myholder1.responsiblemanName.setText(x.get(position).getResponsible());
+        myholder1.responsiblemanName.setText(x.get(position).getResponsiblemanName());
         myholder1.description.setText(x.get(position).getDescription());
         myholder1.complain_id.setText(x.get(position).getComplaintId());
         myholder1.request_id.setText(x.get(position).getRequestid());

@@ -74,7 +74,7 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
 //            }
 //        });
 
-        myholder.serviceman1.setText(x.get(position).getServiceMan());
+        myholder.serviceman1.setText(x.get(position).getServicemanName());
         myholder.requestid1.setText(x.get(position).getRequestid());
         myholder.complain_id.setText(x.get(position).getComplaintId());
         myholder.description.setText(x.get(position).getDescription());

@@ -46,7 +46,7 @@ public class ShowDetailsAdapter extends RecyclerView.Adapter<ShowDetailsAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyHolder myholder, int position) {
 
-        myholder.date.setText(pastRecords.get(position).getServiceDate().toString());
+        myholder.date.setText(pastRecords.get(position).getServiceDate());
         myholder.AgentId.setText(pastRecords.get(position).getServiceMan());
         myholder.Description.setText(pastRecords.get(position).getDescription());
         myholder.CompliantId.setText("random");

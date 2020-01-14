@@ -50,7 +50,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
 
         myholder.pendingComplaintDate.setText(pendingComplaintList.get(position).getComplaintGeneratedDate());
         myholder.pendingComplaintDescription.setText(pendingComplaintList.get(position).getComplaintDescription());
-        myholder.pendingComplaintGeneratorName.setText(pendingComplaintList.get(position).getComplaintGenerator());
+        myholder.pendingComplaintGeneratorName.setText(pendingComplaintList.get(position).getGeneratorName());
         myholder.pendingComplaintId.setText(pendingComplaintList.get(position).getComplaintId());
         myholder.pendingComplaintMachineId.setText(pendingComplaintList.get(position).getComplaintMachineId());
 
@@ -113,6 +113,8 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     Intent i = new Intent(c, UpdateActivity.class);
                     i.putExtra("generatorUid",complaint.getComplaintGenerator());
                     i.putExtra("complaintId",complaint.getComplaintId());
+                    i.putExtra("generatorName",complaint.getGeneratorName());
+                    i.putExtra("servicemanName", complaint.getServicemanName());
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     c.getApplicationContext().startActivity(i);

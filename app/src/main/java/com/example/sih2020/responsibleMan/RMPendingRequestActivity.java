@@ -51,14 +51,6 @@ public class RMPendingRequestActivity extends AppCompatActivity {
 
         pendingRequestList = new ArrayList<Request>();
 
-        Request request = new Request();
-        request.setRequestid("1234");
-        request.setServiceMan("abccd");
-        request.setComplaintId("123");
-        request.setDescription("helldfnds");
-
-        pendingRequestList.add(request);
-
         rmPendingRequestRecycler = findViewById(R.id.rmpending_request);
         rmPendingRequestRecycler.setLayoutManager(new LinearLayoutManager(this));
 
@@ -87,25 +79,13 @@ public class RMPendingRequestActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Request request = new Request();
                         request = dataSnapshot.getValue(Request.class);
-                        final Request finalRequest = request;
-                        serviceManReference.child(request.getServiceMan()).child("userName").addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                name = dataSnapshot.getValue().toString();
-                                finalRequest.setServiceMan(name);
-                                pendingRequestList.add(finalRequest);
+
+                                pendingRequestList.add(0,request);
                                 rmPendingRequestAdapter.notifyDataSetChanged();
 
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
 
 
-                        Log.i("complain id", request.getComplaintId());
+                        //Log.i("complain id", request.getComplaintId());
 
                         //Log.i("machine id", request.getComplaintMachineId());
                     }

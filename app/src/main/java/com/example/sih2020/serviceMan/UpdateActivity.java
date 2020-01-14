@@ -38,7 +38,7 @@ public class UpdateActivity extends AppCompatActivity {
     Button submit_update;
 
     String requestIdValue;
-    String generatorUid, complaintId;
+    String generatorUid, complaintId, responsibleName, servicemanName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,8 @@ public class UpdateActivity extends AppCompatActivity {
 
         generatorUid = getIntent().getStringExtra("generatorUid");
         complaintId = getIntent().getStringExtra("complaintId");
+        responsibleName = getIntent().getStringExtra("generatorName");
+        servicemanName = getIntent().getStringExtra("servicemanName");
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -89,11 +91,13 @@ public class UpdateActivity extends AppCompatActivity {
                 Log.i("status", status);
                 if(status.equals("Pending"))
                     request.setStatus(false);
-                else if(status.equals("Approved"))
+                else if(status.equals("Completed"))
                     request.setStatus(true);
                 request.setResponsible(generatorUid);
                 request.setComplaintId(complaintId);
                 request.setRequestid(requestIdValue);
+                request.setResponsiblemanName(responsibleName);
+                request.setServicemanName(servicemanName);
 
                 serviceManReference.child("pendingRequests").push().setValue(requestIdValue);
                 responsibleManReference.child("pendingRequests").push().setValue(requestIdValue);

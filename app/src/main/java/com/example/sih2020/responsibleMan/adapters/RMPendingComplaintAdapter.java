@@ -38,10 +38,12 @@ public class RMPendingComplaintAdapter extends  RecyclerView.Adapter<RMPendingCo
     public void onBindViewHolder(@NonNull RMPendingComplaintAdapter.MyHolder1 myholder1, int position) {
 
 
-        myholder1.pendingComplaintDate.setText("11/01/2020");
+        myholder1.pendingComplaintDate.setText(x.get(position).getComplaintGeneratedDate());
         myholder1.pendingComplaintDescription.setText(x.get(position).getComplaintDescription());
-        myholder1.pendingComplaintServicemanName.setText(x.get(position).getComplaintAllocatedTo());
-        myholder1.pendingComplaintId.setText("1234");
+        myholder1.pendingComplaintServicemanName.setText(x.get(position).getServicemanName());
+        myholder1.pendingComplaintId.setText(x.get(position).getComplaintId());
+        myholder1.pendingComplaintMachineId.setText(x.get(position).getComplaintMachineId());
+
 
         Log.i("asdf","fgh");
 
@@ -56,7 +58,7 @@ public class RMPendingComplaintAdapter extends  RecyclerView.Adapter<RMPendingCo
 
     class MyHolder1 extends RecyclerView.ViewHolder{
 
-        TextView pendingComplaintDate, pendingComplaintId, pendingComplaintServicemanName, pendingComplaintDescription;
+        TextView pendingComplaintDate, pendingComplaintId, pendingComplaintServicemanName, pendingComplaintDescription, pendingComplaintMachineId;
 
         public MyHolder1(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +67,7 @@ public class RMPendingComplaintAdapter extends  RecyclerView.Adapter<RMPendingCo
             pendingComplaintId = itemView.findViewById(R.id.rm_pending_complaint_id);
             pendingComplaintDescription = itemView.findViewById(R.id.rm_pending_complaint_desc);
             pendingComplaintServicemanName = itemView.findViewById(R.id.rm_pending_complaint_serviceman);
+            pendingComplaintMachineId = itemView.findViewById(R.id.rm_pending_complaint_machine_id);
 
         }
     }
