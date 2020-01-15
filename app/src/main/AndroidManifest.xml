@@ -45,7 +45,9 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".responsibleMan.GenerateQRActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize" >
+
+        </activity>
         <activity
             android:name=".RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
-    app:cardCornerRadius="4dp"
-    android:background="@drawable/transparent_button_border"
+    app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
@@ -17,74 +16,151 @@
         android:layout_margin="18dp">
 
         <RelativeLayout
-            android:id="@+id/ll1"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ll1_history">
+            <LinearLayout
 
-            <TextView
-                android:id="@+id/RecyclerView_Date"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:text="left"
-                android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/RecyclerView_ComplaintId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:textColor="@android:color/black"
-                android:text="center"
-                android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_agent"
+                        android:layout_marginRight="10dp">
 
-            <TextView
-                android:id="@+id/RecyclerView_AgentId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:gravity="right"
-                android:textColor="@android:color/black"
-                android:text="right"
-                android:textSize="18sp" />
+                    </ImageView>
+                    <TextView
+                        android:id="@+id/RecyclerView_AgentId1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Serviceman:"
+                        android:textStyle="bold"
+                        android:textColor="#363333"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/RecyclerView_AgentId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Aditya Garg"
+                        android:layout_marginRight="70dp"
+                        android:textColor="#1A1717"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_date_of_installation"
+                        android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:id="@+id/RecyclerView_Date1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date:"
+                        android:textStyle="bold"
+                        android:textColor="#363333"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/RecyclerView_Date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="67dp"
+                        android:text="12/07/2019"
+                        android:textColor="#1A1717"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_complain"
+                        android:layout_marginRight="10dp"/>
+                    <TextView
+                        android:id="@+id/RecyclerView_ComplainId1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Complain Id:"
+                        android:textStyle="bold"
+                        android:textColor="#363333"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/RecyclerView_ComplainId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="111111111"
+                        android:textColor="#1A1717"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
         </RelativeLayout>
-
 
 
         <LinearLayout
             android:id="@+id/ll_hide"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll1"
+            android:layout_below="@+id/ll1_history"
             android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#000000"
-                android:layout_margin="5dp"
+                android:background="#A29F9F"
+
                 />
 
+            <TextView
+                android:id="@+id/RecyclerView_Description1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="Description"
+                android:textStyle="bold"
+                android:textColor="#363333"
+                android:textSize="15sp" />
             <TextView
                 android:id="@+id/RecyclerView_Description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_marginStart="5dp"
-                android:text="Description"
+                android:text="I have completed my work for repairing computer.All thing are now working nice."
                 android:textColor="#4c4c4c"
                 android:textSize="15sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#A29F9F"
+                android:layout_margin="5dp"
+                />
 
         </LinearLayout>
-
-
     </RelativeLayout>
-
-
-
-
 </androidx.cardview.widget.CardView>

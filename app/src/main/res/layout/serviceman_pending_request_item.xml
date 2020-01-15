@@ -30,6 +30,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_agent"
+                        android:layout_marginRight="5dp"/>
                     <TextView
                         android:id="@+id/s_RecyclerView_ResponsibleMan_pen_req1"
                         android:layout_width="wrap_content"
@@ -56,6 +61,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_requests"
+                        android:layout_marginRight="5dp"/>
                     <TextView
                         android:id="@+id/s_RecyclerView_requestID__pen_req1"
                         android:layout_width="wrap_content"
@@ -80,6 +90,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     >
+                    <ImageView
+                        android:layout_width="15dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_complain"
+                        android:layout_marginRight="5dp"/>
                     <TextView
                         android:id="@+id/s_RecyclerView_ComplainID_pen_req1"
                         android:layout_width="wrap_content"
@@ -128,15 +143,29 @@
 
                 />
 
-            <TextView
-                android:id="@+id/s_RecyclerView_Description_pen_req1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="Description"
-                android:textStyle="bold"
-                android:textColor="#363333"
-                android:textSize="15sp" />
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_agent"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center_vertical">
+                </ImageView>
+                <TextView
+                    android:id="@+id/s_RecyclerView_Description_pen_req1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:text="Description"
+                    android:textStyle="bold"
+                    android:textColor="#363333"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/s_RecyclerView_Description_pen_req"
                 android:layout_width="match_parent"
