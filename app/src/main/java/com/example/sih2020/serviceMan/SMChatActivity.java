@@ -2,6 +2,7 @@ package com.example.sih2020.serviceMan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -89,7 +90,9 @@ public class SMChatActivity extends AppCompatActivity {
 
         intent = getIntent();
         complaintId = intent.getStringExtra("complaintId");
+        Log.i("complaint", complaintId);
         userid = intent.getStringExtra("userid");//responsible
+        Log.i("userid",userid);
         fuser = FirebaseAuth.getInstance().getCurrentUser();//serviceman
 
         btn_send.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +117,7 @@ public class SMChatActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ResponsibleMan user = dataSnapshot.getValue(ResponsibleMan.class);
                 username.setText(user.getUserName());
+
                 if (user.getImageURL().equals("default")){
                     profile_image.setImageResource(R.mipmap.ic_launcher);
                 } else {

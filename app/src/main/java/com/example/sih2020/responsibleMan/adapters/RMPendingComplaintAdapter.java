@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
 import com.example.sih2020.model.Complaint;
-import com.example.sih2020.serviceMan.SMChatActivity;
+import com.example.sih2020.responsibleMan.RMChatActivity;
 
 import java.util.List;
 
@@ -78,9 +78,10 @@ public class RMPendingComplaintAdapter extends  RecyclerView.Adapter<RMPendingCo
                 @Override
                 public void onClick(View view) {
                     Complaint complaint = x.get(getAdapterPosition());
-                    Intent intent = new Intent(c, SMChatActivity.class);
+                    Intent intent = new Intent(c, RMChatActivity.class);
                     intent.putExtra("userid", complaint.getComplaintAllocatedTo());
                     intent.putExtra("complaintId", complaint.getComplaintId());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     c.getApplicationContext().startActivity(intent);
                 }
             });

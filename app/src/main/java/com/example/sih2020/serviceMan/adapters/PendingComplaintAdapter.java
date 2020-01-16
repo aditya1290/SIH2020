@@ -130,6 +130,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     Intent intent = new Intent(c, SMChatActivity.class);
                     intent.putExtra("userid", complaint.getComplaintGenerator());
                     intent.putExtra("complaintId", complaint.getComplaintId());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     c.getApplicationContext().startActivity(intent);
                 }
             });
