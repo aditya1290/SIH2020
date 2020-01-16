@@ -15,6 +15,7 @@ import com.example.sih2020.model.Request;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingRequestAdapter.MyHolder> {
@@ -28,7 +29,6 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
     public RMPendingRequestAdapter(Context c, List<Request> x) {
         this.c = c;
         this.x = x;
-//        serviceMan = FirebaseDatabase.getInstance().getReference("Users").child("ServiceMan");
     }
 
     public RMPendingRequestAdapter(Context c) {
@@ -52,31 +52,6 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
     public void onBindViewHolder(@NonNull final MyHolder myholder, final int position) {
 
 
-//        serviceMan.child(x.get(position).getServiceMan()).child("email").addValueEventListener(new ValueEventListener() {
-//            String name;
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//
-//                myholder.serviceman1.setText(dataSnapshot.getValue().toString());
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-
-
-        FirebaseDatabase firebaseDatabase;
-        final DatabaseReference servicemanReference, responsiblemanReference, rmCompletedComplaintReference, smCompletedComplaintReference, smCompletedRequestReference;
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        servicemanReference = firebaseDatabase.getReference("Users").child("ServiceMan");
-        responsiblemanReference = firebaseDatabase.getReference("Users").child("ResponsibleMan");
-        rmCompletedComplaintReference = responsiblemanReference.child(x.get(position).getResponsible()).child("completedComplaint");
-        smCompletedComplaintReference = servicemanReference.child(x.get(position).getServiceMan()).child("completedComplaint");
-        smCompletedRequestReference = servicemanReference.child(x.get(position).getServiceMan()).child("completedRequest");
-
         myholder.serviceman1.setText(x.get(position).getServicemanName());
         myholder.requestid1.setText(x.get(position).getRequestid());
         myholder.complain_id.setText(x.get(position).getComplaintId());
@@ -85,13 +60,24 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
         myholder.accept_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(x.get(position).isStatus())
-                {
-                    rmCompletedComplaintReference.push().setValue(x.get(position).getComplaintId());
-                    smCompletedComplaintReference.push().setValue(x.get(position).getComplaintId());
-                    smCompletedRequestReference.push().setValue(x.get(position).getRequestid());
+            if(x.get(position).isStatus())
+            {
+                HashMap<String,Object> updateDatabaseValue = new HashMap<>();
 
-                }
+                //add data
+                updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/completedComplaintList/"+x.get(position).getComplaintId(),"true");
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/completedComplaintList/"+x.get(position).getComplaintId(),"true");
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/completedRequestList/"+x.get(position).getRequestid(),"true");
+
+                // delete data
+                updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/pendingComplaintList/"+x.get(position).getComplaintId(),null);
+                updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingComplaintList/"+x.get(position).getComplaintId(),null);
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
+
+                FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+
+            }
             }
         });
 
@@ -119,15 +105,8 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
             accept_button = itemView.findViewById(R.id.accept_button);
             decline_button = itemView.findViewById(R.id.decline_button);
 
-
-
         }
 
-
     }
-
-
-
-
 
 }

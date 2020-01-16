@@ -59,6 +59,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
     String complaintIdValue;
 
+    LottieAnimationView animationView;
+
 
     public ComplaintDescriptionDialog(Activity a,Complaint complaint,String complaintIdValue) {
         super(a);
@@ -74,6 +76,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.generate_complaint_description_dialog);
+
+        animationView = findViewById(R.id.lottieAnimationView);
 
         complaintDescription = findViewById(R.id.complaintDescription);
         cancelButton = findViewById(R.id.cancelButton);
@@ -111,6 +115,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
             public void onClick(View v) {
 
                 serviceManList = new HashMap<>();
+                animationView.setVisibility(View.VISIBLE);
+                animationView.playAnimation();
 
                 serviceManListReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -156,7 +162,6 @@ public class ComplaintDescriptionDialog extends Dialog implements
                                 complaint.setComplaintDescription(complaintDescription.getText().toString());
                                 serviceManReference.removeEventListener(this);
                                 complaintReference.child(complaintIdValue).setValue(complaint);
-                                Log.i("username",serviceManUserName);
                                 dismiss();
                             }
 
@@ -166,16 +171,16 @@ public class ComplaintDescriptionDialog extends Dialog implements
                             }
                         });
 
-                        //complaint.setServicemanName("Vikas");
-
-                        serviceManListReference.child(entry.getKey()).child("load").setValue(entry.getValue()+1);
-                        serviceManListReference.child(entry.getKey()).child("pendingComplaintList").push().setValue(complaintIdValue);
-
                         serviceManListReference.removeEventListener(this);
 
-                        responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
+                        HashMap<String,Object> updateDatabaseValue = new HashMap<>();
 
-                        complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
+                        updateDatabaseValue.put("/Users/ServiceMan/"+entry.getKey()+"/load",entry.getValue()+1);
+                        updateDatabaseValue.put("/complaintId",String.valueOf(Integer.parseInt(complaintIdValue)+1));
+                        updateDatabaseValue.put("/Users/ServiceMan/"+entry.getKey()+"/pendingComplaintList/"+complaintIdValue,"true");
+                        updateDatabaseValue.put("/Users/ResponsibleMan/"+user.getUid()+ "/pendingComplaintList/"+complaintIdValue,"true");
+
+                        FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
 
 
 

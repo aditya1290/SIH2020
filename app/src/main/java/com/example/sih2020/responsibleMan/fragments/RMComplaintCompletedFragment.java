@@ -1,7 +1,6 @@
 package com.example.sih2020.responsibleMan.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,12 +26,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RMComplaintPendingFragment extends Fragment {
+public class RMComplaintCompletedFragment extends Fragment {
 
     RecyclerView rm_recyclerView_pending_complaint;
     RMPendingComplaintAdapter rmPendingComplaintAdapter;
 
-    List<Complaint> pendingComplaintObjectList;
+    List<Complaint> completedComplaintObjectList;
 
     FirebaseDatabase firebaseDatabase;
     DatabaseReference complaintReference, responsibleManReference, pendingComplaintListReference;
@@ -40,7 +39,7 @@ public class RMComplaintPendingFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseUser user;
 
-    public RMComplaintPendingFragment() {
+    public RMComplaintCompletedFragment() {
         // Required empty public constructor
     }
 
@@ -56,15 +55,15 @@ public class RMComplaintPendingFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-        pendingComplaintObjectList = new ArrayList<>();
+        completedComplaintObjectList = new ArrayList<>();
 
-        rmPendingComplaintAdapter = new RMPendingComplaintAdapter(getActivity().getApplicationContext(), pendingComplaintObjectList);
+        rmPendingComplaintAdapter = new RMPendingComplaintAdapter(getActivity().getApplicationContext(), completedComplaintObjectList);
         rm_recyclerView_pending_complaint.setAdapter(rmPendingComplaintAdapter);
 
 
         firebaseDatabase =  FirebaseDatabase.getInstance();
         responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(user.getUid());
-        pendingComplaintListReference = responsibleManReference.child("pendingComplaintList");
+        pendingComplaintListReference = responsibleManReference.child("completedComplaintList");
         complaintReference = firebaseDatabase.getReference("Complaints");
 
         pendingComplaintListReference.addChildEventListener(new ChildEventListener() {
@@ -79,10 +78,9 @@ public class RMComplaintPendingFragment extends Fragment {
                         Complaint pendingComplaint = new Complaint();
                         pendingComplaint = dataSnapshot.getValue(Complaint.class);
 
-                        pendingComplaintObjectList.add(0,pendingComplaint);
+                        completedComplaintObjectList.add(0,pendingComplaint);
                         rmPendingComplaintAdapter.notifyDataSetChanged();
-//                        Log.i("danda ghus gya",pendingComplaint.getComplaintAllocatedTo());
-                        //Log.i("machine id", request.getComplaintMachineId());
+
                     }
 
                     @Override

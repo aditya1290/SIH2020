@@ -25,6 +25,27 @@ public class Complaint {
 
     Chat chat;
 
+    int status;
+    int generatedOnly = 1;
+    int generatedAndAccpted = 2;
+    int updateRequest = 3;
+    int RequestApproved = 4;
+    int complaintFinished = 5;
+
+
+    public Complaint(){}
+
+    public Complaint(String complaintGenerator, String complaintAllocatedTo, String complaintMachineId, Date complaintGeneratedDate, Date complaintCompletedDate, int status, String complaintDescription) {
+        this.complaintGenerator = complaintGenerator;
+        this.complaintAllocatedTo = complaintAllocatedTo;
+        this.complaintMachineId = complaintMachineId;
+//        this.complaintGeneratedDate = complaintGeneratedDate;
+//        this.complaintCompletedDate = complaintCompletedDate;
+        this.status = status;
+        this.complaintDescription = complaintDescription;
+    }
+
+
     public String getGeneratorName() {
         return generatorName;
     }
@@ -54,12 +75,7 @@ public class Complaint {
         this.complaintId = complaintId;
     }
 
-    int status;
-        int generatedOnly = 1;
-        int generatedAndAccpted = 2;
-        int updateRequest = 3;
-        int RequestApproved = 4;
-        int complaintFinished = 5;
+
 
 
     public int getGeneratedOnly() {
@@ -91,17 +107,8 @@ public class Complaint {
 
         String complaintDescription;
 
-        public Complaint(){}
 
-    public Complaint(String complaintGenerator, String complaintAllocatedTo, String complaintMachineId, Date complaintGeneratedDate, Date complaintCompletedDate, int status, String complaintDescription) {
-        this.complaintGenerator = complaintGenerator;
-        this.complaintAllocatedTo = complaintAllocatedTo;
-        this.complaintMachineId = complaintMachineId;
-//        this.complaintGeneratedDate = complaintGeneratedDate;
-//        this.complaintCompletedDate = complaintCompletedDate;
-        this.status = status;
-        this.complaintDescription = complaintDescription;
-    }
+
 
     public String getComplaintGenerator() {
         return complaintGenerator;

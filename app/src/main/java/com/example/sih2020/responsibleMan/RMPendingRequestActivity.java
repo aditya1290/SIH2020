@@ -62,32 +62,23 @@ public class RMPendingRequestActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(user.getUid());
         serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan");
-        pendimgRequestListReference = responsibleManReference.child("pendingRequests");
+        pendimgRequestListReference = responsibleManReference.child("pendingRequestList");
         requestReference = firebaseDatabase.getReference("Requests");
-
-        Log.i("danda ghus gya","Hello");
-
-
 
         pendimgRequestListReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                String key = dataSnapshot.getValue().toString();
+                String key = dataSnapshot.getKey().toString();
                 requestReference.child(key).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Request request = new Request();
                         request = dataSnapshot.getValue(Request.class);
 
-                                pendingRequestList.add(0,request);
-                                rmPendingRequestAdapter.notifyDataSetChanged();
+                        pendingRequestList.add(0,request);
+                        rmPendingRequestAdapter.notifyDataSetChanged();
 
-
-
-                        //Log.i("complain id", request.getComplaintId());
-
-                        //Log.i("machine id", request.getComplaintMachineId());
                     }
 
                     @Override
@@ -96,8 +87,6 @@ public class RMPendingRequestActivity extends AppCompatActivity {
                     }
 
                     });
-
-
 
             }
 
@@ -108,6 +97,8 @@ public class RMPendingRequestActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+
 
             }
 
