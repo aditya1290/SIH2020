@@ -59,6 +59,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
 
     String complaintIdValue;
 
+    LottieAnimationView animationView;
+
 
     public ComplaintDescriptionDialog(Activity a,Complaint complaint,String complaintIdValue) {
         super(a);
@@ -74,6 +76,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.generate_complaint_description_dialog);
+
+        animationView = findViewById(R.id.lottieAnimationView);
 
         complaintDescription = findViewById(R.id.complaintDescription);
         cancelButton = findViewById(R.id.cancelButton);
@@ -111,6 +115,8 @@ public class ComplaintDescriptionDialog extends Dialog implements
             public void onClick(View v) {
 
                 serviceManList = new HashMap<>();
+                animationView.setVisibility(View.VISIBLE);
+                animationView.playAnimation();
 
                 serviceManListReference.addValueEventListener(new ValueEventListener() {
                     @Override
