@@ -90,8 +90,8 @@ public class RMChatActivity extends AppCompatActivity {
 
         intent = getIntent();
         complaintId = intent.getStringExtra("complaintId");
-        userid = intent.getStringExtra("userid");//responsible
-        fuser = FirebaseAuth.getInstance().getCurrentUser();//serviceman
+        userid = intent.getStringExtra("userid");//serviceman
+        fuser = FirebaseAuth.getInstance().getCurrentUser();//responsible
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,89 +168,9 @@ public class RMChatActivity extends AppCompatActivity {
 
         reference.child("Complaints").child(complaintId).child("Chats").push().setValue(hashMap);
 
-
-        // add user to chat fragment
-        /*final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
-                .child(fuser.getUid())
-                .child(userid);
-
-        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.exists()){
-                    chatRef.child("id").setValue(userid);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        final DatabaseReference chatRefReceiver = FirebaseDatabase.getInstance().getReference("Chatlist")
-                .child(userid)
-                .child(fuser.getUid());
-        chatRefReceiver.child("id").setValue(fuser.getUid());
-
-        final String msg = message;
-
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                User user = dataSnapshot.getValue(User.class);
-                if (notify) {
-                    sendNotifiaction(receiver, user.getUsername(), msg);
-                }
-                notify = false;
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
     }
 
-   /* private void sendNotifiaction(String receiver, final String username, final String message){
-        DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
-        Query query = tokens.orderByKey().equalTo(receiver);
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Token token = snapshot.getValue(Token.class);
-                    Data data = new Data(fuser.getUid(), R.mipmap.ic_launcher, username+": "+message, "New Message",
-                            userid);
 
-                    Sender sender = new Sender(data, token.getToken());
-
-                    apiService.sendNotification(sender)
-                            .enqueue(new Callback<MyResponse>() {
-                                @Override
-                                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
-                                    if (response.code() == 200){
-                                        if (response.body().success != 1){
-                                            Toast.makeText(MessageActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onFailure(Call<MyResponse> call, Throwable t) {
-
-                                }
-                            });
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
 
     private void readMesagges(final String myid, final String userid, final String imageurl){
         mchat = new ArrayList<>();
@@ -279,33 +199,5 @@ public class RMChatActivity extends AppCompatActivity {
         });
     }
 
-    /*private void currentUser(String userid){
-        SharedPreferences.Editor editor = getSharedPreferences("PREFS", MODE_PRIVATE).edit();
-        editor.putString("currentuser", userid);
-        editor.apply();
-    }
 
-    private void status(String status){
-        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
-
-        HashMap<String, Object> hashMap = new HashMap<>();
-        hashMap.put("status", status);
-
-        reference.updateChildren(hashMap);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        status("online");
-        currentUser(userid);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        reference.removeEventListener(seenListener);
-        status("offline");
-        currentUser("none");
-    }*/
 }
