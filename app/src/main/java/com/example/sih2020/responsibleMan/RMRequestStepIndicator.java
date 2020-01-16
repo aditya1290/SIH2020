@@ -23,7 +23,7 @@ public class RMRequestStepIndicator extends AppCompatActivity {
 
         sequenceStep4.setSubtitle(R.string.agent_done);
         sequenceStep3.setPadding(0,4,0,4);
-       
+
         sequenceStep4.setTitleTextAppearance(R.style.Title);
 
     }

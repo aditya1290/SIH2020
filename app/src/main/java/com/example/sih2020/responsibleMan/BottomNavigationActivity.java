@@ -20,6 +20,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private HistoryFragment historyFragment;
     private NotificationFragment notificationFragment;
+    private ProfileFragment profileFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         historyFragment = new HistoryFragment();
         notificationFragment = new NotificationFragment();
+        profileFragment= new ProfileFragment();
         bottomNavigationView.setItemIconTintList(null);
         setOurFragment(homeFragment);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,6 +47,10 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
                     case R.id.notification:
                         setOurFragment(notificationFragment);
+                        return true;
+
+                    case R.id.profile:
+                        setOurFragment(profileFragment);
                         return true;
 
                     default:
