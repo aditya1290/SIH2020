@@ -168,6 +168,13 @@
                 android:text="I have completed my work for repairing computer.All thing are now working nice."
                 android:textColor="#4c4c4c"
                 android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/rm_chat_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="chat" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"

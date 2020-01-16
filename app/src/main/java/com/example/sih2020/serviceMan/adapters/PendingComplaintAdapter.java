@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sih2020.serviceMan.SMChatActivity;
 import com.example.sih2020.R;
 import com.example.sih2020.model.Complaint;
 import com.example.sih2020.serviceMan.UpdateActivity;
@@ -72,7 +73,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
         TextView pendingComplaintDate, pendingComplaintId, pendingComplaintGeneratorName, pendingComplaintDescription, pendingComplaintMachineId;
         CardView cardView;
         LinearLayout ll_hide;
-        Button updateButton;
+        Button updateButton ,chatButton;
 
         public MyHolder(@NonNull final View itemView)
         {
@@ -84,6 +85,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
             pendingComplaintGeneratorName = itemView.findViewById(R.id.sm_pending_complaint_genratorName);
             updateButton = itemView.findViewById(R.id.update_button);
             pendingComplaintMachineId = itemView.findViewById((R.id.sm_pending_complaint_machine_id));
+            chatButton = itemView.findViewById(R.id.sm_chat_button);
 
 
             cardView = itemView.findViewById(R.id.cardview12);
@@ -118,6 +120,17 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     //i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     c.getApplicationContext().startActivity(i);
+                }
+            });
+
+            chatButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Complaint complaint = pendingComplaintList.get(getAdapterPosition());
+                    Intent intent = new Intent(c, SMChatActivity.class);
+                    intent.putExtra("userid", complaint.getComplaintGenerator());
+                    intent.putExtra("complaintId", complaint.getComplaintId());
+                    c.getApplicationContext().startActivity(intent);
                 }
             });
         }

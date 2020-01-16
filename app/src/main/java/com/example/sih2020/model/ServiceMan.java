@@ -75,4 +75,6 @@ public class ServiceMan {
     public void setEmail(String email) {
         Email = email;
     }
+
+    public String getImageURL() {return  "https://firebasestorage.googleapis.com/v0/b/sih2020-eeaf0.appspot.com/o/93.jpg?alt=media&token=f5cb3bfd-d361-4509-8b0b-55e7285239b1";}
 }

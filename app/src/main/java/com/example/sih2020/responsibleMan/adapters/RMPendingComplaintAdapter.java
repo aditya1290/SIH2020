@@ -1,10 +1,12 @@
 package com.example.sih2020.responsibleMan.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sih2020.R;
 import com.example.sih2020.model.Complaint;
+import com.example.sih2020.serviceMan.SMChatActivity;
 
 import java.util.List;
 
@@ -59,6 +62,7 @@ public class RMPendingComplaintAdapter extends  RecyclerView.Adapter<RMPendingCo
     class MyHolder1 extends RecyclerView.ViewHolder{
 
         TextView pendingComplaintDate, pendingComplaintId, pendingComplaintServicemanName, pendingComplaintDescription, pendingComplaintMachineId;
+        Button chatButton;
 
         public MyHolder1(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +72,18 @@ public class RMPendingComplaintAdapter extends  RecyclerView.Adapter<RMPendingCo
             pendingComplaintDescription = itemView.findViewById(R.id.rm_pending_complaint_desc);
             pendingComplaintServicemanName = itemView.findViewById(R.id.rm_pending_complaint_serviceman);
             pendingComplaintMachineId = itemView.findViewById(R.id.rm_pending_complaint_machine_id);
+            chatButton = itemView.findViewById(R.id.rm_chat_button);
+
+            chatButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Complaint complaint = x.get(getAdapterPosition());
+                    Intent intent = new Intent(c, SMChatActivity.class);
+                    intent.putExtra("userid", complaint.getComplaintAllocatedTo());
+                    intent.putExtra("complaintId", complaint.getComplaintId());
+                    c.getApplicationContext().startActivity(intent);
+                }
+            });
 
         }
     }

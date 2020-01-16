@@ -15,6 +15,16 @@ public class Complaint {
 
         boolean expanded;
 
+    public Chat getChat() {
+        return chat;
+    }
+
+    public void setChat(Chat chat) {
+        this.chat = chat;
+    }
+
+    Chat chat;
+
     public String getGeneratorName() {
         return generatorName;
     }
