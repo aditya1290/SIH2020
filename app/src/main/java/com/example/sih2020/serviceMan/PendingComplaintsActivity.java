@@ -76,7 +76,7 @@ public class PendingComplaintsActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                String key = dataSnapshot.getValue().toString();
+                String key = dataSnapshot.getKey();
 
                 complaintReference.child(key).addValueEventListener(new ValueEventListener() {
                     @Override

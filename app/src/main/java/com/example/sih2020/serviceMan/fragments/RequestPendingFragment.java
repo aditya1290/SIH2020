@@ -83,7 +83,7 @@ public class RequestPendingFragment extends Fragment {
 
         firebaseDatabase =  FirebaseDatabase.getInstance();
         serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
-        pendingRequestListReference = serviceManReference.child("pendingRequests");
+        pendingRequestListReference = serviceManReference.child("pendingRequestList");
         responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan");
         requestReference = firebaseDatabase.getReference("Requests");
 
@@ -91,7 +91,7 @@ public class RequestPendingFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                String key = dataSnapshot.getValue().toString();
+                String key = dataSnapshot.getKey().toString();
 
                 requestReference.child(key).addValueEventListener(new ValueEventListener() {
                     @Override

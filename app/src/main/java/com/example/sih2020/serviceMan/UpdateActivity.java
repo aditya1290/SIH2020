@@ -22,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class UpdateActivity extends AppCompatActivity {
 
 
@@ -99,11 +101,21 @@ public class UpdateActivity extends AppCompatActivity {
                 request.setResponsiblemanName(responsibleName);
                 request.setServicemanName(servicemanName);
 
-                serviceManReference.child("pendingRequests").push().setValue(requestIdValue);
-                responsibleManReference.child("pendingRequests").push().setValue(requestIdValue);
+//                serviceManReference.child("pendingRequests").push().setValue(requestIdValue);
+//                responsibleManReference.child("pendingRequests").push().setValue(requestIdValue);
 
-                requestReference.child(requestIdValue).setValue(request);
-                requestIdReference.setValue(String.valueOf(Integer.parseInt(requestIdValue)+1));
+                HashMap<String,Object> updateDatabaseValue = new HashMap<>();
+                
+                updateDatabaseValue.put("/Users/ServiceMan/"+user.getUid()+"/pendingRequestList/"+requestIdValue,"true");
+                updateDatabaseValue.put("/Users/ResponsibleMan/"+generatorUid+ "/pendingRequestList/"+requestIdValue,"true");
+                updateDatabaseValue.put("/Requests/"+requestIdValue,request);
+                updateDatabaseValue.put("/RequestId",String.valueOf(Integer.parseInt(requestIdValue)+1));
+
+                FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+
+//                requestReference.child(requestIdValue).setValue(request);
+//                requestIdReference.setValue(String.valueOf(Integer.parseInt(requestIdValue)+1));
+
                 Toast.makeText(UpdateActivity.this, "gdghgfhfhg", Toast.LENGTH_SHORT).show();
 
 

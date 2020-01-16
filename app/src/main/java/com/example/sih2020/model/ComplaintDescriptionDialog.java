@@ -156,7 +156,6 @@ public class ComplaintDescriptionDialog extends Dialog implements
                                 complaint.setComplaintDescription(complaintDescription.getText().toString());
                                 serviceManReference.removeEventListener(this);
                                 complaintReference.child(complaintIdValue).setValue(complaint);
-                                Log.i("username",serviceManUserName);
                                 dismiss();
                             }
 
@@ -166,16 +165,16 @@ public class ComplaintDescriptionDialog extends Dialog implements
                             }
                         });
 
-                        //complaint.setServicemanName("Vikas");
-
-                        serviceManListReference.child(entry.getKey()).child("load").setValue(entry.getValue()+1);
-                        serviceManListReference.child(entry.getKey()).child("pendingComplaintList").push().setValue(complaintIdValue);
-
                         serviceManListReference.removeEventListener(this);
 
-                        responsibleReference.child("pendingComplaints").push().setValue(complaintIdValue);
+                        HashMap<String,Object> updateDatabaseValue = new HashMap<>();
 
-                        complaintIdReference.setValue(String.valueOf(Integer.parseInt(complaintIdValue)+1));
+                        updateDatabaseValue.put("/Users/ServiceMan/"+entry.getKey()+"/load",entry.getValue()+1);
+                        updateDatabaseValue.put("/complaintId",String.valueOf(Integer.parseInt(complaintIdValue)+1));
+                        updateDatabaseValue.put("/Users/ServiceMan/"+entry.getKey()+"/pendingComplaintList/"+complaintIdValue,"true");
+                        updateDatabaseValue.put("/Users/ResponsibleMan/"+user.getUid()+ "/pendingComplaintList/"+complaintIdValue,"true");
+
+                        FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
 
 
 
