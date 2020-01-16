@@ -33,7 +33,7 @@
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ic_agent"
+                        android:src="@drawable/ic_manager"
                         android:layout_marginRight="5dp"/>
                     <TextView
                         android:id="@+id/s_RecyclerView_ResponsibleMan_pen_req1"
@@ -49,7 +49,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="Aditya Garg"
-                        android:layout_marginRight="70dp"
+                        android:layout_marginRight="50dp"
                         android:textColor="#1A1717"
                         android:textSize="15sp" />
 
@@ -117,11 +117,10 @@
 
             </LinearLayout>
             <ImageView
-                android:layout_width="70dp"
+                android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_profile"
-
                 >
 
             </ImageView>
@@ -149,9 +148,9 @@
                 android:orientation="horizontal"
                 >
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:src="@drawable/ic_agent"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_description"
                     android:layout_marginRight="5dp"
                     android:layout_gravity="center_vertical">
                 </ImageView>
