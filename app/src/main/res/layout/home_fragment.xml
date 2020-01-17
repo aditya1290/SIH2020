@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="658dp"
-    tools:context="com.example.sih2020.serviceMan.fragments.ServicemanHomeFragment"
+    tools:context="com.example.inventory.serviceMan.fragments.ServicemanHomeFragment"
     android:background="@color/bkcolor">
         android:layout_width="match_parent"
         android:layout_height="match_parent">
