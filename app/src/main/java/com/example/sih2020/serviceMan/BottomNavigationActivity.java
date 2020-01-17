@@ -18,6 +18,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private ServicemanHistoryFragment servicemanHistoryfragment;
     private ServicemanHomeFragment servicemanHomefragment;
     private ServicemanNotificationFragment servicemanNotificationfragment;
+    private SProfileFragment sProfileFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +27,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
         servicemanHomefragment = new ServicemanHomeFragment();
         servicemanHistoryfragment = new ServicemanHistoryFragment();
         servicemanNotificationfragment= new ServicemanNotificationFragment();
+        sProfileFragment = new SProfileFragment();
         bottomNavigationView.setItemIconTintList(null);
         setOurFragment(servicemanHomefragment);
 
@@ -45,6 +47,10 @@ public class BottomNavigationActivity extends AppCompatActivity {
 
                     case R.id.notification:
                         setOurFragment(servicemanNotificationfragment);
+                        return true;
+
+                    case R.id.profile:
+                        setOurFragment(sProfileFragment);
                         return true;
 
                     default:
