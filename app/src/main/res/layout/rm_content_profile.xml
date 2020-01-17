@@ -55,13 +55,18 @@
         </LinearLayout>
         <View style="@style/DetailsView"
             android:background="#F0DBDB"/>
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="10dp"
+           android:orientation="horizontal"
+           android:layout_marginLeft="20dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -81,7 +86,15 @@
                 android:textColor="#1D1919"
                 ></TextView>
         </LinearLayout>
-
+           <ImageView
+               android:id="@+id/rm_edit_name"
+               android:layout_width="30dp"
+               android:layout_height="30dp"
+               android:layout_marginLeft="170dp"
+               android:src="@drawable/ic_pencil"
+               android:layout_gravity="center_vertical"
+               ></ImageView>
+       </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -182,9 +195,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="20dp"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             >
             <TextView
                 android:layout_width="wrap_content"
@@ -206,6 +223,16 @@
                 ></TextView>
 
         </LinearLayout>
+            <ImageView
+                android:id="@+id/rm_edit_password"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="180dp"
+                android:src="@drawable/ic_pencil"
+                android:layout_gravity="center_vertical"
+                ></ImageView>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
