@@ -49,19 +49,16 @@ public class PendingComplaintsActivity extends AppCompatActivity {
         recyclerView_complaints = findViewById(R.id.recyclerView_complaints);
         recyclerView_complaints.setLayoutManager(new LinearLayoutManager(this));
 
-        Log.i("vikas activity","hello");
+
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 
-        Log.i("vikas activity","hello1");
-
-        pendingComplaintObjectList = new ArrayList<>();
+        pendingComplaintList = new ArrayList<String>();
+        pendingComplaintObjectList = new ArrayList<Complaint>();
 
         myPendingComplaintAdapter = new PendingComplaintAdapter(getApplicationContext(),pendingComplaintObjectList);
         recyclerView_complaints.setAdapter(myPendingComplaintAdapter);
-
-        Log.i("vikas activity","hello2");
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         serviceManReference = firebaseDatabase.getReference("Users").child("ServiceMan").child(user.getUid());
@@ -69,7 +66,6 @@ public class PendingComplaintsActivity extends AppCompatActivity {
         responsibleManReference = firebaseDatabase.getReference("Users").child("ResponsibleMan");
         complaintReference = firebaseDatabase.getReference("Complaints");
 
-        Log.i("vikas activity","hello3");
 
 
         pendingComplaintListReference.addChildEventListener(new ChildEventListener() {
@@ -84,22 +80,18 @@ public class PendingComplaintsActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Complaint complaint = new Complaint();
                         complaint = dataSnapshot.getValue(Complaint.class);
-                        pendingComplaintObjectList.add(complaint);
+                        pendingComplaintObjectList.add(0,complaint);
                         myPendingComplaintAdapter.notifyDataSetChanged();
-
 
 
                         //Log.i("machine id", complaint.getComplaintMachineId());
                     }
-
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
-
-
 
             }
 
