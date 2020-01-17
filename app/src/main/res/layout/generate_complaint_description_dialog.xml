@@ -14,7 +14,7 @@
         android:layout_gravity="center_vertical|center_horizontal"
         android:orientation="vertical"
         android:paddingLeft="50dp"
-        android:paddingTop="20dp"
+        android:paddingTop="30dp"
         android:paddingRight="50dp"
         android:paddingBottom="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,14 +22,28 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter Description:"
+            android:textColor="#4D4848"
+            android:layout_marginBottom="5dp"
+            android:textSize="18sp"
+            android:layout_marginLeft="5dp">
+
+        </TextView>
         <EditText
             android:id="@+id/complaintDescription"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:hint="Enter Description"
+            android:layout_height="120dp"
+            android:hint="Type here..."
+            android:textColorHint="#A7ADCC"
             android:inputType="textCapSentences|textMultiLine"
+            android:padding="8dp"
             android:maxLength="2000"
-            android:maxLines="4" />
+            android:maxLines="4"
+            android:gravity="start"
+            android:background="@drawable/border_edittext"/>
 
         <LinearLayout
             android:layout_width="wrap_content"

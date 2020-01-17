@@ -59,7 +59,7 @@ public class GenerateQRActivity extends AppCompatActivity {
     EditText department,serviceTime,serialNumber;// Serial Number mentioned on Machine
     TextView installationDate,installationdate123;
     ImageView qrcode;
-
+    ImageView qrtext;
     Button GenerateQR;
     String generationCode; // Our code which is used for generating qrCode.
     Button save;
@@ -99,7 +99,7 @@ public class GenerateQRActivity extends AppCompatActivity {
         firebaseDatabase  = FirebaseDatabase.getInstance();
         generationCodeReference = firebaseDatabase.getReference("generationCode");
         machineReference = firebaseDatabase.getReference("machines");
-
+        qrtext=(ImageView) findViewById(R.id.imageviewqr);
 
 
         firebaseStorage = FirebaseStorage.getInstance();
@@ -157,6 +157,7 @@ public class GenerateQRActivity extends AppCompatActivity {
                         aqwesd.setVisibility(View.INVISIBLE);
                         linearLayoutimage.setVisibility(View.VISIBLE);
                         enter_details.setText("QR Code");
+                        qrtext.setImageResource(R.drawable.ic_qr_code);
                         linearLayout.setVisibility(View.INVISIBLE);
 
                     } catch (WriterException e) {
