@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".responsibleMan.RMChatActivity"></activity>
+        <activity android:name=".responsibleMan.RMChatActivity">
+
+        </activity>
         <activity android:name=".serviceMan.SMChatActivity" />
         <activity android:name=".responsibleMan.RMRequestStepIndicator">
 

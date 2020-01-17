@@ -66,11 +66,22 @@
 
                     </ImageView>
 
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/rm_change_profile"
+                        android:src="@drawable/ic_plus"
+                        app:layout_constraintBottom_toBottomOf="@id/profilebkimg"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.349"
+                        app:layout_constraintStart_toStartOf="@+id/profilebkimg"
+                        app:layout_constraintTop_toTopOf="@+id/profilebkimg"
+                        app:layout_constraintVertical_bias="0.659"></ImageView>
                     <TextView
-                        android:id="@+id/change_profile"
+                        android:id="@+id/rm_designation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="CHANGE PHOTO"
+                        android:text="DESIGNATION:"
                         android:textColor="#1C9797"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="@id/profilebkimg"
