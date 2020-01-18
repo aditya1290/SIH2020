@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SIH2020</string>
 
     <string name="login_email_hint">Email</string>
@@ -19,6 +19,27 @@
     <string name="lbl_choose_from_gallery">Choose from gallery</string>
     <string name="toast_image_intent_null">Image picker option is missing!</string>
 
+    <!--    FAQ question Answers-->
+    <string name="q1">Q1. Why can\'t I sign in?</string>
+    <string name="q2">Q2. Where I can see my Pending Complaints?</string>
+    <string name="a2">Ans- You can see your complaints in the \'Pending Complaints' section.</string>
+    <string name="q3">Q3. How can I change setting?</string>
+    <string name="a3">Ans- Click on \'Profile\' icon in bottom bar and click on setting icon at top right corner.</string>
+    <string name="q4">Q4. How can I update my work ?</string>
+    <string name="a4">Ans- Click on \'Pending Complaints\' and click on the complaint you want to update and click on 'Update'.</string>
+
+    <string name="rq2">Q2. How to Generate a QR Code for a new machine?</string>
+    <string name="ra2">Ans- Click on \'Generate QR\' on home screen.Enter all the details related to the machine and click \'Generate\' button.
+        Now you can see the newly generated QR code and click on 'Save' button to save the QR.</string>
+    <string name="rq4">Q4. How to Generate a Complaint for a machine?</string>
+    <string name="ra4">Ans- Click on \'Scan QR\' on home screen and Scan the QR.Then you will be redirect to the the \'Machine Details\' page.
+	To genetare a complaint click on 'Genetare Complaint' button and enter the Description for the complaint and click
+	'Confirm' button.</string>
+    <string name="rq5">Q5. Where I can see my Complaints?</string>
+    <string name="ra5">Ans- You can see your complaints in the \'My Complaints\' section.Here you can see your 'Pending Complaints' and 'Complated Complains'.</string>
+    <string name="rq6">Q6. How can I approve the ServiceMan\'s work?</string>
+    <string name="ra6">Ans- Click on \'Pending Approval Request\' on home screen and click 'Accept' or 'Decline' accordingly.</string>
+
     <!-- font families -->
     <string name="font_family_light">sans-serif-light</string>
     <string name="font_family_medium">sans-serif-medium</string>
@@ -29,4 +50,5 @@
     <string name="dialog_permission_title">Grant Permissions</string>
     <string name="dialog_permission_message">This app needs permission to use this feature. You can grant them in app settings.</string>
     <string name="go_to_settings">GOTO SETTINGS</string>
+
 </resources>

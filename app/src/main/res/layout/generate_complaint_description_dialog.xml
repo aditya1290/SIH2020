@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:hint="Type here..."
+            android:textCursorDrawable="@null"
             android:textColorHint="#A7ADCC"
             android:inputType="textCapSentences|textMultiLine"
             android:padding="8dp"
