@@ -1,10 +1,12 @@
 package com.example.inventory.responsibleMan.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inventory.R;
 import com.example.inventory.model.Complaint;
+import com.example.inventory.responsibleMan.RMRequestStepIndicator;
 
 import java.util.List;
 
@@ -59,6 +62,7 @@ public int getItemCount() {
 class MyHolder1 extends RecyclerView.ViewHolder{
 
     TextView pendingComplaintDate, pendingComplaintId, pendingComplaintServicemanName, pendingComplaintDescription, pendingComplaintMachineId;
+    Button statusButton;
 
     public MyHolder1(@NonNull View itemView) {
         super(itemView);
@@ -68,6 +72,21 @@ class MyHolder1 extends RecyclerView.ViewHolder{
         pendingComplaintDescription = itemView.findViewById(R.id.rm_complated_complaint_desc);
         pendingComplaintServicemanName = itemView.findViewById(R.id.rm_complated_complaint_serviceman);
         pendingComplaintMachineId = itemView.findViewById(R.id.rm_complated_complaint_machine_id);
+        statusButton = itemView.findViewById(R.id.rm_status_button);
+
+        statusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Complaint complaint = x.get(getAdapterPosition());
+                Intent intent = new Intent(c, RMRequestStepIndicator.class);
+                intent.putExtra("status", complaint.getStatus());
+                intent.putExtra("generated date", complaint.getComplaintGeneratedDate());
+                intent.putExtra("serviceman", complaint.getServicemanName());
+                intent.putExtra("completed date", complaint.getComplaintCompletedDate());
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.getApplicationContext().startActivity(intent);
+            }
+        });
 
 
     }
