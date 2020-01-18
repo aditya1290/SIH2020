@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.AudioAttributes;
 import android.util.Log;
 
@@ -87,15 +88,32 @@ public class FirebaseMsgService extends FirebaseMessagingService {
             nm.createNotificationChannel(channel);
         }
 
+//        NotificationCompat.Builder builder =
+//                new NotificationCompat.Builder(
+//                        getApplicationContext(), "222")
+//                        .setContentTitle(sid)
+//                        .setAutoCancel(true)
+////                        .setLargeIcon(((BitmapDrawable)getDrawable(R.drawable.lmis_logo)).getBitmap())
+//                        .setSmallIcon(R.mipmap.ic_launcher)
+//                        //.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.electro))
+//                        .setContentText(cNo)
+//                        .setContentIntent(pi);
+
+
         NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(
-                        getApplicationContext(), "222")
+                new NotificationCompat.Builder(getApplicationContext(), "222")
                         .setContentTitle(sid)
                         .setAutoCancel(true)
 //                        .setLargeIcon(((BitmapDrawable)getDrawable(R.drawable.lmis_logo)).getBitmap())
                         .setSmallIcon(R.mipmap.ic_launcher)
+                        .setStyle(new NotificationCompat.BigTextStyle()
+                                .bigText("it will be a very very long string that will not be in the preview")
+                                .setBigContentTitle("Big Content Title")
+                                .setSummaryText("Summary Text"))
                         //.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.electro))
                         .setContentText(cNo)
+                        .setColor(Color.BLUE)
+                        .setCategory(NotificationCompat.CATEGORY_MESSAGE)
                         .setContentIntent(pi);
 
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
