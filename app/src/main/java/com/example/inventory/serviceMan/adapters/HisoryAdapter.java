@@ -28,7 +28,7 @@ public class HisoryAdapter extends RecyclerView.Adapter<HisoryAdapter.MyHolder> 
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rm_pending_complaint_item, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.serviceman_historyfragment_item, null);
         return new HisoryAdapter.MyHolder(view);
     }
 
@@ -37,7 +37,6 @@ public class HisoryAdapter extends RecyclerView.Adapter<HisoryAdapter.MyHolder> 
 
         myholder1.pendingComplaintDate.setText(x.get(position).getComplaintGeneratedDate());
         myholder1.pendingComplaintDescription.setText(x.get(position).getComplaintDescription());
-        myholder1.pendingComplaintServicemanName.setText(x.get(position).getServicemanName());
         myholder1.pendingComplaintId.setText(x.get(position).getComplaintId());
         myholder1.pendingComplaintMachineId.setText(x.get(position).getComplaintMachineId());
 
@@ -50,16 +49,15 @@ public class HisoryAdapter extends RecyclerView.Adapter<HisoryAdapter.MyHolder> 
 
     public class MyHolder extends RecyclerView.ViewHolder{
 
-        TextView pendingComplaintDate, pendingComplaintId, pendingComplaintServicemanName, pendingComplaintDescription, pendingComplaintMachineId;
+        TextView pendingComplaintDate, pendingComplaintId, pendingComplaintDescription, pendingComplaintMachineId;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
-            pendingComplaintDate = itemView.findViewById(R.id.rm_pending_complaint_date);
-            pendingComplaintId = itemView.findViewById(R.id.rm_pending_complaint_id);
-            pendingComplaintDescription = itemView.findViewById(R.id.rm_pending_complaint_desc);
-            pendingComplaintServicemanName = itemView.findViewById(R.id.rm_pending_complaint_serviceman);
-            pendingComplaintMachineId = itemView.findViewById(R.id.rm_pending_complaint_machine_id);
+            pendingComplaintDate = itemView.findViewById(R.id.s_history_date);
+            pendingComplaintId = itemView.findViewById(R.id.s_history_complaint_id);
+            pendingComplaintDescription = itemView.findViewById(R.id.s_history_desc);
+            pendingComplaintMachineId = itemView.findViewById(R.id.s_history_machine_id);
 
 
         }
