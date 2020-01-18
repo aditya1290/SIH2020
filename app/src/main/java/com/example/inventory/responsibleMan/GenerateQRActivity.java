@@ -272,7 +272,6 @@ public class GenerateQRActivity extends AppCompatActivity {
                             {
 
                                 machineReference.child(generationCode).child("pastRecords").push().setValue(pastRecord);
-
                                 generationCode = String.valueOf(generationCodeValue+1); // increase Value of generationCode Everytime a new machine is entered.
                                 generationCodeReference.setValue(generationCode);
 

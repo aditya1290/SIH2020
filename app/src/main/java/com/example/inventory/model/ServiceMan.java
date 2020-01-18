@@ -15,6 +15,8 @@ public class ServiceMan {
         this.load = load;
     }
 
+    String imageURL;
+
     List<String> pendingRequest, completedRequest, pendingComplaint, completedComplaint;
 
     public ServiceMan(){}
@@ -76,5 +78,11 @@ public class ServiceMan {
         Email = email;
     }
 
-    public String getImageURL() {return  "https://firebasestorage.googleapis.com/v0/b/sihinventory.appspot.com/o/7.jpg?alt=media&token=32c913d6-f42c-408b-ac7f-dd22e08c018a";}
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }
