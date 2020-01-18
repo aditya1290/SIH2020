@@ -56,6 +56,8 @@ public class FirebaseMsgService extends FirebaseMessagingService {
         Map<String, String> data = remoteMessage.getData();
         String sid = data.get("sid");
 
+        Log.i("Vikas Notification",sid);
+
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 101, intent, 0);
 

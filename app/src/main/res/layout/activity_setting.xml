@@ -275,6 +275,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/logout"
         android:text="Logout"
         android:background="#ABE7B2"
         android:paddingTop="8dp"

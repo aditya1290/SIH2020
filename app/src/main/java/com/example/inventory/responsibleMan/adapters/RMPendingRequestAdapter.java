@@ -1,6 +1,7 @@
 package com.example.inventory.responsibleMan.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inventory.R;
 import com.example.inventory.model.Request;
+import com.example.inventory.responsibleMan.RatingActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -93,6 +95,7 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
                 int day = cal.get(Calendar.DAY_OF_MONTH);
 
 
+
                 updateDatabaseValue.put("/Complaints/"+x.get(position).getComplaintId()+"/complaintCompletedDate",day+"/"+month+"/"+year);
                 updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/completedComplaintList/"+x.get(position).getComplaintId(),"true");
                 updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/completedComplaintList/"+x.get(position).getComplaintId(),"true");
@@ -107,6 +110,11 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
                 updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
 
                 FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+
+                Intent i = new Intent(c, RatingActivity.class);
+                i.putExtra("serviceManUid",x.get(position).getServiceMan());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(i);
 
             }
             else
