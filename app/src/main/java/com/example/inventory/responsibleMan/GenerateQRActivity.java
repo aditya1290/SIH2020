@@ -27,6 +27,8 @@ import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +52,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 
 public class GenerateQRActivity extends AppCompatActivity {
@@ -68,7 +71,10 @@ public class GenerateQRActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference generationCodeReference, machineReference;
+    DatabaseReference generationCodeReference, machineReference, generatorReference;
+    FirebaseUser user;
+
+    String generatorName;
 
     FirebaseStorage firebaseStorage;
     StorageReference storageReference;
@@ -94,11 +100,29 @@ public class GenerateQRActivity extends AppCompatActivity {
         linearLayoutimage = (LinearLayout)findViewById(R.id.linearlayoutimage);
         aqwesd = (LinearLayout)findViewById(R.id.aqwesd);
         enter_details = (TextView)findViewById(R.id.enter_details_text);
+
+
+
         firebaseDatabase  = FirebaseDatabase.getInstance();
         generationCodeReference = firebaseDatabase.getReference("generationCode");
         machineReference = firebaseDatabase.getReference("machines");
-        qrtext=(ImageView) findViewById(R.id.imageviewqr);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        generatorReference = firebaseDatabase.getReference("Users").child("ResponsibleMan").child(user.getUid());
 
+        generatorReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                generatorName = dataSnapshot.child("userName").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        qrtext=(ImageView) findViewById(R.id.imageviewqr);
 
         firebaseStorage = FirebaseStorage.getInstance();
         storageReference = firebaseStorage.getReference();
@@ -256,6 +280,15 @@ public class GenerateQRActivity extends AppCompatActivity {
                     machine.setSerialNumber(serialNo);
                     machine.setServiceTime(servicetime);
                     machine.setDate(installationdate);
+                    machine.setGenerator(user.getUid());
+                    machine.setGeneratorName(generatorName);
+                    machine.setMachineId(String.valueOf(generationCodeValue));
+
+                    HashMap<String, Object> updateDatabaseValue = new HashMap<>();
+
+                    updateDatabaseValue.put("Users/ResponsibleMan/"+user.getUid()+"/myMachines/"+generationCodeValue,true);
+
+                    FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
 
 
                     final PastRecord pastRecord = new PastRecord();

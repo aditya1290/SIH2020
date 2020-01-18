@@ -41,7 +41,7 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
     Button show_history;
     Button generateComplaint;
 
-    TextView serialNo,department,serviceTime,dateOfInstallation;
+    TextView serialNo,department,serviceTime,dateOfInstallation, generator;
 
     Complaint complaint;
 
@@ -66,6 +66,7 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
         department = findViewById(R.id.machineDetailsDepartment);
         serviceTime = findViewById(R.id.machineDetailsServiceTime);
         dateOfInstallation = findViewById(R.id.machineDetailsInstallationDate);
+        generator = findViewById(R.id.generator_name);
 
         generationCode = getIntent().getStringExtra("generationCode");
 
@@ -92,6 +93,7 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
                 department.setText(machine.getDepartment());
                 serviceTime.setText(machine.getServiceTime()+" months");
                 dateOfInstallation.setText(machine.getDate());
+                generator.setText(machine.getGeneratorName());
             }
 
             @Override
