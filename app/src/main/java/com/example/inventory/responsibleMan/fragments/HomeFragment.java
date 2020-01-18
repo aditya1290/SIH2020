@@ -2,12 +2,6 @@ package com.example.inventory.responsibleMan.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.inventory.R;
 import com.example.inventory.ScanQRActivity;
 import com.example.inventory.responsibleMan.GenerateQRActivity;
-import com.example.inventory.responsibleMan.ResponsiblemanComplaintsTabActivity;
-
 import com.example.inventory.responsibleMan.RMPendingRequestActivity;
+import com.example.inventory.responsibleMan.ResponsiblemanComplaintsTabActivity;
 import com.example.inventory.responsibleMan.adapters.ViewPagerAdapter;
 
 import java.util.Timer;
@@ -86,6 +84,7 @@ public class HomeFragment extends Fragment {
             public void onPageSelected(int position) {
 
                 for(int i = 0; i< dotscount; i++){
+
                     dots[i].setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.active_dot));
                 }
 
