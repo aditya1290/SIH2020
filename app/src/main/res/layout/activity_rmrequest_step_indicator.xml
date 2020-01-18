@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:text="Request Status"/>
+                android:text="Complaint Status"/>
 
         </LinearLayout>
         <View
@@ -53,7 +53,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/step1"
                 app:anchor="30 Nov"
-                app:title="Request Received"
+                app:anchorMaxWidth="100dp"
+                app:title="Complaint Generated"
+                app:titleTextAppearance="@style/normalText"
                 app:subtitleTextAppearance="@style/subTitle"
                 />
 
@@ -61,17 +63,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/step2"
-                app:title="Agent assigned for work"
+                app:anchorMaxWidth="100dp"
+                app:title="Complaint assigned for Serviceman"
+                app:titleTextAppearance="@style/normalText"
                 app:subtitleTextAppearance="@style/subTitle"
                 />
 
             <com.transferwise.sequencelayout.SequenceStep
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                app:anchorMaxWidth="100dp"
                 android:id="@+id/step3"
-                app:anchor="Today"
-                app:title="Request Accepted"
+                app:title="Approval request generated"
+                app:titleTextAppearance="@style/normalText"
                 app:subtitleTextAppearance="@style/subTitle"
                 />
 
@@ -79,15 +83,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/step4"
-                app:title="Agent has done his work"
-                app:active="true"
+                app:anchorMaxWidth="100dp"
+                app:title="Request approved"
+                app:titleTextAppearance="@style/normalText"
                 app:subtitleTextAppearance="@style/subTitle"/>
 
             <com.transferwise.sequencelayout.SequenceStep
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/step5"
-                app:anchor="2 Dec"
+                app:anchorMaxWidth="100dp"
+                app:titleTextAppearance="@style/normalText"
                 app:title="Work Done. Hurray!!!!"
                 app:subtitleTextAppearance="@style/subTitle"/>
         </com.transferwise.sequencelayout.SequenceLayout>

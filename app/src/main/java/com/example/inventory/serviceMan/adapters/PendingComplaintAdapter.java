@@ -13,9 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.inventory.serviceMan.SMChatActivity;
 import com.example.inventory.R;
 import com.example.inventory.model.Complaint;
+import com.example.inventory.responsibleMan.RMRequestStepIndicator;
+import com.example.inventory.serviceMan.SMChatActivity;
 import com.example.inventory.serviceMan.UpdateActivity;
 
 import java.util.List;
@@ -73,7 +74,7 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
         TextView pendingComplaintDate, pendingComplaintId, pendingComplaintGeneratorName, pendingComplaintDescription, pendingComplaintMachineId;
         CardView cardView;
         LinearLayout ll_hide;
-        Button updateButton ,chatButton;
+        Button updateButton ,chatButton, statusButton;
 
         public MyHolder(@NonNull final View itemView)
         {
@@ -86,6 +87,8 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
             updateButton = itemView.findViewById(R.id.update_button);
             pendingComplaintMachineId = itemView.findViewById((R.id.sm_pending_complaint_machine_id));
             chatButton = itemView.findViewById(R.id.sm_chat_button);
+            statusButton = itemView.findViewById(R.id.sm_status_button);
+
 
 
             cardView = itemView.findViewById(R.id.cardview12);
@@ -130,6 +133,19 @@ public class PendingComplaintAdapter extends RecyclerView.Adapter<PendingComplai
                     Intent intent = new Intent(c, SMChatActivity.class);
                     intent.putExtra("userid", complaint.getComplaintGenerator());
                     intent.putExtra("complaintId", complaint.getComplaintId());
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    c.getApplicationContext().startActivity(intent);
+                }
+            });
+
+            statusButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Complaint complaint = pendingComplaintList.get(getAdapterPosition());
+                    Intent intent = new Intent(c, RMRequestStepIndicator.class);
+                    intent.putExtra("status", complaint.getStatus());
+                    intent.putExtra("generated date", complaint.getComplaintGeneratedDate());
+                    intent.putExtra("serviceman", complaint.getServicemanName());
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     c.getApplicationContext().startActivity(intent);
                 }

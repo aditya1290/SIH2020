@@ -170,6 +170,12 @@
                 android:textSize="15sp" />
 
 
+            <Button
+                android:id="@+id/rm_status_button"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="status" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -182,8 +188,6 @@
 
 
     </RelativeLayout>
-
-
 
 
 </androidx.cardview.widget.CardView>
