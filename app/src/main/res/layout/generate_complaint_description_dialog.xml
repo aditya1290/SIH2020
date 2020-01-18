@@ -47,7 +47,7 @@
             android:maxLength="2000"
             android:maxLines="4"
             android:padding="8dp"
-            android:textColorHint="#A7ADCC" />
+             />
 
         <LinearLayout
             android:layout_width="wrap_content"

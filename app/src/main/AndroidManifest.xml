@@ -70,6 +70,12 @@
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
 
+        <activity android:name=".SettingActivity"></activity>
+        <activity android:name=".FeedbackActivity"></activity>
+        <activity android:name=".serviceMan.SFaqActivity"></activity>
+        <activity android:name=".responsibleMan.RFaqActivity"></activity>
+        <activity android:name=".responsibleMan.MyMachine"></activity>
+
         <service
             android:name=".functions.FirebaseMsgService"
             android:exported="false">

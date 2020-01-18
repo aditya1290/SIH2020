@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.inventory.R;
+import com.example.inventory.SettingActivity;
 import com.example.inventory.model.CustomDialogBox;
 import com.example.inventory.model.ResponsibleMan;
 import com.example.inventory.serviceMan.CircleTransform;
@@ -43,7 +44,6 @@ import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
-import com.example.inventory.SettingActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
-        setting_imegeView=view.findViewById(R.id.img_setting);
+        setting_imegeView = view.findViewById(R.id.img_setting);
         setting_imegeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
