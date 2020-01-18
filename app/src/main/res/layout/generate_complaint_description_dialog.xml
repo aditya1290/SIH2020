@@ -41,6 +41,8 @@
             android:background="@drawable/border_edittext"
             android:gravity="start"
             android:hint="Type here..."
+            android:textCursorDrawable="@null"
+            android:textColorHint="#A7ADCC"
             android:inputType="textCapSentences|textMultiLine"
             android:maxLength="2000"
             android:maxLines="4"

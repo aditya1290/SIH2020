@@ -19,8 +19,8 @@
 
     </item>
     <item android:id="@+id/profile"
-
         android:title="Profile"
+        android:enabled="true"
         android:icon="@drawable/ic_manager">
 
     </item>
