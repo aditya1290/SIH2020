@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.example.inventory.model.CustomDialogBox;
 import com.example.inventory.serviceMan.BottomNavigationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
