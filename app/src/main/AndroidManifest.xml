@@ -17,59 +17,59 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.inventory.responsibleMan.RMChatActivity"></activity>
-        <activity android:name="com.example.inventory.serviceMan.SMChatActivity" />
-        <activity android:name="com.example.inventory.responsibleMan.RMRequestStepIndicator">
-
-        </activity>
-        <activity android:name="com.example.inventory.IntroActivity">
+        <activity android:name=".FeedbackActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.inventory.responsibleMan.ResponsiblemanComplaintsTabActivity" />
-        <activity android:name="com.example.inventory.responsibleMan.RMPendingRequestActivity" />
+        <activity android:name=".SettingActivity">
 
+        </activity>
+        <activity android:name=".responsibleMan.RMChatActivity" />
+        <activity android:name=".serviceMan.SMChatActivity" />
+        <activity android:name=".responsibleMan.RMRequestStepIndicator" />
+        <activity android:name=".IntroActivity"></activity>
+        <activity android:name=".responsibleMan.ResponsiblemanComplaintsTabActivity" />
+        <activity android:name=".responsibleMan.RMPendingRequestActivity" />
         <activity
-            android:name="com.example.inventory.serviceMan.ServicemanRequests"
+            android:name=".serviceMan.ServicemanRequests"
             android:label="Request Status" />
-        <activity android:name="com.example.inventory.serviceMan.BottomNavigationActivity" />
-        <activity android:name="com.example.inventory.serviceMan.PendingComplaintsActivity" />
+        <activity android:name=".serviceMan.BottomNavigationActivity" />
+        <activity android:name=".serviceMan.PendingComplaintsActivity" />
+        <activity android:name=".serviceMan.ImagePickerActivity" />
         <activity
-            android:name="com.example.inventory.serviceMan.UpdateActivity"
+            android:name=".serviceMan.UpdateActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.example.inventory.responsibleMan.ShowDetailsActivity"
+            android:name=".responsibleMan.ShowDetailsActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.example.inventory.responsibleMan.GetMachineDetailsActivity"
+            android:name=".responsibleMan.GetMachineDetailsActivity"
             android:label="Machine Details "
             android:theme="@style/AppTheme.ProfileTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.example.inventory.responsibleMan.GenerateQRActivity"
+            android:name=".responsibleMan.GenerateQRActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.example.inventory.RegisterActivity"
+            android:name=".RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.example.inventory.responsibleMan.BottomNavigationActivity" />
+        <activity android:name=".responsibleMan.BottomNavigationActivity" />
         <activity
-            android:name="com.example.inventory.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
 
         <activity
-            android:name="com.example.inventory.ScanQRActivity"
+            android:name=".ScanQRActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.example.inventory.MainActivity"
+            android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
     </application>
 

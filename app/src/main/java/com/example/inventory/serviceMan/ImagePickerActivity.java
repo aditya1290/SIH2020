@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.inventory.serviceMan;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -18,7 +18,8 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.sih2020.R;
+
+import com.example.inventory.R;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;

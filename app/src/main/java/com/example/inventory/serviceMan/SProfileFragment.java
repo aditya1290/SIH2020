@@ -1,4 +1,4 @@
-package com.example.sih2020.serviceMan;
+package com.example.inventory.serviceMan;
 
 
 import android.Manifest;
@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -21,9 +22,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.inventory.R;
 import com.example.inventory.MainActivity;
+import com.example.inventory.serviceMan.ImagePickerActivity;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -38,12 +41,22 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.yalantis.ucrop.UCropFragment.TAG;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SProfileFragment extends Fragment {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
+    public static final int REQUEST_IMAGE = 100;
+
+    @BindView(R.id.img_profile)
+    ImageView imgProfile;
+    TextView basicInfo;
+
+    ConstraintLayout constraintLayout;
 
     public SProfileFragment() {
         // Required empty public constructor
@@ -55,13 +68,28 @@ public class SProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_sprofile, container, false);
+        Log.i("Ankit","clicked2");
         ButterKnife.bind(this,view);
+        Log.i("Ankit","clicked3");
+
+        constraintLayout = view.findViewById(R.id.layout);
+        basicInfo = view.findViewById(R.id.basic_info);
+
+        Log.i("Ankit","clicked1");
 
 
         // Clearing older images from cache directory
         // don't call this line if you want to choose multiple images in the same activity
         // call this once the bitmap(s) usage is over
         ImagePickerActivity.clearCache(getActivity().getApplicationContext());
+
+//        basicInfo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onProfileImageClick();
+//                Log.i("Ankit","clicked");
+//            }
+//        });
 
         return view;
 
@@ -74,6 +102,7 @@ public class SProfileFragment extends Fragment {
         Picasso.get().load(url).into(imgProfile);
         imgProfile.setColorFilter(ContextCompat.getColor(getActivity().getApplicationContext(), android.R.color.transparent));
     }
+
 
 
 
