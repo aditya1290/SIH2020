@@ -12,10 +12,19 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,7 +34,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.inventory.MainActivity;
 import com.example.inventory.R;
+import com.example.inventory.SettingActivity;
 import com.example.inventory.model.CustomDialogBox;
 import com.example.inventory.model.ServiceMan;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,6 +59,7 @@ import com.squareup.picasso.Transformation;
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 
+
 public class SProfileFragment extends Fragment {
 
 
@@ -62,6 +74,7 @@ public class SProfileFragment extends Fragment {
     TextView name,email,phoneNumber;
 
 
+    private Toolbar mTopToolbar;
     public SProfileFragment() {
         // Required empty public constructor
     }
@@ -72,6 +85,9 @@ public class SProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sprofile, container, false);
+        mTopToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(mTopToolbar);
+        setHasOptionsMenu(true);
         profilePicChange = view.findViewById(R.id.s_change_profile);
         profilePic = view.findViewById(R.id.profilepic);
 
@@ -125,6 +141,25 @@ public class SProfileFragment extends Fragment {
         return view;
     }
 
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle item selection
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent intent= new Intent(getActivity().getApplicationContext(), SettingActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -146,7 +181,7 @@ public class SProfileFragment extends Fragment {
 
                     ((BitmapDrawable) profilePic.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 50, baos);
 
-                    Log.i("hello ankit","ankit");
+                    Log.i("hello ankit", "ankit");
                     final byte[] image_data = baos.toByteArray();
                     uploadTask = storageReference.putBytes(image_data);
 
@@ -194,7 +229,10 @@ public class SProfileFragment extends Fragment {
                 }
             });
         }
-
     }
 
+
+
+
 }
+
