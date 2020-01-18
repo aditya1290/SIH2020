@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -64,7 +63,6 @@ public class RequestPendingFragment extends Fragment {
 
         View rootView =  inflater.inflate(R.layout.serviceman_request_pending, container, false);
 
-        Toast.makeText(getActivity().getApplicationContext(), "hello", Toast.LENGTH_SHORT).show();
 
         s_recyclerView_pending_request = (RecyclerView)rootView.findViewById(R.id.s_recyclerView_pending_request);
         s_recyclerView_pending_request.setLayoutManager(new LinearLayoutManager(getActivity()));

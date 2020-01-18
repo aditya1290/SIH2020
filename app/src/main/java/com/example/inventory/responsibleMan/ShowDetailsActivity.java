@@ -1,17 +1,16 @@
 package com.example.inventory.responsibleMan;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.inventory.R;
 import com.example.inventory.model.PastRecord;
@@ -104,7 +103,6 @@ public class ShowDetailsActivity extends AppCompatActivity {
                     PastRecord m = pastRecord.getValue(PastRecord.class);
                     String desc = m.getDescription();
                     Log.i("pastRecord",desc);
-                    Toast.makeText(ShowDetailsActivity.this, "ha aagya", Toast.LENGTH_SHORT).show();
                     pastRecords.add(m);
                 }
 
