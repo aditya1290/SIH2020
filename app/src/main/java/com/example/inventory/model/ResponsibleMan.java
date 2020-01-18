@@ -1,5 +1,6 @@
 package com.example.inventory.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ResponsibleMan {
@@ -9,6 +10,17 @@ public class ResponsibleMan {
     List<String> pendingComplaints;
     List<String> completedComplaints;
     String imageURL;
+
+
+    public HashMap<String, Object> getMyMachines() {
+        return myMachines;
+    }
+
+    public void setMyMachines(HashMap<String, Object> myMachines) {
+        this.myMachines = myMachines;
+    }
+
+    HashMap<String, Object> myMachines;
 
 
     public ResponsibleMan()

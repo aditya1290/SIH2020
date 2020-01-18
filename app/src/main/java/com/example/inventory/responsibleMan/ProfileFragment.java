@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,7 @@ public class ProfileFragment extends Fragment {
 
 
     ImageView profilePicChange, profilePic;
+    LinearLayout myMachine;
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -88,6 +90,15 @@ public class ProfileFragment extends Fragment {
 
         profilePicChange = view.findViewById(R.id.rm_change_profile);
         profilePic = view.findViewById(R.id.profilepic);
+        myMachine = view.findViewById(R.id.myMachine);
+
+        myMachine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), MyMachine.class);
+                startActivity(intent);
+            }
+        });
 
         dialogBox = new CustomDialogBox(getActivity());
         dialogBox.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
