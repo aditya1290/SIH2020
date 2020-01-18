@@ -8,6 +8,7 @@ public class ResponsibleMan {
     List<String> pendingApprovalRequest;
     List<String> pendingComplaints;
     List<String> completedComplaints;
+    String imageURL;
 
 
     public ResponsibleMan()
@@ -67,6 +68,13 @@ public class ResponsibleMan {
         this.completedComplaints = completedComplaints;
     }
 
-    public String getImageURL() {return  "https://firebasestorage.googleapis.com/v0/b/sihinventory.appspot.com/o/7.jpg?alt=media&token=32c913d6-f42c-408b-ac7f-dd22e08c018a";}
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     // -----------------------------------------------------------------------------------------------
 }
