@@ -67,6 +67,7 @@ public class SettingActivity extends AppCompatActivity {
 
                 Intent intent=new Intent(getApplicationContext(), FeedbackActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -78,6 +79,7 @@ public class SettingActivity extends AppCompatActivity {
                 //pass intent to serviceman and responsibleman saperately
                 Intent intent=new Intent(getApplicationContext(), SFaqActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -138,6 +138,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ShowDetailsActivity.this, UpdateActivity.class);
                 startActivity(i);
+                finish();
 
             }
         });

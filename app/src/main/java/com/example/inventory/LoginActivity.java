@@ -97,11 +97,13 @@ public class LoginActivity extends AppCompatActivity {
                                     {
                                         customDialogBox.dismiss();
                                         startActivity(new Intent(getApplicationContext(), BottomNavigationActivity.class));
+                                        finish();
                                     }
                                     else
                                     {
                                         customDialogBox.dismiss();
                                         startActivity(new Intent(getApplicationContext(), com.example.inventory.responsibleMan.BottomNavigationActivity.class));
+                                        finish();
                                     }
                                 }
 
@@ -123,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onLoginClick(View View){
         startActivity(new Intent(this,RegisterActivity.class));
         overridePendingTransition(R.anim.slide_in_right,R.anim.stay);
+        finish();
 
     }
 }
