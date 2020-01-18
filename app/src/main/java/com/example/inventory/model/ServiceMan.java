@@ -7,6 +7,9 @@ public class ServiceMan {
     String userName, Email;
     int load = 0;
 
+    float rating=0;
+    int numberOfRating = 0;
+
     public int getLoad() {
         return load;
     }
@@ -14,6 +17,8 @@ public class ServiceMan {
     public void setLoad(int load) {
         this.load = load;
     }
+
+    String imageURL;
 
     List<String> pendingRequest, completedRequest, pendingComplaint, completedComplaint;
 
@@ -76,5 +81,27 @@ public class ServiceMan {
         Email = email;
     }
 
-    public String getImageURL() {return  "https://firebasestorage.googleapis.com/v0/b/sihinventory.appspot.com/o/7.jpg?alt=media&token=32c913d6-f42c-408b-ac7f-dd22e08c018a";}
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public int getNumberOfRating() {
+        return numberOfRating;
+    }
+
+    public void setNumberOfRating(int numberOfRating) {
+        this.numberOfRating = numberOfRating;
+    }
 }

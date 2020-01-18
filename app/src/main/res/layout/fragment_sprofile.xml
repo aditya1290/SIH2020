@@ -33,8 +33,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/layout">
+                    android:layout_height="match_parent">
 
                     <ImageView
                         android:id="@+id/profilebkimg"
@@ -53,11 +52,11 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"></ImageView>
 
-                    <ImageView
-                        android:id="@+id/img_profile"
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profilepic"
                         android:layout_width="92dp"
                         android:layout_height="93dp"
-                        android:src="@drawable/ic_profile1"
+
                         app:layout_constraintBottom_toBottomOf="@id/profilebkimg"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.21"
@@ -65,12 +64,12 @@
                         app:layout_constraintTop_toTopOf="@+id/profilebkimg"
                         app:layout_constraintVertical_bias="0.523">
 
-                    </ImageView>
+                    </de.hdodenhof.circleimageview.CircleImageView>>
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:id="@+id/img_plus"
+                        android:id="@+id/s_change_profile"
                         android:src="@drawable/ic_plus"
                         app:layout_constraintBottom_toBottomOf="@id/profilebkimg"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
 import com.example.inventory.R;
 import com.example.inventory.model.Chat;
 import com.example.inventory.model.ServiceMan;
-import com.example.inventory.responsibleMan.fragments.RMComplaintPendingFragment;
 import com.example.inventory.serviceMan.adapters.ChatAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -73,7 +72,7 @@ public class RMChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // and this
-                startActivity(new Intent(RMChatActivity.this, RMComplaintPendingFragment.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                finish();
             }
         });
 

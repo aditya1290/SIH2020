@@ -73,7 +73,7 @@ public class SMChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // and this
-                startActivity(new Intent(SMChatActivity.this, PendingComplaintsActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+               finish();
             }
         });
 

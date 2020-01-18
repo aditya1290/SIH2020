@@ -158,26 +158,28 @@
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:id="@+id/accept_button"
                     android:layout_marginLeft="10dp"
                     android:text="ACCEPT"
-                    android:textColor="#E01515"></TextView>
+                    android:textColor="#E01515"
+                    android:background="@drawable/transparent_button_border"></Button>
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="25dp"
                     android:background="#A29F9F"
                     ></View>
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:id="@+id/decline_button"
                     android:layout_marginLeft="25dp"
                     android:text="DECLINE"
-                    android:textColor="#1570E0"></TextView>
+                    android:textColor="#1570E0"
+                    android:background="@drawable/transparent_button_border"></Button>
 
 
             </LinearLayout>

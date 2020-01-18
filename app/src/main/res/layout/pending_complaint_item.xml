@@ -32,6 +32,13 @@ app:cardUseCompatPadding="true">
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_manager"
+                    android:layout_marginRight="5dp">
+
+                </ImageView>
                 <TextView
                     android:id="@+id/sm_pending_complaint_genratorName1"
                     android:layout_width="wrap_content"
@@ -58,6 +65,11 @@ app:cardUseCompatPadding="true">
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_machine"
+                    android:layout_marginRight="5dp"/>
                 <TextView
                     android:id="@+id/sm_pending_complaint_machine_id1"
                     android:layout_width="wrap_content"
@@ -82,6 +94,11 @@ app:cardUseCompatPadding="true">
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_complain"
+                    android:layout_marginRight="5dp"/>
                 <TextView
                     android:id="@+id/sm_pending_complaint_Id1"
                     android:layout_width="wrap_content"
@@ -105,6 +122,11 @@ app:cardUseCompatPadding="true">
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_date_of_installation"
+                    android:layout_marginRight="5dp"/>
                 <TextView
                     android:id="@+id/sm_pending_complaint_date1"
                     android:layout_width="wrap_content"
@@ -126,15 +148,27 @@ app:cardUseCompatPadding="true">
 
 
         </LinearLayout>
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="60dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_profile"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_profile"
+                />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/dropdown"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_expand_more"
+                />
 
-            >
+        </LinearLayout>
 
-        </ImageView>
     </RelativeLayout>
 
 
@@ -153,6 +187,16 @@ app:cardUseCompatPadding="true">
 
             />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_description"
+            android:layout_marginRight="5dp"/>
         <TextView
             android:id="@+id/sm_pending_complaint_description1"
             android:layout_width="match_parent"
@@ -162,6 +206,7 @@ app:cardUseCompatPadding="true">
             android:textStyle="bold"
             android:textColor="#363333"
             android:textSize="15sp" />
+    </LinearLayout>
         <TextView
             android:id="@+id/sm_pending_complaint_description"
             android:layout_width="match_parent"
@@ -177,17 +222,25 @@ app:cardUseCompatPadding="true">
             android:layout_margin="5dp"
             />
 
-        <Button
-            android:id="@+id/sm_chat_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="chat" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/sm_chat_button"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="chat "
+                android:layout_marginLeft="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:background="@drawable/transparent_button_border"
+                android:textColor="#F50A5A"
+                android:layout_marginRight="50dp"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -199,6 +252,12 @@ app:cardUseCompatPadding="true">
                 android:background="@drawable/transparent_button_border"></Button>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/sm_status_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="status" />
 
     </LinearLayout>
 

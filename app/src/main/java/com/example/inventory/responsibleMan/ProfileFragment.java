@@ -1,23 +1,67 @@
 package com.example.inventory.responsibleMan;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.inventory.R;
 import com.example.inventory.SettingActivity;
+import com.example.inventory.model.CustomDialogBox;
+import com.example.inventory.model.ResponsibleMan;
+import com.example.inventory.serviceMan.CircleTransform;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
  */
+
+
 public class ProfileFragment extends Fragment {
+
+
+    ImageView profilePicChange, profilePic;
+
+    StorageReference storageReference;
+    DatabaseReference databaseReference;
+    FirebaseUser user;
+    UploadTask uploadTask;
+    CustomDialogBox dialogBox;
+
+    TextView name,email,phoneNumber;
 
 
     ImageView setting_imegeView;
@@ -31,9 +75,9 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
 
-        View view= inflater.inflate(R.layout.fragment_profile, container, false);
-        setting_imegeView=view.findViewById(R.id.img_setting);
+        setting_imegeView = view.findViewById(R.id.img_setting);
         setting_imegeView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +86,129 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        profilePicChange = view.findViewById(R.id.rm_change_profile);
+        profilePic = view.findViewById(R.id.profilepic);
+
+        dialogBox = new CustomDialogBox(getActivity());
+        dialogBox.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogBox.show();
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        name = view.findViewById(R.id.rm_profile_name);
+        email = view.findViewById(R.id.rm_profile_email);
+        phoneNumber = view.findViewById(R.id.rm_profile_phone);
+
+        databaseReference = FirebaseDatabase.getInstance()
+                .getReference("Users")
+                .child("ResponsibleMan")
+                .child(user.getUid());
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                ResponsibleMan responsibleMan = dataSnapshot.getValue(ResponsibleMan.class);
+                Picasso.get().load(responsibleMan.getImageURL()).into(profilePic);
+                name.setText(responsibleMan.getUserName());
+                email.setText(responsibleMan.getEmail());
+
+                dialogBox.dismiss();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        storageReference = FirebaseStorage.getInstance().getReference().child(user.getUid()+".jpg");
+
+        profilePicChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                Activity activity = getActivity();
+//                if (activity != null)
+                startActivityForResult(i, 12);
+            }
+        });
 
         return view;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.i("PRofile", "helo");
+        if (requestCode == 12 && resultCode == Activity.RESULT_OK && data != null) {
+            Log.i("PRofile", "helo1");
+
+            dialogBox.show();
+
+            Uri imageUri = data.getData();
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+            profilePic.setDrawingCacheEnabled(true);
+            profilePic.buildDrawingCache();
+
+            Picasso.get().load(imageUri).transform(new CircleTransform()).into(profilePic, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                    ((BitmapDrawable) profilePic.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 50, baos);
+
+                    Log.i("hello ankit","ankit");
+                    final byte[] image_data = baos.toByteArray();
+                    uploadTask = storageReference.putBytes(image_data);
+
+                    uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            dialogBox.dismiss();
+                            uploadTask.cancel();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String imageLink = uri.toString();
+
+                                    HashMap<String, Object> updateProfilePic = new HashMap<>();
+
+                                    updateProfilePic.put("/Users/ResponsibleMan/" + user.getUid() + "/imageURL", imageLink);
+
+                                    FirebaseDatabase.getInstance().getReference().updateChildren(updateProfilePic).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            dialogBox.dismiss();
+                                        }
+                                    });
+
+
+                                }
+                            });
+                        }
+                    });
+                }
+
+                @Override
+                public void onError(Exception e) {
+
+                }
+            });
+        }
+
     }
 
 }

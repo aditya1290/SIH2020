@@ -1,17 +1,17 @@
 package com.example.inventory.responsibleMan;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.inventory.R;
 import com.example.inventory.model.PastRecord;
@@ -66,14 +66,7 @@ public class ShowDetailsActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 swipeRefereshLayout.setColorSchemeColors(Color.BLUE);
-                PastRecord pastRecord = new PastRecord();
-                pastRecord.setDescription("Installation Of Machines");
-                pastRecord.setServiceDate("14/01/2019");
-                pastRecord.setDone(true);
-                pastRecord.setServiceMan("aditya");
-                historyReference.push().setValue(pastRecord);
-                pastRecords.add(0,pastRecord);
-                showDetailsAdapter.notifyDataSetChanged();
+
                 swipeRefereshLayout.setRefreshing(false);
 
             }

@@ -81,7 +81,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/rm_profile_name"
+                        android:id="@+id/sm_profile_name"
                         android:text="Abhinendra"
                         android:textSize="15sp"
                         android:textColor="#1D1919"
@@ -115,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rm_profile_email"
+                    android:id="@+id/sm_profile_email"
                     android:text="ag@gmail.com"
                     android:textSize="15sp"
                     android:textColor="#1D1919"
@@ -141,7 +141,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rm_profile_phone"
+                    android:id="@+id/sm_profile_phone"
                     android:text="1234567890"
                     android:textSize="15sp"
                     android:textColor="#1D1919"

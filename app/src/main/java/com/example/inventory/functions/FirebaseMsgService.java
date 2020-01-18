@@ -23,6 +23,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.Map;
 
+
 public class FirebaseMsgService extends FirebaseMessagingService {
 
     @Override
@@ -53,7 +54,22 @@ public class FirebaseMsgService extends FirebaseMessagingService {
         int type = getSharedPreferences("login_info", MODE_PRIVATE).getInt("usertype", -1);
 
         Map<String, String> data = remoteMessage.getData();
-        String sid = data.get("sid");
+        String type1 = data.get("type");
+
+        String sid,cNo;
+        if(type1=="complaint") {
+             sid = data.get("sid");
+             cNo = data.get("requestNo");
+        }
+        else
+        {
+             sid = data.get("sid");
+             cNo = data.get("requestNo");
+        }
+
+
+
+        Log.i("Vikas Notification",sid);
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 101, intent, 0);
@@ -79,7 +95,7 @@ public class FirebaseMsgService extends FirebaseMessagingService {
 //                        .setLargeIcon(((BitmapDrawable)getDrawable(R.drawable.lmis_logo)).getBitmap())
                         .setSmallIcon(R.mipmap.ic_launcher)
                         //.setSound(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.electro))
-                        .setContentText(sid)
+                        .setContentText(cNo)
                         .setContentIntent(pi);
 
         builder.setPriority(NotificationCompat.PRIORITY_HIGH);
