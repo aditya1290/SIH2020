@@ -1,6 +1,7 @@
 package com.example.inventory.responsibleMan.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,10 @@ public class ShowDetailsAdapter extends RecyclerView.Adapter<ShowDetailsAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyHolder myholder, int position) {
 
-        myholder.date.setText(pastRecords.get(position).getServiceDate());
+        myholder.date.setText("19/01/2020");
         myholder.AgentId.setText(pastRecords.get(position).getServiceMan());
         myholder.Description.setText(pastRecords.get(position).getDescription());
-        myholder.CompliantId.setText("random");
+        myholder.CompliantId.setText(pastRecords.get(position).getComplaintId());
 
         boolean isExpanded = pastRecords.get(position).isExpanded();
         myholder.ll_hide.setVisibility(isExpanded ? View.VISIBLE : View.GONE);
@@ -57,6 +58,7 @@ public class ShowDetailsAdapter extends RecyclerView.Adapter<ShowDetailsAdapter.
 
     @Override
     public int getItemCount() {
+        Log.i("VikasSIze",String.valueOf(pastRecords.size()));
         return pastRecords.size();
     }
 

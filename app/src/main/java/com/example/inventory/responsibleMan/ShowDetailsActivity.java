@@ -5,9 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,10 +15,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.inventory.R;
 import com.example.inventory.model.PastRecord;
+import com.example.inventory.model.Request;
 import com.example.inventory.responsibleMan.adapters.ShowDetailsAdapter;
 import com.example.inventory.serviceMan.UpdateActivity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,11 +59,15 @@ public class ShowDetailsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.RecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        shimmerFrameLayout = findViewById(R.id.shimmerFrameLayout);
-        shimmerFrameLayout.startShimmerAnimation();
+       // shimmerFrameLayout = findViewById(R.id.shimmerFrameLayout);
+       // shimmerFrameLayout.startShimmerAnimation();
+
+        pastRecords = new ArrayList<>();
+        showDetailsAdapter = new ShowDetailsAdapter(getApplicationContext(),pastRecords);
+        recyclerView.setAdapter(showDetailsAdapter);
 
         swipeRefereshLayout = findViewById(R.id.swipeRefreshLayout);
-        pastRecords = new ArrayList<>();
+
         swipeRefereshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -73,41 +79,52 @@ public class ShowDetailsActivity extends AppCompatActivity {
         });
 
 
-
-//        PastRecord pastRecord1 = new PastRecord();
-//        pastRecord1.setDescription("Installation Of Machines");
-//        pastRecord.setServiceDate(new Date(2020,1,8));
-//        pastRecord1.setDone(true);
-//        pastRecord1.setServiceMan("aditya");
-//
-//        List<PastRecord> list = new ArrayList<>();
-//        list.add(pastRecord);
-//        list.add(pastRecord1);
-
-
-
-
-        historyReference.addValueEventListener(new ValueEventListener() {
+        historyReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                for(DataSnapshot pastRecord : dataSnapshot.getChildren())
-                {
+                String request = dataSnapshot.getKey();
 
-                    PastRecord m = pastRecord.getValue(PastRecord.class);
-                    String desc = m.getDescription();
-                    Log.i("pastRecord",desc);
-                    Toast.makeText(ShowDetailsActivity.this, "ha aagya", Toast.LENGTH_SHORT).show();
-                    pastRecords.add(m);
-                }
+                Log.i("History","something");
+                DatabaseReference requestRefernce = FirebaseDatabase.getInstance().getReference("Requests").child(request);
+                requestRefernce.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                showDetailsAdapter = new ShowDetailsAdapter(getApplicationContext(), pastRecords);
-                recyclerView.setAdapter(showDetailsAdapter);
-                shimmerFrameLayout.setVisibility(View.GONE);
-                shimmerFrameLayout.stopShimmerAnimation();
+                        Log.i("History","something1 ");
+
+                        PastRecord pastRecord = new PastRecord();
+                        Request request= dataSnapshot.getValue(Request.class);
+                        pastRecord.setDescription(request.getDescription());
+                        pastRecord.setServiceMan(request.getServicemanName());
+                        pastRecord.setComplaintId(request.getComplaintId());
+                        //shimmerFrameLayout.stopShimmerAnimation();
+                        //shimmerFrameLayout.setVisibility(View.INVISIBLE);
+                        pastRecords.add(pastRecord);
+                        showDetailsAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
             }
 
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
