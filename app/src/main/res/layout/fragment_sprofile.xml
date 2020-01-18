@@ -42,15 +42,7 @@
                         android:src="@drawable/profilebackground"
                         tools:ignore="MissingConstraints" />
 
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginTop="16dp"
-                        android:src="@drawable/ic_setting"
-                        app:layout_constraintEnd_toEndOf="@id/profilebkimg"
-                        app:layout_constraintHorizontal_bias="0.929"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
 
                     <ImageView
                         android:id="@+id/profilepic"
@@ -99,7 +91,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
-                    app:popupTheme="@style/AppTheme.PopupOverlay">
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:menu="@menu/toolbar_menu">
                 </androidx.appcompat.widget.Toolbar>
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
