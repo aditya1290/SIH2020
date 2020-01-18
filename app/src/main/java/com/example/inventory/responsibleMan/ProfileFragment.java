@@ -99,15 +99,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        setting_imegeView = view.findViewById(R.id.img_setting);
-        setting_imegeView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity().getApplicationContext(), SettingActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
+
 
         mTopToolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(mTopToolbar);
