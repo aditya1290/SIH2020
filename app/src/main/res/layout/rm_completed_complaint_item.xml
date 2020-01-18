@@ -141,8 +141,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rm_ll1"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
 
             <View
                 android:layout_width="match_parent"
@@ -157,9 +157,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="Description"
-                android:textStyle="bold"
                 android:textColor="#363333"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/rm_complated_complaint_desc"
                 android:layout_width="match_parent"
@@ -172,16 +173,17 @@
 
             <Button
                 android:id="@+id/rm_status_button"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:text="status" />
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:text="status"
+                android:layout_gravity="center_horizontal"
+                style="@style/loginButton"/>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#A29F9F"
                 android:layout_margin="5dp"
-                />
+                android:background="#A29F9F" />
 
 
         </LinearLayout>
