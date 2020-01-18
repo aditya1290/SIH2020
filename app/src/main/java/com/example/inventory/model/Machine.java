@@ -12,34 +12,11 @@ public class Machine {
     String date;
     List<PastRecord> pastRecordList;
     String generator;
-
-    public void setMachineId(String machineId) {
-        this.machineId = machineId;
-    }
-
-    public String getMachineId() {
-        return machineId;
-    }
-
+    String generatorName;
     String machineId;
 
-    public String getGenerator() {
-        return generator;
-    }
 
-    public String getGeneratorName() {
-        return generatorName;
-    }
 
-    public void setGenerator(String generator) {
-        this.generator = generator;
-    }
-
-    public void setGeneratorName(String generatorName) {
-        this.generatorName = generatorName;
-    }
-
-    String generatorName;
 
     public Machine()
     {
@@ -101,4 +78,30 @@ public class Machine {
     public void setDate(String date) {
         this.date = date;
     }
+    public void setMachineId(String machineId) {
+        this.machineId = machineId;
+    }
+
+    public String getMachineId() {
+        return machineId;
+    }
+
+
+
+    public String getGenerator() {
+        return generator;
+    }
+
+    public String getGeneratorName() {
+        return generatorName;
+    }
+
+    public void setGenerator(String generator) {
+        this.generator = generator;
+    }
+
+    public void setGeneratorName(String generatorName) {
+        this.generatorName = generatorName;
+    }
+
 }

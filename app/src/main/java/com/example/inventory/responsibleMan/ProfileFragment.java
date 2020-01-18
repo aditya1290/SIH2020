@@ -85,6 +85,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity().getApplicationContext(), SettingActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -97,6 +98,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MyMachine.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 

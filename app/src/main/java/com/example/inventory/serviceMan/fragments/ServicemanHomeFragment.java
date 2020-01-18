@@ -119,6 +119,7 @@ public class ServicemanHomeFragment extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getActivity().getApplicationContext(), PendingComplaintsActivity.class);
                 startActivity(i);
+                getActivity().finish();
 
             }
         });
@@ -128,6 +129,7 @@ public class ServicemanHomeFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity().getApplicationContext(), ServicemanRequests.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -136,6 +138,7 @@ public class ServicemanHomeFragment extends Fragment {
     public void updateDetail() {
         Intent intent = new Intent(getActivity().getApplicationContext(), ScanQRActivity.class);
         startActivity(intent);
+        getActivity().finish();
     }
 
 

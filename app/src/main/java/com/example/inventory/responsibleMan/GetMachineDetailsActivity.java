@@ -109,6 +109,7 @@ public class GetMachineDetailsActivity extends AppCompatActivity {
                 Intent i = new Intent(GetMachineDetailsActivity.this, ShowDetailsActivity.class);
                 i.putExtra("generationCode",generationCode);
                 startActivity(i);
+                finish();
             }
         });
 
