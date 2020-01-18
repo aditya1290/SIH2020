@@ -24,6 +24,7 @@
         <activity android:name=".serviceMan.SMChatActivity" />
         <activity android:name=".responsibleMan.RMRequestStepIndicator" />
         <activity android:name=".IntroActivity"/>
+        <activity android:name=".responsibleMan.MyMachine"/>
         <activity android:name=".SplashScreen">
 
         </activity>
