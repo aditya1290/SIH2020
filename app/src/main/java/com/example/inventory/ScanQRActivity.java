@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 
 
+import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
@@ -40,6 +41,8 @@ import com.otaliastudios.cameraview.controls.Flash;
 import com.otaliastudios.cameraview.frame.Frame;
 import com.otaliastudios.cameraview.frame.FrameProcessor;
 
+import java.lang.reflect.Parameter;
+import java.security.Policy;
 import java.util.List;
 
 public class ScanQRActivity extends AppCompatActivity {
@@ -53,6 +56,7 @@ public class ScanQRActivity extends AppCompatActivity {
     FirebaseVisionBarcodeDetector detector;
     FirebaseVisionBarcodeDetectorOptions options;
 
+    public static Camera cam = null;
 
 
     @Override
@@ -100,39 +104,16 @@ public class ScanQRActivity extends AppCompatActivity {
         flashLightid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("hjsdgs","bhootni k");
 
-                if(cameraView.getFlash()== Flash.OFF)
-                {
-                    Log.i("open on","bhootni k");
-                    String cameraId = null;
-                    CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-                    cameraView.setFlash(Flash.ON);
-                    flashLightid.setImageResource(R.drawable.ic_flash_off_black_24dp);
-                    try {
-                        cameraId = camManager.getCameraIdList()[0];
-                        camManager.setTorchMode(cameraId, true);
-                    } catch (CameraAccessException e) {
-                        e.printStackTrace();
+
+                    if(getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH))
+                    {
+                        cam = Camera.open();
+                        Camera.Parameters p = cam.getParameters();
+                        p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                        cam.setParameters(p);
+                        cam.startPreview();
                     }
-                }
-                else
-                {
-                    Log.i("Off","bhootni k");
-                    cameraView.setFlash(Flash.OFF);
-                    flashLightid.setImageResource(R.drawable.ic_flash_on_black_24dp);
-                   String cameraId = null;
-                    CameraManager camManager = (CameraManager)getSystemService(Context.CAMERA_SERVICE);
-                     // Usually front camera is at 0 position.
-
-                    try {
-                        cameraId = camManager.getCameraIdList()[0];
-                        camManager.setTorchMode(cameraId, false);
-                    } catch (CameraAccessException e) {
-                        e.printStackTrace();
-                    }
-                }
-
             }
         });
     }
