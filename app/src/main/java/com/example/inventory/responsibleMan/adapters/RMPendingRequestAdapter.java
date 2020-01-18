@@ -12,9 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inventory.R;
 import com.example.inventory.model.Request;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +27,8 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
     Context c;
     public List<Request> x;
 
-    DatabaseReference serviceMan;
+    DatabaseReference serviceMan, loadValue, complaintReference;
+    String load;
 
 
     public RMPendingRequestAdapter(Context c, List<Request> x) {
@@ -57,6 +62,22 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
         myholder.complain_id.setText(x.get(position).getComplaintId());
         myholder.description.setText(x.get(position).getDescription());
 
+        //complaintReference = FirebaseDatabase.getInstance().getReference("Complaints").child(x.get(position).getComplaintId());
+        loadValue = FirebaseDatabase.getInstance().getReference("Users").child("ServiceMan").child(x.get(position).getServiceMan()).child("load");
+
+
+        loadValue.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                load = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         myholder.accept_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,9 +86,19 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
                 HashMap<String,Object> updateDatabaseValue = new HashMap<>();
 
                 //add data
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                month = month+1;
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+
+                updateDatabaseValue.put("/Complaints/"+x.get(position).getComplaintId()+"/complaintCompletedDate",day+"/"+month+"/"+year);
                 updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/completedComplaintList/"+x.get(position).getComplaintId(),"true");
                 updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/completedComplaintList/"+x.get(position).getComplaintId(),"true");
                 updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/completedRequestList/"+x.get(position).getRequestid(),"true");
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/load",Integer.parseInt(load)-1);
+                updateDatabaseValue.put("/Complaints/"+x.get(position).getComplaintId()+"/status",5);
 
                 // delete data
                 updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/pendingComplaintList/"+x.get(position).getComplaintId(),null);
@@ -78,6 +109,39 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
                 FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
 
             }
+            else
+            {
+                HashMap<String,Object> updateDatabaseValue = new HashMap<>();
+
+                //add data
+
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/completedRequestList/"+x.get(position).getRequestid(),"true");
+                updateDatabaseValue.put("/Complaints/"+x.get(position).getComplaintId()+"/status",2);
+
+
+                // delete data
+
+                updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
+
+                FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+            }
+            }
+        });
+
+        myholder.decline_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HashMap<String,Object> updateDatabaseValue = new HashMap<>();
+
+                updateDatabaseValue.put("/Complaints/"+x.get(position).getComplaintId()+"/status",2);
+
+                // delete data
+
+                updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
+                updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
+
+                FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
             }
         });
 
@@ -93,7 +157,7 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
     class MyHolder extends RecyclerView.ViewHolder {
 
 
-        TextView serviceman1,requestid1,complain_id,description,accept_button,decline_button;
+        TextView serviceman1,requestid1,complain_id,description, accept_button,decline_button;
 
         public MyHolder(@NonNull final View itemView) {
             super(itemView);

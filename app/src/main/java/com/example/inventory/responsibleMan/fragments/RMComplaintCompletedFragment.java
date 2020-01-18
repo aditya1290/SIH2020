@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inventory.R;
 import com.example.inventory.model.Complaint;
-import com.example.inventory.responsibleMan.adapters.RMPendingComplaintAdapter;
+import com.example.inventory.responsibleMan.adapters.RMCompletedComplaintAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -28,8 +28,8 @@ import java.util.List;
 
 public class RMComplaintCompletedFragment extends Fragment {
 
-    RecyclerView rm_recyclerView_pending_complaint;
-    RMPendingComplaintAdapter rmPendingComplaintAdapter;
+    RecyclerView rm_recyclerView_completed_complaint;
+    RMCompletedComplaintAdapter rmCompletedComplaintAdapter;
 
     List<Complaint> completedComplaintObjectList;
 
@@ -49,16 +49,17 @@ public class RMComplaintCompletedFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View rootView =  inflater.inflate(R.layout.rm_complaint_pending, container, false);
-        rm_recyclerView_pending_complaint = rootView.findViewById(R.id.rm_recyclerView_pending_complaint);
-        rm_recyclerView_pending_complaint.setLayoutManager(new LinearLayoutManager(getActivity()));
+        View rootView =  inflater.inflate(R.layout.rm_complaint_completed, container, false);
+
+        rm_recyclerView_completed_complaint = rootView.findViewById(R.id.rm_recyclerView_completed_complaint);
+        rm_recyclerView_completed_complaint.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         completedComplaintObjectList = new ArrayList<>();
 
-        rmPendingComplaintAdapter = new RMPendingComplaintAdapter(getActivity().getApplicationContext(), completedComplaintObjectList);
-        rm_recyclerView_pending_complaint.setAdapter(rmPendingComplaintAdapter);
+        rmCompletedComplaintAdapter = new RMCompletedComplaintAdapter(getActivity().getApplicationContext(), completedComplaintObjectList);
+        rm_recyclerView_completed_complaint.setAdapter(rmCompletedComplaintAdapter);
 
 
         firebaseDatabase =  FirebaseDatabase.getInstance();
@@ -72,14 +73,14 @@ public class RMComplaintCompletedFragment extends Fragment {
 
                 String key = dataSnapshot.getKey();
 
-                complaintReference.child(key).addValueEventListener(new ValueEventListener() {
+                complaintReference.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Complaint pendingComplaint = new Complaint();
-                        pendingComplaint = dataSnapshot.getValue(Complaint.class);
+                        Complaint completedComplaint = new Complaint();
+                        completedComplaint = dataSnapshot.getValue(Complaint.class);
 
-                        completedComplaintObjectList.add(0,pendingComplaint);
-                        rmPendingComplaintAdapter.notifyDataSetChanged();
+                        completedComplaintObjectList.add(0,completedComplaint);
+                        rmCompletedComplaintAdapter.notifyDataSetChanged();
 
                     }
 
