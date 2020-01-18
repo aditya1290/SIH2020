@@ -85,7 +85,7 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
             public void onClick(View view) {
             if(x.get(position).isStatus())
             {
-                HashMap<String,Object> updateDatabaseValue = new HashMap<>();
+                final HashMap<String,Object> updateDatabaseValue = new HashMap<>();
 
                 //add data
                 Calendar cal = Calendar.getInstance();
@@ -108,7 +108,26 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
                 updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingComplaintList/"+x.get(position).getComplaintId(),null);
                 updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
 
-                FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+                FirebaseDatabase.getInstance().getReference("Complaints")
+                        .child(x.get(position).getComplaintId()).child("complaintMachineId").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        String machineId = dataSnapshot.getValue().toString();
+                        Log.i("machineId",machineId);
+                        updateDatabaseValue.put("/machines/"+machineId+"/pastRecords/"+x.get(position).getRequestid(),"true");
+                        FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+
+
 
                 Intent i = new Intent(c, RatingActivity.class);
                 i.putExtra("serviceManUid",x.get(position).getServiceMan());
@@ -118,7 +137,7 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
             }
             else
             {
-                HashMap<String,Object> updateDatabaseValue = new HashMap<>();
+                final HashMap<String,Object> updateDatabaseValue = new HashMap<>();
 
                 //add data
 
@@ -131,7 +150,24 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
                 updateDatabaseValue.put("/Users/ResponsibleMan/"+x.get(position).getResponsible()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
                 updateDatabaseValue.put("/Users/ServiceMan/"+x.get(position).getServiceMan()+"/pendingRequestList/"+x.get(position).getRequestid(),null);
 
-                FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+                FirebaseDatabase.getInstance().getReference("Complaints")
+                        .child(x.get(position).getComplaintId()).child("complaintMachineId").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        String machineId = dataSnapshot.getValue().toString();
+                        Log.i("machineId",machineId);
+                        updateDatabaseValue.put("/machines/" + machineId + "/pastRecords/" + x.get(position).getRequestid(), "true");
+                        FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+
+                });
             }
             }
         });
