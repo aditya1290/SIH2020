@@ -1,14 +1,15 @@
 package com.example.inventory;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.example.inventory.responsibleMan.ProfileFragment;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.inventory.serviceMan.SFaqActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -18,6 +19,10 @@ public class SettingActivity extends AppCompatActivity {
     LinearLayout linearLayout_faq;
     LinearLayout linearLayout_terms_and_conditions;
     LinearLayout linearLayout_about_our_app;
+
+    Button logout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,18 @@ public class SettingActivity extends AppCompatActivity {
         linearLayout_faq=findViewById(R.id.setting_faq);
         linearLayout_terms_and_conditions=findViewById(R.id.setting_terms_and_condition);
         linearLayout_about_our_app=findViewById(R.id.setting_about_our_app);
+
+        logout = findViewById(R.id.logout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+                finish();
+            }
+        });
 
         linearLayout_notification.setOnClickListener(new View.OnClickListener() {
             @Override

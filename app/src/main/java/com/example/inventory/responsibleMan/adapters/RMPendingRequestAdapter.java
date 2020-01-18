@@ -1,6 +1,7 @@
 package com.example.inventory.responsibleMan.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inventory.R;
 import com.example.inventory.model.Request;
+import com.example.inventory.responsibleMan.RatingActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -108,32 +110,10 @@ public class RMPendingRequestAdapter extends RecyclerView.Adapter<RMPendingReque
 
                 FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
 
-                //-----------------------
-
-
-
-//                AlertDialog.Builder builder = new AlertDialog.Builder(c);
-////                View mView = activity.getLayoutInflater().inflate(R.layout.rating_dialog,null);
-//                View mView = LayoutInflater.from(c).inflate(R.layout.rating_dialog,null);
-//
-//                ImageView pic_dialog = (ImageView)mView.findViewById(R.id.pic_dialog);
-//                final RatingBar ratingBar = (RatingBar)mView.findViewById(R.id.rating_bar);
-//                Button Submit_rating = (Button)mView.findViewById(R.id.submit_rating);
-//
-//                builder.setView(mView);
-//                final AlertDialog dialog = builder.create();
-//                dialog.show();
-//
-//                Submit_rating.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        Toast.makeText(c, "You rated "+ ratingBar.getProgress(), Toast.LENGTH_SHORT).show();
-//                        dialog.dismiss();
-//                    }
-//                });
-
-                //-------------------
+                Intent i = new Intent(c, RatingActivity.class);
+                i.putExtra("serviceManUid",x.get(position).getServiceMan());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                c.startActivity(i);
 
             }
             else

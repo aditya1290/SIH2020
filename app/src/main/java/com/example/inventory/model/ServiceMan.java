@@ -7,6 +7,9 @@ public class ServiceMan {
     String userName, Email;
     int load = 0;
 
+    float rating=0;
+    int numberOfRating = 0;
+
     public int getLoad() {
         return load;
     }
@@ -84,5 +87,21 @@ public class ServiceMan {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public int getNumberOfRating() {
+        return numberOfRating;
+    }
+
+    public void setNumberOfRating(int numberOfRating) {
+        this.numberOfRating = numberOfRating;
     }
 }

@@ -20,6 +20,7 @@
         android:supportsRtl="true"
 
         android:theme="@style/AppTheme">
+        <activity android:name=".responsibleMan.RatingActivity"></activity>
         <activity android:name=".FingerprintActivity" />
         <activity android:name=".responsibleMan.RMChatActivity" />
         <activity android:name=".serviceMan.SMChatActivity" />
@@ -70,12 +71,11 @@
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
-
-        <activity android:name=".SettingActivity"></activity>
-        <activity android:name=".FeedbackActivity"></activity>
-        <activity android:name=".serviceMan.SFaqActivity"></activity>
-        <activity android:name=".responsibleMan.RFaqActivity"></activity>
-        <activity android:name=".responsibleMan.MyMachine"></activity>
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".serviceMan.SFaqActivity" />
+        <activity android:name=".responsibleMan.RFaqActivity" />
+        <activity android:name=".responsibleMan.MyMachine" />
 
         <service
             android:name=".functions.FirebaseMsgService"

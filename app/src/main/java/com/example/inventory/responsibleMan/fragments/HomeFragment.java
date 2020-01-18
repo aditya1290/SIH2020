@@ -1,5 +1,6 @@
 package com.example.inventory.responsibleMan.fragments;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -85,9 +86,13 @@ public class HomeFragment extends Fragment {
 
                 for(int i = 0; i< dotscount; i++){
 
+                    Activity activity = getActivity();
+                    if(activity!=null)
                     dots[i].setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.active_dot));
                 }
 
+                Activity activity = getActivity();
+                if(activity!=null)
                 dots[position].setImageDrawable(ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.nonactive_dot));
 
             }
