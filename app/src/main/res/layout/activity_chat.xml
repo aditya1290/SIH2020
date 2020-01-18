@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6e6e6"
+    android:background="#FFFFFF"
     tools:context=".serviceMan.SMChatActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
+            android:background="#95A8B8"
             android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/MenuStyle">
 
@@ -46,9 +46,13 @@
         android:layout_below="@id/bar_layout"
         android:layout_above="@id/bottom"/>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:padding="5dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:id="@+id/bottom"
         android:background="#fff"
         android:layout_alignParentBottom="true"
@@ -66,7 +70,7 @@
         <ImageButton
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/ic_action_name"
+            android:background="@drawable/ic_send"
             android:id="@+id/btn_send"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true" />
