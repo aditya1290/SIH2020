@@ -32,7 +32,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="3dp"
-            android:id="@+id/s_mainframe">
+            android:id="@+id/mainframe">
 
         </FrameLayout>
     </ScrollView>

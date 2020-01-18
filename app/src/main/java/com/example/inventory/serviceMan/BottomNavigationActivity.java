@@ -1,12 +1,14 @@
 package com.example.inventory.serviceMan;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.example.inventory.R;
 import com.example.inventory.serviceMan.fragments.ServicemanHistoryFragment;
@@ -63,8 +65,17 @@ public class BottomNavigationActivity extends AppCompatActivity {
     private void setOurFragment(Fragment fragment)
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.s_mainframe,fragment);
+        fragmentTransaction.replace(R.id.mainframe,fragment);
         fragmentTransaction.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Fragment uploadType = getSupportFragmentManager().findFragmentById(R.id.mainframe);
+        if (uploadType != null) {
+            uploadType.onActivityResult(12, resultCode, data);
+        }
     }
 }
 

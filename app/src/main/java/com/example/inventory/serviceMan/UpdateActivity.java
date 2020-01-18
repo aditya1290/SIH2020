@@ -119,6 +119,7 @@ public class UpdateActivity extends AppCompatActivity {
                 updateDatabaseValue.put("/Users/ResponsibleMan/"+generatorUid+ "/pendingRequestList/"+requestIdValue,"true");
                 updateDatabaseValue.put("/Requests/"+requestIdValue,request);
                 updateDatabaseValue.put("/RequestId",String.valueOf(Integer.parseInt(requestIdValue)+1));
+                updateDatabaseValue.put("/Complaints/"+complaintId+"/status",3);
 
                 FirebaseDatabase.getInstance().getReference().updateChildren(updateDatabaseValue);
 

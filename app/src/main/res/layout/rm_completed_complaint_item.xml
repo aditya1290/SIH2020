@@ -2,7 +2,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardview12"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
@@ -20,7 +19,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ll1">
+            android:id="@+id/rm_ll1">
             <LinearLayout
 
                 android:layout_width="wrap_content"
@@ -33,7 +32,7 @@
                     android:orientation="horizontal"
                     >
                     <TextView
-                        android:id="@+id/serviceman"
+                        android:id="@+id/rm_complated_complaint_serviceman1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Serviceman:"
@@ -41,10 +40,11 @@
                         android:textColor="#363333"
                         android:textSize="15sp" />
                     <TextView
-                        android:id="@+id/serviceman1"
+                        android:id="@+id/rm_complated_complaint_serviceman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginRight="70dp"
                         android:text="Aditya Garg"
                         android:textColor="#1A1717"
                         android:textSize="15sp" />
@@ -58,15 +58,15 @@
                     android:orientation="horizontal"
                     >
                     <TextView
-                        android:id="@+id/request_id"
+                        android:id="@+id/rm_complated_complaint_machine_id1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Request Id:"
+                        android:text="Machine Id:"
                         android:textStyle="bold"
                         android:textColor="#363333"
                         android:textSize="15sp" />
                     <TextView
-                        android:id="@+id/request_id1"
+                        android:id="@+id/rm_complated_complaint_machine_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
@@ -82,7 +82,7 @@
                     android:orientation="horizontal"
                     >
                     <TextView
-                        android:id="@+id/complain_id1"
+                        android:id="@+id/rm_complated_complaint_id1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Complain Id:"
@@ -90,7 +90,7 @@
                         android:textColor="#363333"
                         android:textSize="15sp" />
                     <TextView
-                        android:id="@+id/complain_id"
+                        android:id="@+id/rm_complated_complaint_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -99,7 +99,29 @@
                         android:textSize="15sp" />
 
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <TextView
+                        android:id="@+id/rm_complated_complaint_date1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date(Completed):"
+                        android:textStyle="bold"
+                        android:textColor="#363333"
+                        android:textSize="15sp" />
+                    <TextView
+                        android:id="@+id/rm_complated_complaint_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17dp"
+                        android:text="21/07/2020"
+                        android:textColor="#1A1717"
+                        android:textSize="15sp" />
 
+                </LinearLayout>
 
             </LinearLayout>
             <ImageView
@@ -115,10 +137,10 @@
 
 
         <LinearLayout
-            android:id="@+id/ll_hide12"
+            android:id="@+id/rm_ll_hide12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ll1"
+            android:layout_below="@+id/rm_ll1"
             android:orientation="vertical"
             android:layout_marginTop="10dp">
 
@@ -130,7 +152,7 @@
                 />
 
             <TextView
-                android:id="@+id/description1"
+                android:id="@+id/rm_complated_complaint_desc1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -139,50 +161,22 @@
                 android:textColor="#363333"
                 android:textSize="15sp" />
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/rm_complated_complaint_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="I have completed my work for repairing computer.All thing are now working nice."
                 android:textColor="#4c4c4c"
                 android:textSize="15sp" />
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#A29F9F"
                 android:layout_margin="5dp"
                 />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:id="@+id/accept_button"
-                    android:layout_marginLeft="10dp"
-                    android:text="ACCEPT"
-                    android:textColor="#E01515"
-                    android:background="@drawable/transparent_button_border"></Button>
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="25dp"
-                    android:background="#A29F9F"
-                    ></View>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:id="@+id/decline_button"
-                    android:layout_marginLeft="25dp"
-                    android:text="DECLINE"
-                    android:textColor="#1570E0"
-                    android:background="@drawable/transparent_button_border"></Button>
-
-
-            </LinearLayout>
 
         </LinearLayout>
 

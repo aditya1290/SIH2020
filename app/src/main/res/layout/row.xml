@@ -119,6 +119,16 @@
 
             </LinearLayout>
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/dropdown"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_expand_more"
+
+                 />
+
         </RelativeLayout>
 
 
