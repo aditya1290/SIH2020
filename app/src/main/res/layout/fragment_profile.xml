@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="658dp"
+    android:layout_height="778dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".responsibleMan.ProfileFragment">
 
@@ -93,6 +93,7 @@
                    app:menu="@menu/toolbar_menu"
                     app:popupTheme="@style/AppTheme.PopupOverlay"
                     android:paddingRight="10dp">
+
 
 
                 </androidx.appcompat.widget.Toolbar>
