@@ -172,6 +172,7 @@
                     android:layout_marginLeft="25dp"
                     android:background="#A29F9F"
                     ></View>
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
