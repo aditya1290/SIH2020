@@ -72,9 +72,7 @@ import java.util.HashMap;
 
 public class ProfileFragment extends Fragment {
 
-   private Toolbar mTopToolbar;
-    ImageView change_name;
-    TextView name;
+    private Toolbar mTopToolbar;
 
     ImageView profilePicChange, profilePic;
 
@@ -84,10 +82,9 @@ public class ProfileFragment extends Fragment {
     UploadTask uploadTask;
     CustomDialogBox dialogBox;
 
-    TextView name,email,phoneNumber;
+    TextView name, email, phoneNumber;
 
 
-    ImageView setting_imegeView;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -98,10 +95,13 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
 
+        mTopToolbar = (Toolbar) view.findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(mTopToolbar);
 
+        setHasOptionsMenu(true);
         profilePicChange = view.findViewById(R.id.rm_change_profile);
         profilePic = view.findViewById(R.id.profilepic);
 
@@ -140,7 +140,7 @@ public class ProfileFragment extends Fragment {
         });
 
 
-        storageReference = FirebaseStorage.getInstance().getReference().child(user.getUid()+".jpg");
+        storageReference = FirebaseStorage.getInstance().getReference().child(user.getUid() + ".jpg");
 
         profilePicChange.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +153,24 @@ public class ProfileFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.toolbar_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // handle item selection
+        switch (item.getItemId()) {
+            case R.id.settings:
+                Intent intent= new Intent(getActivity().getApplicationContext(), SettingActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -176,7 +194,7 @@ public class ProfileFragment extends Fragment {
 
                     ((BitmapDrawable) profilePic.getDrawable()).getBitmap().compress(Bitmap.CompressFormat.JPEG, 50, baos);
 
-                    Log.i("hello ankit","ankit");
+                    Log.i("hello ankit", "ankit");
                     final byte[] image_data = baos.toByteArray();
                     uploadTask = storageReference.putBytes(image_data);
 
@@ -225,12 +243,6 @@ public class ProfileFragment extends Fragment {
             });
         }
 
-        final View view= inflater.inflate(R.layout.fragment_profile, container, false);
-
-        mTopToolbar = (Toolbar) view.findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(mTopToolbar);
-
-        setHasOptionsMenu(true);
 
 //        change_name = (ImageView) view.findViewById(R.id.rm_edit_name);
 //        name = (TextView) view.findViewById(R.id.rm_profile_name);
@@ -272,30 +284,10 @@ public class ProfileFragment extends Fragment {
 //            }
 //        });
 
-        return view;
-    }
 
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.toolbar_menu, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // handle item selection
-        switch (item.getItemId()) {
-            case R.id.settings:
-                Intent intent= new Intent(getActivity().getApplicationContext(), SettingActivity.class);
-                startActivity(intent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 
 }
-
 
 
 
