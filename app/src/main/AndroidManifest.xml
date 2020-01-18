@@ -17,25 +17,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".responsibleMan.RMChatActivity"></activity>
+        <activity android:name=".serviceMan.ImagePickerActivity"></activity>
+        <activity android:name=".responsibleMan.RMChatActivity" />
         <activity android:name=".serviceMan.SMChatActivity" />
-        <activity android:name=".responsibleMan.RMRequestStepIndicator">
+        <activity android:name=".responsibleMan.RMRequestStepIndicator" />
+        <activity android:name=".IntroActivity">
 
         </activity>
-        <activity android:name=".IntroActivity">
+        <activity android:name=".responsibleMan.ResponsiblemanComplaintsTabActivity" />
+        <activity android:name=".responsibleMan.RMPendingRequestActivity" />
+        <activity
+            android:name=".serviceMan.ServicemanRequests"
+            android:label="Request Status" />
+        <activity android:name=".serviceMan.BottomNavigationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".responsibleMan.ResponsiblemanComplaintsTabActivity" />
-        <activity android:name=".responsibleMan.RMPendingRequestActivity" />
-
-        <activity
-            android:name=".serviceMan.ServicemanRequests"
-            android:label="Request Status" />
-        <activity android:name=".serviceMan.BottomNavigationActivity" />
         <activity android:name=".serviceMan.PendingComplaintsActivity" />
         <activity
             android:name=".serviceMan.UpdateActivity"
@@ -57,9 +57,7 @@
         <activity android:name=".responsibleMan.BottomNavigationActivity" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
@@ -71,6 +69,8 @@
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize" />
+
+
     </application>
 
 </manifest>
